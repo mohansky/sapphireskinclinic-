@@ -1,0 +1,32 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import Heading from "../ui/Heading.astro";
+import Button from "../ui/Button.astro";
+
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const offers = siteInfo.footerLatestOffers;
+---
+
+<div class="hero max-h-96 overflow-hidden">
+  <Image
+    src={offers.bgImage}
+    alt={offers.title || "Sapphire Skin & Aesthetics Clinic"}
+    title={offers.title || "Sapphire Skin & Aesthetics Clinic"}
+    width={1920}
+    height={1080}
+    class="object-cover max-h-96"
+  />
+
+  <div class="hero-overlay"></div>
+  <div class="hero-content text-neutral-content text-center">
+    <div class="max-w-xxl px-5 py-2">
+      <!-- {offers.title && <Heading>{offers.title}</Heading>} -->
+      {offers.subtitle && <Heading size="xxl" class="mb-10">{offers.subtitle}</Heading>}
+      <Button href={offers.btnLink} color="primary" variant="soft" title="Offers" themed>
+        {offers.btnText}
+      </Button>
+    </div>
+  </div>
+</div>
