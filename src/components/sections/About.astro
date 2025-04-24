@@ -29,10 +29,10 @@ const highlights = siteInfo.highlights;
         {siteInfo.aboutText}
       </Paragraph>
 
-      <div class="grid md:grid-cols-2 justify-items-center gap-14 py-16 sm:py-32">
+      <div class="grid grid-cols-2 lg:grid-cols-4 justify-items-center gap-4 py-16 sm:py-32">
         {
           highlights.map((highlight) => (
-            <div class="card w-1/2 bg-error/10 hover:bg-error/20 transition delay-150 duration-300 ease-in-out card-md shadow-sm">
+            <div class="card bg-error/10 hover:bg-error/20 transition delay-150 duration-300 ease-in-out card-md shadow-sm">
               <div class="card-body">
                 <Icon class="w-6 h-6 mx-auto" name={highlight.icon} />
                 <Heading
