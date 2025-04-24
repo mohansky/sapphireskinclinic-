@@ -1,0 +1,303 @@
+---
+import Footer from "@/components/layout/Footer.astro";
+import Navbar from "@/components/layout/Navbar.astro";
+import "@/styles/global.css";
+import { getCollection } from "astro:content";
+
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const site = siteInfo;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <!-- Theme localStorage -->
+    <script is:inline>
+      if (localStorage.getItem("theme") === null) {
+        document.documentElement.setAttribute("data-theme", "lofi");
+      } else
+        document.documentElement.setAttribute(
+          "data-theme",
+          localStorage.getItem("theme")
+        );
+    </script>
+
+    <!-- Theme Changer  -->
+    <script>
+      import { themeChange } from "theme-change";
+      themeChange();
+    </script>
+
+    <!-- Schema.org -->
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "MedicalBusiness",
+        additionalType: "https://schema.org/DermatologyClinic",
+        name: `${site.title}`,
+        description: `${site.description}`,
+        image: `${site.ogImageURL}`,
+        url: `${site.basepath}`,
+        logo: `${site.ogImageURL}`,
+        telephone: `${site.locations[0].phones[0]}`,
+        email: `${site.locations[0].email}`,
+        priceRange: "₹₹-₹₹₹",
+        currenciesAccepted: "INR",
+        paymentAccepted: "Cash, Credit Card, Insurance, Online Payment, UPI",
+        address: [
+          {
+            "@type": "PostalAddress",
+            streetAddress: " 1st Floor, 24th Main Rd, J.P. Nagar 6th Phase",
+            addressLocality: "Bengaluru",
+            addressRegion: "Karnataka",
+            postalCode: "560078",
+            addressCountry: "India",
+          },
+          {
+            "@type": "PostalAddress",
+            streetAddress: " OA Towers, 5th Cross Road, KHB Colony, 5th Block, Koramangala,",
+            addressLocality: "Bengaluru",
+            addressRegion: "Karnataka",
+            postalCode: "560095",
+            addressCountry: "India",
+          },
+        ],
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: "40.7128",
+          longitude: "-74.0060",
+        },
+        openingHoursSpecification: [
+          {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+            ],
+            opens: "10:30",
+            closes: "20:30",
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: "Sunday",
+            opens: "10:30",
+            closes: "19:00",
+          },
+        ],
+        sameAs: [
+          `${site.social_media[0].link}`,
+          `${site.social_media[1].link}`,
+          `${site.social_media[2].link}`,
+          `${site.social_media[3].link}`,
+        ],
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: "Skin Treatment Services",
+          itemListElement: [
+            {
+              "@type": "MedicalProcedure",
+              name: "Acne Treatment",
+              procedureType: "https://schema.org/TherapeuticProcedure",
+              howPerformed:
+                "Clinical evaluation and personalized treatment plan including topical medications, oral medications, or procedural interventions.",
+              category: "General Dermatology",
+            },
+            {
+              "@type": "MedicalProcedure",
+              name: "Botox Injections",
+              procedureType: "https://schema.org/TherapeuticProcedure",
+              howPerformed:
+                "Minimally invasive injections to reduce appearance of fine lines and wrinkles.",
+              category: "Cosmetology",
+            },
+            {
+              "@type": "MedicalProcedure",
+              name: "Hair Loss Treatment",
+              procedureType: "https://schema.org/TherapeuticProcedure",
+              howPerformed:
+                "Scalp analysis and personalized treatment protocols to address various causes of hair loss.",
+              category: "Trichology",
+            },
+          ],
+        },
+        medicalSpecialty: ["Dermatology", "Cosmetic Dermatology", "Trichology"],
+        staff: [
+          {
+            "@type": "Physician",
+            name: `${site.doctors[0].name}`,
+            image: `${site.doctors[0].image}`,
+            qualifications: `${site.doctors[0].qualifications}`,
+            medicalSpecialty: `${site.doctors[0].specialization}`,  
+          },
+          {
+            "@type": "Physician",
+            name: `${site.doctors[1].name}`,
+            image: `${site.doctors[1].image}`,
+            qualifications: `${site.doctors[1].qualifications}`,
+            medicalSpecialty: `${site.doctors[1].specialization}`,  
+          },
+          {
+            "@type": "Physician",
+            name: `${site.doctors[2].name}`,
+            image: `${site.doctors[2].image}`,
+            qualifications: `${site.doctors[2].qualifications}`,
+            medicalSpecialty: `${site.doctors[2].specialization}`,  
+          },
+        ],
+        review: {
+          "@type": "Review",
+          reviewRating: {
+            "@type": "Rating",
+            ratingValue: "4.6",
+            bestRating: "5",
+          },
+          author: {
+            "@type": "Person",
+            name: "Shaik Rizu",
+          },
+          reviewBody: "I am so impressed with Dr. Sheela thorough approach to skincare. They took the time to explain every option and answered all my questions in detail. It’s clear that Dr. Sheela genuinely cares about their patients. My skin has improved tremendously, and I couldn’t be happier with the results!"
+        },
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "4.6",
+          reviewCount: "571",
+          bestRating: "5",
+        },
+        availableService: [
+          {
+            "@type": "MedicalProcedure",
+            name: "Skin Cancer Screening",
+            procedureType: "https://schema.org/DiagnosticProcedure",
+            howPerformed: "Full body examination to detect suspicious lesions",
+            category: "General Dermatology",
+          },
+          {
+            "@type": "MedicalProcedure",
+            name: "Chemical Peels",
+            procedureType: "https://schema.org/TherapeuticProcedure",
+            howPerformed:
+              "Application of chemical solution to improve skin texture and appearance",
+            category: "Cosmetology",
+          },
+          {
+            "@type": "MedicalProcedure",
+            name: "Scalp Treatments",
+            procedureType: "https://schema.org/TherapeuticProcedure",
+            howPerformed:
+              "Specialized treatments for scalp conditions and hair health",
+            category: "Trichology",
+          },
+        ],
+      })}
+    />
+
+    <!-- DaisyUI -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5.0.0-beta.6/daisyui.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <!-- Tailwind -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Basic Meta Tags -->
+    <meta charset="UTF-8" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{site.title}</title>
+    <meta name="description" content={site.description} />
+    <meta name="publisher" content={site.title} />
+
+    <!-- Open Graph Meta Tags (for social sharing) -->
+    <meta property="og:title" content={site.title} />
+    <meta property="og:description" content={site.description} />
+    <meta property="og:image" content={`${site.basepath}/images/pfrlogo.svg`} />
+    <meta property="og:url" content={`${site.basepath}/`} />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={site.title} />
+    <meta name="twitter:description" content={site.description} />
+    <meta
+      name="twitter:image"
+      content={`${site.basepath}/images/ssaclogo.svg`}
+    />
+
+    <!-- Canonical URL (prevents duplicate content issues) -->
+    <link rel="canonical" href={site.basepath} />
+
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow" />
+    <meta name="keywords" content={site.keywords.join(",")} /> 
+    <meta name="author" content={site.author.name} />
+
+    <!-- Link Swiper's CSS -->
+    <!-- <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    /> -->
+
+    <!-- Google Tag Manager -->
+    <!-- <script is:inline>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-KT3HBTSK");
+    </script> -->
+    <!-- End Google Tag Manager -->
+  </head>
+  <body class="overflow-x-hidden">
+    <!-- Google Tag Manager (noscript) -->
+    <!-- <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-KT3HBTSK"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe></noscript
+    > -->
+    <!-- End Google Tag Manager (noscript) -->
+    <Navbar navigation={site.navigation} />
+    <!-- <Background /> -->
+    <slot />
+    <Footer
+      footer={{
+        name: site.name,
+        copyright: site.copyright,
+        social_media: site.social_media,
+        locations: site.locations,
+        footerLatestOffers: site.footerLatestOffers,
+        footerBookAppointment: site.footerBookAppointment,
+      }}
+    />
+  </body>
+</html>
+
+<style>
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>

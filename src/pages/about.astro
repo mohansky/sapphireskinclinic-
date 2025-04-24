@@ -1,0 +1,25 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/sections/PageHero.astro"; 
+import AboutTitleQuote from "@/components/sections/AboutTitleQuote.astro";
+import AboutClinic from "@/components/sections/AboutClinic.astro";
+import WhyUs from "@/components/sections/WhyUs.astro";
+import Doctors from "@/components/sections/Doctors.astro";
+import { getCollection } from "astro:content";
+import { getSlugFromPath } from "@/lib/slug";
+const currentSlug = getSlugFromPath(Astro.url);
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const currentHeroPage = siteInfo.heroPage.find(
+  (page) => page.slug === currentSlug
+);
+const heroPage = currentHeroPage || siteInfo.heroPage[0];
+---
+
+<Layout>
+  <PageHero hero={heroPage} />
+  <AboutTitleQuote />
+  <AboutClinic />
+  <WhyUs />
+  <Doctors />
+</Layout>

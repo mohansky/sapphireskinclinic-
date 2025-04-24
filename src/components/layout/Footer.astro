@@ -1,0 +1,101 @@
+---
+import SocialLinks from "../ui/SocialLinks.astro";
+import SSACLogo from "../icons/SSACLogo.astro";
+import Container from "../ui/Container.astro";
+import Heading from "../ui/Heading.astro";
+import { Image } from "astro:assets";
+import offersBG from "../../assets/bg-offers.jpg";
+import ContactItemsFooter from "../ui/ContactItemsFooter.astro";
+import Button from "../ui/Button.astro";
+import Paragraph from "../ui/Paragraph.astro";
+import FooterOffersCard from "../ui/FooterOffersCard.astro";
+import FooterBookAppointmentCard from "../ui/FooterBookAppointmentCard.astro";
+
+interface Timmings {
+  title: string;
+  details: string;
+}
+
+interface FooterBookAppointment {
+  title: string;
+  btnLink: string;
+  btnText: string;
+}
+
+interface FooterOffers {
+  bgImage: ImageMetadata;
+  title: string;
+  subtitle: string;
+  btnLink: string;
+  btnText: string;
+}
+
+interface FooterData {
+  name: string;
+  copyright: {
+    year: number;
+    text: string;
+    footnote: string;
+  };
+  footerLatestOffers: FooterOffers;
+  footerBookAppointment: FooterBookAppointment;
+  social_media: {
+    link: string;
+    icon: string;
+    text: string;
+  }[];
+  locations: {
+    title: string;
+    address: string[];
+    phones: string[];
+    email: string;
+    map: string;
+    timmings: Timmings[];
+  }[];
+}
+
+interface Props {
+  footer: FooterData;
+}
+
+const {
+  locations,
+  footerBookAppointment,
+  footerLatestOffers,
+  copyright,
+  social_media,
+} = Astro.props.footer;
+---
+
+<div class="bg-slate-800 text-neutral-content">
+  <footer class="footer footer-horizontal footer-center py-15">
+    <SSACLogo class="w-44" />
+  </footer>
+
+  <footer class="footer md:footer-horizontal py-10 px-3 md:px-12 lg:px-32">
+    <ContactItemsFooter locations={locations} />
+
+    <nav class="grid h-full content-between gap-4">
+      <FooterBookAppointmentCard footerBookAppointment={footerBookAppointment}/>
+      <FooterOffersCard footerOffers={footerLatestOffers} />
+    </nav>
+  </footer>
+  <div class="w-[90vw] h-px mx-auto bg-error opacity-25"></div>
+  <footer
+    class="footer sm:footer-horizontal bg-slate-900 items-center py-4 px-20"
+  >
+    <aside class="grid-flow-col items-center">
+      <p>{copyright.text} {new Date().getFullYear()} - {copyright.footnote}</p>
+    </aside>
+    <nav class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+      <SocialLinks
+        class="w-8 h-8"
+        socials={social_media.map((social) => ({
+          link: social.link,
+          icon: social.icon,
+          text: social.text,
+        }))}
+      />
+    </nav>
+  </footer>
+</div>

@@ -1,0 +1,111 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import Heading from "../ui/Heading.astro";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade";
+
+const treatments = await getCollection("treatments");
+const sortedTreatments = treatments.sort(
+  (a, b) => a.data.weight - b.data.weight
+);
+const publishedTreatments = sortedTreatments.filter(
+  (treatment) => treatment.data.draft !== true
+);
+
+// Duplicate treatments to ensure enough slides for looping
+const loopTreatments = [
+  ...publishedTreatments,
+  ...publishedTreatments.slice(0, 8), // Add extra slides if needed
+];
+---
+
+<div class="swiper treatmentsSwiper bg-base-200">
+  <div class="swiper-wrapper rounded-box w-full space-x-14 py-20">
+    {
+      loopTreatments.map((item) => (
+        <div class="swiper-slide flex flex-col items-center justify-center gap-8">
+          <Image
+            src={item.data.icon}
+            alt={item.data.title}
+            title={item.data.title}
+            width={100}
+            height={100}
+            class="mx-auto mb-3 grayscale w-20 h-auto z-30"
+          />
+          <Heading size="xxs" fontweight="light">
+            {item.data.title}
+          </Heading>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  import Swiper from "swiper/bundle";
+  import { Autoplay } from "swiper/modules";
+  import "swiper/css/bundle";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const swiper = new Swiper(".treatmentsSwiper", {
+      modules: [Autoplay],
+      // Basic configuration
+      slidesPerView: 5,
+      spaceBetween: 10,
+
+      // Responsive breakpoints
+      breakpoints: {
+        320: {
+          slidesPerView: 1,
+          spaceBetween: 10,
+        },
+        480: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        640: {
+          slidesPerView: 4,
+          spaceBetween: 30,
+        },
+        1024: {
+          slidesPerView: 6,
+          spaceBetween: 40,
+        },
+      },
+
+      // Loop configuration
+      loop: true,
+      loopAdditionalSlides: 2, // Add extra slides for smoother looping
+
+      // Autoplay
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      },
+
+      // Optional: center slides for better visual
+      centeredSlides: true,
+
+      // Performance and interaction
+      grabCursor: true,
+      speed: 1000, // Transition speed
+    });
+  });
+</script>
+
+<style>
+  /* Ensure slides have consistent sizing */
+  .swiper-slide {
+    width: auto !important;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+  }
+
+  .swiper-slide-active {
+    opacity: 1;
+  }
+</style>

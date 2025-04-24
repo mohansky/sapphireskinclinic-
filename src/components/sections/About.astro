@@ -1,0 +1,53 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import { Icon } from "astro-icon/components";
+import Heading from "../ui/Heading.astro";
+import Paragraph from "../ui/Paragraph.astro";
+
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const highlights = siteInfo.highlights;
+---
+
+<div class="grid md:grid-cols-2 gap-4 py-16 sm:py-32">
+  <Image
+    src={siteInfo.aboutImage}
+    alt="Sapphire Skin & Aesthetics Clinic"
+    title="Sapphire Skin & Aesthetics Clinic"
+    width={1920}
+    height={1080}
+    class="md:rounded-r-2xl object-cover md:h-screen w-full"
+  />
+
+  <div class="mx-auto flex items-center">
+    <div class="px-3">
+      <Heading size="xxl" fontweight="black" fontstyle="marcellus" class="text-accent-content">
+        {siteInfo.aboutTitle}
+      </Heading>
+      <Paragraph class="mt-5 max-w-xl indent-8 text-gray-500">
+        {siteInfo.aboutText}
+      </Paragraph>
+
+      <div class="grid md:grid-cols-2 justify-items-center gap-14 py-16 sm:py-32">
+        {
+          highlights.map((highlight) => (
+            <div class="card w-1/2 bg-error/10 hover:bg-error/20 transition delay-150 duration-300 ease-in-out card-md shadow-sm">
+              <div class="card-body">
+                <Icon class="w-6 h-6 mx-auto" name={highlight.icon} />
+                <Heading
+                  size="xs"
+                  fontweight="light"
+                  fontstyle="marcellus"
+                  class="text-center"
+                >
+                  {highlight.title}
+                </Heading>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</div>

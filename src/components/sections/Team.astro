@@ -1,0 +1,27 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+
+const aboutData = await getCollection("aboutCollection");
+const aboutInfo = aboutData[0].data;
+const teamTitle = aboutInfo.teamTitle;
+const teamImage = aboutInfo.teamImage;
+---
+
+<div class="hero h-[80vh]">
+  <Image
+    src={teamImage}
+    alt={teamTitle}
+    title={teamTitle}
+    width={1920}
+    height={1080}
+    class="object-cover h-[80vh]"
+  />
+
+  <div class="hero-overlay opacity-10"></div>
+  <div class="hero-content text-center">
+    <div class="max-w-md bg-base-200/50 px-5 py-2">
+      <h1 class="text-5xl font-bold">{teamTitle}</h1>
+    </div>
+  </div>
+</div>

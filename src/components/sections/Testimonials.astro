@@ -1,0 +1,85 @@
+---
+import { getCollection } from "astro:content";
+import TestimonialItem from "./TestimonialItem.astro";
+import Heading from "../ui/Heading.astro";
+import { Icon } from "astro-icon/components";
+import SunRays from "../icons/SunRays.astro";
+
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const testimonials = siteInfo.testimonials;
+---
+
+<div class="my-20">
+  <SunRays class="mx-auto fill-accent mb-5" />
+  <Heading
+    size="xxl"
+    fontweight="black"
+    fontstyle="marcellus"
+    class="text-center">Testimonials</Heading
+  >
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      {
+        testimonials.map((testimonial) => (
+          <TestimonialItem testimonials={testimonial} />
+        ))
+      }
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  .swiper-pagination-bullet {
+    width: 20px!important;
+    height: 20px!important;
+    text-align: center!important;
+    line-height: 20px!important;
+    font-size: 10px!important;
+    color: #535353!important;
+    opacity: 1!important;
+    background: rgba(129, 128, 128, 0.2)!important;
+  }
+
+  .swiper-pagination-bullet-active {
+    /* background-color: rgb(164, 15, 15) !important; */
+    color: #fff!important;
+    background: #1e3752!important;
+  }
+</style>
+
+<script
+  src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"
+  is:inline></script>
+
+<script>
+  import Swiper from "swiper";
+  import { EffectFade, Navigation, Pagination } from "swiper/modules";
+  import "swiper/css";
+  import "swiper/css/navigation";
+  import "swiper/css/pagination";
+  const swiper = new Swiper(".mySwiper", {
+    modules: [Navigation, Pagination, EffectFade],
+    direction: "horizontal",
+    loop: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+    effect: "fade",
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+      renderBullet: function (index, className) {
+        return (
+          '<span class="focus:text-blue-600 text-amber-500 ' +
+          className +
+          '">' +
+          (index + 1) +
+          "</span>"
+        );
+      },
+    },
+  });
+</script>

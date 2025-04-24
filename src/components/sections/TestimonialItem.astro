@@ -1,0 +1,24 @@
+--- 
+import Heading from "../ui/Heading.astro";
+import Paragraph from "../ui/Paragraph.astro"; 
+
+interface TestimonialContent {
+  text: string;
+  patient: string;
+}
+
+interface Props {
+  testimonials: TestimonialContent;
+}
+
+const { text, patient } = Astro.props.testimonials;
+---
+
+<div class="swiper-slide bg-base-100 py-14">
+  <div class="bg-base-100 max-w-4xl mx-auto z-50 flex flex-col items-center justify-center min-h-44">
+    <Paragraph class="text-balance text-center mb-5">{text}</Paragraph>
+    {patient && <Heading size="sm" class="tracking-wide opacity-50" fontstyle="workSans" fontweight="normal">{patient}</Heading>}
+  </div>
+  <!-- <div class="swiper-pagination" ></div> -->
+</div>
+ 

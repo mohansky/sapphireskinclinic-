@@ -1,0 +1,48 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import Heading from "../ui/Heading.astro";
+import Paragraph from "../ui/Paragraph.astro";
+import Container from "../ui/Container.astro";
+
+const aboutData = await getCollection("aboutCollection");
+const aboutInfo = aboutData[0].data;
+const doctors = aboutInfo.doctors;
+---
+
+<Container>
+  <Heading
+    variant="sectiontitle"
+    size="xxl"
+    fontweight="black"
+    fontstyle="marcellus">Our Doctors</Heading
+  >
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-8">
+    {
+      doctors.map((doctor) => (
+        <div class="card bg-base-100 w-full shadow-none">
+          <figure class="px-10 pt-10">
+            <Image
+              src={doctor.image}
+              alt={doctor.name}
+              title={doctor.name}
+              width={360}
+              height={360}
+            />
+          </figure>
+          <div class="card-body items-center text-center">
+            <span class="flex flex-wrap items-center gap-3">
+              <Heading>{doctor.name}</Heading>
+              <Heading size="xxs" fontweight="medium" fontstyle="openSans">
+                {doctor.qualifications}
+              </Heading>
+            </span>
+            <Paragraph variant="defaulttext" fontstyle="workSans" size="xxs" class="opacity-50">
+              {doctor.specialization}
+            </Paragraph>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</Container>

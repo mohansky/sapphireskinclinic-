@@ -1,0 +1,85 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import Heading from "../ui/Heading.astro";
+import Button from "../ui/Button.astro";
+
+interface HeroContent {
+  title: string;
+  subtitle?: string;
+  backgroundImage: ImageMetadata;
+  overlayOpacity?: number;
+  primaryButtonText?: string;
+  primaryButtonLink?: string;
+  secondaryButtonText?: string;
+  secondaryButtonLink?: string;
+}
+
+interface Props {
+  hero: HeroContent;
+}
+
+const {
+  title,
+  subtitle,
+  backgroundImage,
+  overlayOpacity = 0.2,
+  primaryButtonText,
+  primaryButtonLink,
+  secondaryButtonText,
+  secondaryButtonLink,
+} = Astro.props.hero;
+---
+
+<div class="swiper-slide hero min-h-screen relative">
+  <Image
+    src={backgroundImage}
+    alt={title}
+    title={title}
+    width={1000}
+    height={500}
+    quality={80}
+    class="absolute inset-0 w-full h-full object-cover"
+  />
+  <div
+    class="hero-overlay absolute inset-0"
+    style={`background-opacity: ${overlayOpacity}`}
+  >
+  </div>
+  <div
+    class="hero-content text-center text-neutral-content z-10 absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
+  >
+    <div class="w-full ">
+      <Heading
+        size="lg" 
+        fontweight="normal"
+        fontstyle="workSans" 
+        class="tracking-wide opacity-75"
+        as="h1">Sapphire Skin & Aesthetics Clinic</Heading
+      >
+      <Heading
+        size="xxl"
+        fontweight="black"
+        fontstyle="marcellus"
+        class="text-balance mb-5 mt-3">{title}</Heading
+      >
+      {subtitle && <Heading>{subtitle}</Heading>}
+      <div class="flex flex-col md:flex-row justify-center gap-4 mt-10">
+        {
+          primaryButtonText && primaryButtonLink && (
+            <Button color="info" href={primaryButtonLink} title={primaryButtonText} themed>
+              {primaryButtonText}
+            </Button> 
+          )
+        }
+        {
+          secondaryButtonText && secondaryButtonLink && (
+            <Button variant="outline" color="info" href={secondaryButtonLink} title={secondaryButtonText} themed>
+              {secondaryButtonText}
+            </Button> 
+          )
+        }
+      </div>
+    </div>
+  </div>
+</div>
