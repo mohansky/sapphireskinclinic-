@@ -74,7 +74,7 @@ site:
       subtitle: Because your skin is worth it!
       backgroundImage: ./images/kor-reception.jpg
       primaryButtonText: Book Appointment
-      primaryButtonLink: /appointments
+      primaryButtonLink: /contact
       secondaryButtonText: Learn More
       secondaryButtonLink: /about
       overlayOpacity: 0.5
@@ -253,7 +253,7 @@ site:
 
   footerBookAppointment:
       title: Book your appointment with us today!
-      btnLink: /appointments
+      btnLink: /contact
       btnText: Book appointment
   
   footerLatestOffers:
