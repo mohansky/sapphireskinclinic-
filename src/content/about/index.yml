@@ -1,0 +1,53 @@
+about:
+  name: "Sapphire Skin and Aesthetics Clinic"
+  tagline: "Because your skin is worth it!"
+  aboutQuote: Get the Treatment Your Skin Deserves With Our Professional Team and Quality Natural Products for Sensitive Skin.
+  aboutClinic:
+    heading: About Us
+    text:
+      - Welcome to Sapphire Skin and Aesthetics Clinic, where timeless elegance meets advanced skincare. We are a premium skin clinic dedicated to providing bespoke treatments that blend cutting-edge science with indulgent care — all within a serene, luxurious setting.
+      - Every detail of your experience is thoughtfully curated, from your personalized consultation to your post-treatment care. Our team of expert dermatologists and aesthetic specialists are committed to excellence, using only the finest medical-grade products and state-of-the-art technology to deliver exceptional results.
+      - Whether you're seeking luminous skin, age-defying treatments, or a moment of refined self-care, Sapphire Skin and Aesthetics Clinic offers a sanctuary where beauty and wellbeing come together seamlessly.  Because your skin deserves nothing less than extraordinary.
+    images:
+      - ./images/aboutClinic/kor-doc-room.jpg
+      - ./images/aboutClinic/kor-opt.jpg
+      - ./images/aboutClinic/kor-reception.jpg
+      - ./images/aboutClinic/kor-waiting1.jpg
+      - ./images/aboutClinic/kor-waiting2.jpg
+      - ./images/aboutClinic/kor-waiting3.jpg
+
+  whyUs:
+    heading: Why Choose Us At Sapphire Skin and Aesthetics, we offer more than just skincare. Here's what sets us apart
+    list:
+      - text: Expert-Led Care Our team consists of board-certified dermatologists, aesthetic doctors, and skincare specialists with a passion for precision and excellence. Every treatment is guided by medical expertise and artistic sensibility.
+        icon: carbon:checkmark
+      - text: Bespoke Treatment Plans We understand that no two complexions are the same. Each client receives a personalized treatment plan designed to meet their unique skin goals — whether rejuvenation, restoration, or preventative care.
+        icon: carbon:checkmark
+      - text: State-of-the-Art Technology From non-invasive facelifts to advanced laser therapies, we invest in the latest, most effective skincare technology to deliver visible, lasting results with minimal downtime.
+        icon: carbon:checkmark
+      - text: Luxurious Ambience Step into a calm, beautifully designed space where every detail is intended to relax, restore, and rejuvenate. Your time with us is as much about self-care as it is about skincare.
+        icon: carbon:checkmark
+      - text: Premium Skincare Products We work exclusively with globally renowned, medical-grade skincare lines — chosen for their potency, purity, and performance.
+        icon: carbon:checkmark
+      - text: Trusted by Clients Who Expect the Best Discreet, results-driven, and devoted to excellence — our clinic has become a trusted destination for those who demand the very best in skin health and beauty.
+        icon: carbon:checkmark
+
+  # Doctors
+  doctors:
+    - name: Dr. Sheela Natraj
+      qualifications: MBBS, DVD
+      specialization: Consultant Dermatologist & Cosmetologist
+      image: ./images/doctors/DrSheelaNatraj.jpg
+
+    - name: Dr. Kavya Reganti
+      qualifications: MBBS, MD
+      specialization: Consultant Dermatology, Venereology & Leprosy
+      image: ./images/doctors/DrKavyaReganti.jpg
+
+    - name: Dr. Sanchita L
+      qualifications: MBBS, MD-DVL
+      specialization: Consultant Dermatologist
+      image: ./images/doctors/DrSanchitaL.jpg
+
+  teamTitle: Our Team
+  teamImage: ./images/groupphoto.jpg
