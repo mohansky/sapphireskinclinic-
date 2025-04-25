@@ -14,14 +14,29 @@ const site = siteInfo;
   <head>
     <link rel="sitemap" href="/sitemap-index.xml" />
     <!-- Theme localStorage -->
-    <script is:inline>
+    <!-- <script is:inline>
       if (localStorage.getItem("theme") === null) {
-        document.documentElement.setAttribute("data-theme", "lofi");
+        document.documentElement.setAttribute("data-theme", "garden");
       } else
         document.documentElement.setAttribute(
           "data-theme",
           localStorage.getItem("theme")
         );
+    </script> -->
+
+    <!-- Theme script - runs before page loads to prevent flash -->
+    <script is:inline> 
+      const savedTheme = localStorage.getItem("theme");
+
+      if (savedTheme) { 
+        document.documentElement.setAttribute("data-theme", savedTheme);
+      } else { 
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+        const systemTheme = prefersDark ? "black" : "garden";
+        document.documentElement.setAttribute("data-theme", systemTheme);
+      }
     </script>
 
     <!-- Theme Changer  -->
@@ -59,7 +74,8 @@ const site = siteInfo;
           },
           {
             "@type": "PostalAddress",
-            streetAddress: " OA Towers, 5th Cross Road, KHB Colony, 5th Block, Koramangala,",
+            streetAddress:
+              " OA Towers, 5th Cross Road, KHB Colony, 5th Block, Koramangala,",
             addressLocality: "Bengaluru",
             addressRegion: "Karnataka",
             postalCode: "560095",
@@ -135,21 +151,21 @@ const site = siteInfo;
             name: `${site.doctors[0].name}`,
             image: `${site.doctors[0].image}`,
             qualifications: `${site.doctors[0].qualifications}`,
-            medicalSpecialty: `${site.doctors[0].specialization}`,  
+            medicalSpecialty: `${site.doctors[0].specialization}`,
           },
           {
             "@type": "Physician",
             name: `${site.doctors[1].name}`,
             image: `${site.doctors[1].image}`,
             qualifications: `${site.doctors[1].qualifications}`,
-            medicalSpecialty: `${site.doctors[1].specialization}`,  
+            medicalSpecialty: `${site.doctors[1].specialization}`,
           },
           {
             "@type": "Physician",
             name: `${site.doctors[2].name}`,
             image: `${site.doctors[2].image}`,
             qualifications: `${site.doctors[2].qualifications}`,
-            medicalSpecialty: `${site.doctors[2].specialization}`,  
+            medicalSpecialty: `${site.doctors[2].specialization}`,
           },
         ],
         review: {
@@ -163,7 +179,8 @@ const site = siteInfo;
             "@type": "Person",
             name: "Shaik Rizu",
           },
-          reviewBody: "I am so impressed with Dr. Sheela thorough approach to skincare. They took the time to explain every option and answered all my questions in detail. It’s clear that Dr. Sheela genuinely cares about their patients. My skin has improved tremendously, and I couldn’t be happier with the results!"
+          reviewBody:
+            "I am so impressed with Dr. Sheela thorough approach to skincare. They took the time to explain every option and answered all my questions in detail. It’s clear that Dr. Sheela genuinely cares about their patients. My skin has improved tremendously, and I couldn’t be happier with the results!",
         },
         aggregateRating: {
           "@type": "AggregateRating",
@@ -211,7 +228,7 @@ const site = siteInfo;
 
     <!-- Basic Meta Tags -->
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{site.title}</title>
@@ -239,7 +256,7 @@ const site = siteInfo;
 
     <!-- Additional SEO Meta Tags -->
     <meta name="robots" content="index, follow" />
-    <meta name="keywords" content={site.keywords.join(",")} /> 
+    <meta name="keywords" content={site.keywords.join(",")} />
     <meta name="author" content={site.author.name} />
 
     <!-- Link Swiper's CSS -->

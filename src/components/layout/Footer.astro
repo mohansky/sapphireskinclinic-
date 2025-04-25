@@ -1,13 +1,7 @@
 ---
 import SocialLinks from "../ui/SocialLinks.astro";
-import SSACLogo from "../icons/SSACLogo.astro";
-import Container from "../ui/Container.astro";
-import Heading from "../ui/Heading.astro";
-import { Image } from "astro:assets";
-import offersBG from "../../assets/bg-offers.jpg";
-import ContactItemsFooter from "../ui/ContactItemsFooter.astro";
-import Button from "../ui/Button.astro";
-import Paragraph from "../ui/Paragraph.astro";
+import SSACLogo from "../icons/SSACLogo.astro"; 
+import ContactItemsFooter from "../ui/ContactItemsFooter.astro"; 
 import FooterOffersCard from "../ui/FooterOffersCard.astro";
 import FooterBookAppointmentCard from "../ui/FooterBookAppointmentCard.astro";
 
@@ -67,22 +61,21 @@ const {
 } = Astro.props.footer;
 ---
 
-<div class="bg-slate-800 text-neutral-content">
-  <footer class="footer footer-horizontal footer-center py-15">
-    <SSACLogo class="w-44" />
+<div class="bg-accent text-accent-content">
+  <footer class="footer footer-horizontal footer-center py-10">
+    <SSACLogo class="w-44 fill-accent-content"/>
   </footer>
 
-  <footer class="footer md:footer-horizontal py-10 px-3 md:px-12 lg:px-32">
+  <footer class="footer md:footer-horizontal py-10 px-3 md:px-12 lg:px-32 mb-0">
     <ContactItemsFooter locations={locations} />
-
     <nav class="grid h-full content-between gap-4">
       <FooterBookAppointmentCard footerBookAppointment={footerBookAppointment}/>
       <FooterOffersCard footerOffers={footerLatestOffers} />
     </nav>
-  </footer>
-  <div class="w-[90vw] h-px mx-auto bg-error opacity-25"></div>
+  </footer> 
+  <div class="divider w-[90vw] mx-auto my-0"></div>
   <footer
-    class="footer sm:footer-horizontal bg-slate-900 items-center py-4 px-20"
+    class="footer sm:footer-horizontal items-center py-4 px-20"
   >
     <aside class="grid-flow-col items-center">
       <p>{copyright.text} {new Date().getFullYear()} - {copyright.footnote}</p>

@@ -1,16 +1,13 @@
 ---
-// ThemeToggle
+
 ---
 
 <label class="swap swap-rotate w-full lg:w-fit" for="theme-controller">
   <input
     type="checkbox"
     class="toggle theme-controller hidden"
-    data-toggle-theme="garden,black"
-    data-act-class="ACTIVECLASS"
     id="theme-controller"
   />
-
   <svg
     class="swap-off h-6 w-6 fill-current my-auto"
     xmlns="http://www.w3.org/2000/svg"
@@ -32,3 +29,7 @@
   </svg>
   <!-- sun icon -->
 </label>
+
+<script>
+  import "../../scripts/theme.ts";
+</script>

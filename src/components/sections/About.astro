@@ -22,17 +22,17 @@ const highlights = siteInfo.highlights;
 
   <div class="mx-auto flex items-center">
     <div class="px-3">
-      <Heading size="xxl" fontweight="black" fontstyle="marcellus" class="text-accent-content">
+      <Heading size="xxl" fontweight="black" fontstyle="marcellus" class="text-info-content">
         {siteInfo.aboutTitle}
       </Heading>
-      <Paragraph class="mt-5 max-w-xl indent-8 text-gray-500">
+      <Paragraph class="mt-5 max-w-xl indent-8 text-base-content/60">
         {siteInfo.aboutText}
       </Paragraph>
 
       <div class="grid grid-cols-2 lg:grid-cols-4 justify-items-center gap-4 py-16 sm:py-32">
         {
           highlights.map((highlight) => (
-            <div class="card bg-error/10 hover:bg-error/20 transition delay-150 duration-300 ease-in-out card-md shadow-sm">
+            <div class="card bg-info hover:bg-info/20 transition delay-150 duration-300 ease-in-out card-md shadow-sm">
               <div class="card-body">
                 <Icon class="w-6 h-6 mx-auto" name={highlight.icon} />
                 <Heading

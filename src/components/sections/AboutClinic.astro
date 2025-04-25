@@ -7,6 +7,7 @@ import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 import Paragraph from "../ui/Paragraph.astro";
 import Heading from "../ui/Heading.astro";
+import Container from "../ui/Container.astro";
 
 const aboutData = await getCollection("aboutCollection");
 const aboutInfo = aboutData[0].data;
@@ -14,36 +15,45 @@ const aboutClinic = aboutInfo.aboutClinic;
 ---
 
 <div class="bg-base-200">
-  <div class="grid lg:grid-cols-2 gap-4 py-20">
-    <div class="flex flex-col px-3 md:px-10 lg:px-20">
-      <Heading size="xxl" fontweight="black" fontstyle="marcellus" class="pb-5"
-        >{aboutClinic.heading}
-      </Heading>
-      {
-        aboutClinic.text.map((text) => (
-          <Paragraph class="indent-8 pb-4">{text}</Paragraph>
-        ))
-      }
-    </div>
-    <div class="swiper aboutClinicSwiper w-full my-auto">
-      <div class="swiper-wrapper rounded-box space-x-4 p-4">
+<Container width="py">
+    <div class="grid lg:grid-cols-2 gap-4">
+      <div class="flex flex-col px-3 md:px-10 lg:px-20">
+        <Heading
+          size="xxs" 
+          fontweight="normal"
+          fontstyle="workSans" 
+          class="tracking-wide opacity-75 mb-3"
+          >Sapphire Skin & Aesthetics Clinic</Heading
+        >
+        <Heading size="xxl" fontweight="black" fontstyle="marcellus" class="pb-5"
+          >{aboutClinic.heading}
+        </Heading>
         {
-          aboutClinic.images.map((image) => (
-            <div class="swiper-slide">
-              <Image
-                src={image}
-                alt="Sapphire Skin & Aesthetics Clinic"
-                title="Sapphire Skin & Aesthetics Clinic"
-                class="rounded-box w-auto h-96"
-                width={1000}
-                height={500}
-              />
-            </div>
+          aboutClinic.text.map((text) => (
+            <Paragraph class="indent-8 pb-4">{text}</Paragraph>
           ))
         }
       </div>
+      <div class="swiper aboutClinicSwiper w-full my-auto">
+        <div class="swiper-wrapper rounded-box space-x-4 p-4">
+          {
+            aboutClinic.images.map((image) => (
+              <div class="swiper-slide">
+                <Image
+                  src={image}
+                  alt="Sapphire Skin & Aesthetics Clinic"
+                  title="Sapphire Skin & Aesthetics Clinic"
+                  class="rounded-box w-auto h-96"
+                  width={1000}
+                  height={500}
+                />
+              </div>
+            ))
+          }
+        </div>
+      </div>
     </div>
-  </div>
+  </Container>
 </div>
 
 <script>
