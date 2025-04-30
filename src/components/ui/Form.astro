@@ -2,6 +2,7 @@
 import { server } from "@/actions/index";
 import Heading from "./Heading.astro";
 import Button from "./Button.astro";
+import LoadingSpinnerIcon from "../icons/LoadingSpinnerIcon.astro";
 ---
 
 <div>
@@ -32,9 +33,8 @@ import Button from "./Button.astro";
         class="input border-b border-0 input-lg w-full focus:outline-none py-10 rounded-none"
         required
       />
-      <span
-        class="text-error text-sm hidden error-message"
-        id="firstName-error"></span>
+      <span class="text-error text-sm hidden error-message" id="firstName-error"
+      ></span>
     </div>
     <div class="form-control">
       <input
@@ -89,26 +89,10 @@ import Button from "./Button.astro";
     <Button type="submit" color="primary" themed id="submit-btn" class="flex">
       <span id="submit-text">Submit</span>
       <span id="loading-spinner" class="hidden">
-        <!-- <svg
-          class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <circle
-            class="opacity-25"
-            cx="12"
-            cy="12"
-            r="10"
-            stroke="currentColor"
-            stroke-width="4"></circle>
-          <path
-            class="opacity-75"
-            fill="currentColor"
-            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-          ></path>
-        </svg> -->
-        Submitting...
+        <span class="inline-flex items-center">
+          <LoadingSpinnerIcon class="animate-spin -ml-1 mr-3 h-5 w-5" />
+          Submitting...
+        </span>
       </span>
     </Button>
   </form>
@@ -116,7 +100,9 @@ import Button from "./Button.astro";
 
 <div class="toast z-30" style="display: none;">
   <div class="alert alert-success">
-    <span>Form submitted, thank you for your message. We will get back to you soon.</span>
+    <span
+      >Form submitted, thank you for your message. We will get back to you soon.</span
+    >
   </div>
 </div>
 
@@ -138,7 +124,9 @@ import Button from "./Button.astro";
   };
 
   // Client-side validation function
-  function validateField(field: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement) {
+  function validateField(
+    field: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+  ) {
     const fieldName = field.id;
     const errorElement = document.getElementById(
       `${fieldName}-error`
@@ -162,14 +150,13 @@ import Button from "./Button.astro";
       errorElement.textContent = "Please enter a valid phone number";
       errorElement.classList.remove("hidden");
       isValid = false;
-    } 
+    }
     // Check if location is selected
     else if (fieldName === "location" && field.value === "") {
       errorElement.textContent = "Please select a location";
       errorElement.classList.remove("hidden");
       isValid = false;
-    }
-    else {
+    } else {
       errorElement.classList.add("hidden");
     }
 
@@ -182,13 +169,17 @@ import Button from "./Button.astro";
   );
   formFields.forEach((field) => {
     field.addEventListener("input", () => {
-      validateField(field as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement);
+      validateField(
+        field as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+      );
     });
 
     field.addEventListener("blur", () => {
-      validateField(field as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement);
+      validateField(
+        field as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+      );
     });
-    
+
     // For select elements, also add change event listener
     if (field instanceof HTMLSelectElement) {
       field.addEventListener("change", () => {
@@ -204,7 +195,11 @@ import Button from "./Button.astro";
     // Validate all fields before submission
     let isFormValid = true;
     formFields.forEach((field) => {
-      if (!validateField(field as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement)) {
+      if (
+        !validateField(
+          field as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+        )
+      ) {
         isFormValid = false;
       }
     });
