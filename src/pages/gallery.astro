@@ -6,6 +6,7 @@ import Heading from "@/components/ui/Heading.astro";
 import SwipeGallery from "@/components/ui/SwipeGallery.astro";
 import { getSlugFromPath } from "@/lib/slug";
 import { getCollection } from "astro:content";
+import EquipmentGallery from "@/components/ui/EquipmentGallery.astro";
 
 const siteData = await getCollection("siteCollection");
 const siteInfo = siteData[0].data;
@@ -29,7 +30,7 @@ const heroPage = currentHeroPage || siteInfo.heroPage[0];
       <Heading size="lg" fontweight="black" fontstyle="marcellus" class="mb-5"
         >Some of our equipments</Heading
       >
-      <SwipeGallery folder="equipment" />
+      <EquipmentGallery/>
     </div>
   </Container>
 </Layout>

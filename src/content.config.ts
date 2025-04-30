@@ -109,6 +109,14 @@ const siteCollection = defineCollection({
           answer: z.string(),
         })
       ),
+      equipments: z.array(
+        z.object({
+          title: z.string(),
+          image: image(),
+          titleImage: image(),
+          text: z.array(z.string()),
+        })
+      ),
       locations: z.array(
         z.object({
           title: z.string(),
