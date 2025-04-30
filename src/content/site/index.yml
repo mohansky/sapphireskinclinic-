@@ -195,6 +195,44 @@ site:
       text: "I had an amazing experience with Dr Sheela mam. They were professional, attentive, and genuinely cared about my concerns. The office was clean, and the staff was friendly and efficient. My skin has never looked better! I highly recommend sapphire skin and aesthetic to anyone looking for top-notch dermatological care."
       patient: Amar John
 
+  equipments:
+    - title: Coolite Bolt
+      text: 
+        - Coolite Bolt is a high power diode laser platform for hair removal and skin lifting,
+        - It is equipped  with triple wavelength, large spot size handles. 
+        - It adopts Ultra Short Pulse and High Peak Power,delivering short pulses to destroy hair follicle with lightening fast speed
+      titleImage: ./images/equipments/coolite-bolt-title.png
+      image: ./images/equipments/coolite-bolt.png
+    - title: HydraNeo
+      text:
+        - HydraNeo is a non-invasive skin care device that provides a comprehensive facial care treatment, combining 4 powerful technologies Oxyneo, Aqua Peel, Ultrasound and RF, 
+        - It can be used before cosmetic medical treatment for more satisfactory efficacy. 
+      titleImage: ./images/equipments/Hydra-Neo-title.png
+      image: ./images/equipments/Hydra-neo.png
+    - title: Dermatrix Duo
+      text:
+        - Dermatrix Duo is the latest generation of fractional RF platform, which combines micro needle fractional RF and needle-free fractional RF technology. 
+        - It transmits RF energy to multi-level skin layers under controlled depth. 
+        - The effect of skin rejuvenation will be achieved through collagen regeneration and tissue reconstruction, while the epidermis will be kept away from damage.
+        - Rapid treatment, and short recovery time, which significantly reduces the risk of hyperpigmentation and inflammation.
+      titleImage: ./images/equipments/Dermatrix-Duo-title.png
+      image: ./images/equipments/Dermatrix-duo.png
+    - title: Refine HD
+      text:
+        - Fractional CO2 laser is considered as indispensable method for laser surgery and resurfacing.
+        - Refine, a super pulsed CO2 fractional laser, delivers micro-pulsed laser on skin lesions via controllable and adjustable spot size, energy density, distance and depth for accurate treatment.
+        - It creates strong epidermal ablation to generate skin resurfacing effects.
+        - In the meanwhile, it stimulates collagen regeneration by delivering fractional laser beams deep into the dermis to treat multiple clinical application.
+      titleImage: ./images/equipments/Refine-HD-title.png
+      image: ./images/equipments/Refine-HD.png
+    - title: TRI-BEAM Premium
+      text: 
+        - TRI-BEAM Premium is Q-switched Nd YAG laser with PTP function（Rich-PTP technology）, a proprietary technology that reduces irritation (inflammatory reaction) to the skin through 2-divided irradiation. 
+        - A high-power Nd YAG laser that turns “expectations” into “satisfaction”
+      titleImage: ./images/equipments/TRI-BEAM-Premium-title.png
+      image: ./images/equipments/Tribeam-2.png
+
+  # FAQ
   faq:
     - question: "What skin conditions do you treat?"
       answer: "We treat a wide range of dermatological conditions including acne, eczema, psoriasis, rosacea, skin infections, and more."
