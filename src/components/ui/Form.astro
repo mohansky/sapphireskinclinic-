@@ -60,6 +60,21 @@ import Button from "./Button.astro";
       <span class="text-error text-sm hidden error-message" id="phone-error"
       ></span>
     </div>
+    <!-- New Location Select Field -->
+    <div class="form-control">
+      <select
+        name="location"
+        id="location"
+        class="select border-b border-0 input-lg w-full focus:outline-none py-10 rounded-none"
+        required
+      >
+        <option value="" disabled selected>Select Location</option>
+        <option value="Koramangala">Koramangala</option>
+        <option value="JPNagar">JP Nagar</option>
+      </select>
+      <span class="text-error text-sm hidden error-message" id="location-error"
+      ></span>
+    </div>
     <div class="form-control">
       <textarea
         name="message"
@@ -101,7 +116,7 @@ import Button from "./Button.astro";
 
 <div class="toast z-30" style="display: none;">
   <div class="alert alert-success">
-    <span>Form submitted, thank you for your message.</span>
+    <span>Form submitted, thank you for your message. We will get back to you soon.</span>
   </div>
 </div>
 
@@ -123,7 +138,7 @@ import Button from "./Button.astro";
   };
 
   // Client-side validation function
-  function validateField(field: HTMLInputElement | HTMLTextAreaElement) {
+  function validateField(field: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement) {
     const fieldName = field.id;
     const errorElement = document.getElementById(
       `${fieldName}-error`
@@ -147,7 +162,14 @@ import Button from "./Button.astro";
       errorElement.textContent = "Please enter a valid phone number";
       errorElement.classList.remove("hidden");
       isValid = false;
-    } else {
+    } 
+    // Check if location is selected
+    else if (fieldName === "location" && field.value === "") {
+      errorElement.textContent = "Please select a location";
+      errorElement.classList.remove("hidden");
+      isValid = false;
+    }
+    else {
       errorElement.classList.add("hidden");
     }
 
@@ -156,16 +178,23 @@ import Button from "./Button.astro";
 
   // Add input event listeners for real-time validation
   const formFields = form.querySelectorAll(
-    "input[required], textarea[required]"
+    "input[required], textarea[required], select[required]"
   );
   formFields.forEach((field) => {
     field.addEventListener("input", () => {
-      validateField(field as HTMLInputElement | HTMLTextAreaElement);
+      validateField(field as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement);
     });
 
     field.addEventListener("blur", () => {
-      validateField(field as HTMLInputElement | HTMLTextAreaElement);
+      validateField(field as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement);
     });
+    
+    // For select elements, also add change event listener
+    if (field instanceof HTMLSelectElement) {
+      field.addEventListener("change", () => {
+        validateField(field);
+      });
+    }
   });
 
   // Form submission handler
@@ -175,7 +204,7 @@ import Button from "./Button.astro";
     // Validate all fields before submission
     let isFormValid = true;
     formFields.forEach((field) => {
-      if (!validateField(field as HTMLInputElement | HTMLTextAreaElement)) {
+      if (!validateField(field as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement)) {
         isFormValid = false;
       }
     });
@@ -247,7 +276,7 @@ import Button from "./Button.astro";
     if (error && typeof error === "object") {
       // Try to find field-specific errors
       // Common field names in our form
-      const formFields = ["firstName", "email", "phone", "message"];
+      const formFields = ["firstName", "email", "phone", "location", "message"];
 
       for (const field of formFields) {
         // Check if the error has information about this field

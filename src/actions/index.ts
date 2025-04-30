@@ -16,11 +16,16 @@ export const server = {
       phone: z.string()
         .min(7, { message: "Phone number must be at least 7 digits" })
         .max(20, { message: "Phone number is too long" })
-        .regex(/^(?:(?:\+|0{0,2})91(\s*[-]\s*)?|[0]?)?[6789]\d{9}$/, { 
-          message: "Please enter a valid Indian phone number" 
+        .regex(/^(?:(?:\+|0{0,2})91(\s*[-]\s*)?|[0]?)?[6789]\d{9}$/, {
+          message: "Please enter a valid Indian phone number"
         }),
       email: z.string()
         .email({ message: "Please enter a valid email address" }),
+      location: z.string()
+        .min(1, { message: "Location is required" })
+        .refine(value => value === "Koramangala" || value === "JPNagar", {
+          message: "Please select a valid location"
+        }),
       message: z.string()
         .min(1, { message: "Message is required" })
         .max(1000, { message: "Message is too long (1000 characters maximum)" }),
@@ -34,7 +39,6 @@ export const server = {
           // Silent success for bots
           return { success: true };
         }
-
         console.log("Form submission:", formData);
          
         const emailHtml = await renderAsync(
@@ -42,27 +46,28 @@ export const server = {
             firstName: formData.firstName,
             email: formData.email,
             phone: formData.phone,
+            location: formData.location,
             message: formData.message,
             siteUrl: "https://mohankumar.dev",
             siteName: "Sapphire Skin & Aesthetics Clinic"
           })
         );
-        
+       
         const { data, error } = await resend.emails.send({
           from: "Sapphire Skin & Aesthetics Clinic <mail@mohankumar.dev>",
           to: "mohansky@gmail.com",
-          subject: `Enquiry from ${formData.firstName}`,
-          html: emailHtml, 
+          subject: `Enquiry from ${formData.firstName} - ${formData.location}`,
+          html: emailHtml,
           text: `
-            Enquiry from ${formData.firstName} 
+            Enquiry from ${formData.firstName}
             Name: ${formData.firstName}
             Email: ${formData.email}
-            Phone: ${formData.phone} 
+            Phone: ${formData.phone}
+            Location: ${formData.location}
             Message:
             ${formData.message}
           `
         });
-
         if (error) {
           console.error("Email sending error:", error);
           throw new ActionError({
@@ -70,7 +75,6 @@ export const server = {
             message: "Failed to send email. Please try again later.",
           });
         }
-
         return {
           success: true,
           message: "Thank you for your message. We'll be in touch soon!",
@@ -78,11 +82,11 @@ export const server = {
         };
       } catch (error) {
         console.error("Server action error:", error);
-        
+       
         if (error instanceof ActionError) {
           throw error;
         }
-        
+       
         throw new ActionError({
           code: "INTERNAL_SERVER_ERROR",
           message: "An unexpected error occurred. Please try again later.",

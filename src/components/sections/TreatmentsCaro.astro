@@ -31,9 +31,9 @@ const loopTreatments = [
             src={item.data.icon}
             alt={item.data.title}
             title={item.data.title}
-            width={100}
-            height={100}
-            class="mx-auto mb-3 grayscale w-15 h-auto z-30"
+            width={item.data.img.width/10}
+            height={item.data.img.height/10}
+            class="mx-auto grayscale mb-3 w-10 h-auto z-30"
           />
           <Heading size="xxs" fontweight="light">
             {item.data.title}

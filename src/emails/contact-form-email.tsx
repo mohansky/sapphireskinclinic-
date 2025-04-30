@@ -17,6 +17,7 @@ interface Props {
   firstName: string;
   email: string;
   phone: string;
+  location: string;
   message: string;
   siteUrl: string;
   siteName: string;
@@ -30,6 +31,7 @@ export const ContactFormEmail = ({
   firstName,
   email,
   phone,
+  location,
   message,
   siteUrl = "https://sapphireskin.in/",
   siteName = "Sapphire Skin & Aesthetics Clinic",
@@ -42,7 +44,7 @@ export const ContactFormEmail = ({
   return (
     <Html>
       <Head />
-      <Preview>New enquiry from {firstName}</Preview>
+      <Preview>New enquiry from {firstName} for {location}</Preview>
       <Body
         style={{
           backgroundColor,
@@ -69,12 +71,12 @@ export const ContactFormEmail = ({
               textAlign: "center",
             }}
           >
-            <Img
+            {/* <Img
               src={`${baseUrl}/images/SapphireLogo.svg`}
               width="49"
               height="21"
               alt="Sapphire Skin & Aesthetics Clinic"
-            />
+            /> */}
             <Heading
               as="h1"
               style={{
@@ -112,7 +114,7 @@ export const ContactFormEmail = ({
                 marginBottom: "20px",
               }}
             >
-              You've received a new message from {firstName}
+              You've received a new message from {firstName} for {location}
             </Heading>
 
             <Text
