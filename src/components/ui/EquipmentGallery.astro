@@ -18,9 +18,9 @@ const equipments = siteInfo.equipments;
           src={equipment.image}
           alt={equipment.title}
           title={equipment.title} 
-          width={equipment.image.width / 3}
-          height={equipment.image.height / 3}
-          class=" rounded-xl"
+          width={equipment.image.width}
+          height={equipment.image.height}
+          class="w-1/2 rounded-xl"
         />
       </figure>
       <div class="card-body">
@@ -28,9 +28,9 @@ const equipments = siteInfo.equipments;
           src={equipment.titleImage}
           alt={equipment.title}
           title={equipment.title}
-          width={equipment.image.width / 4}
-          height={equipment.image.height / 4}
-          class=" "
+          width={equipment.image.width}
+          height={equipment.image.height}
+          class="lg:w-1/2"
         />
         <Heading
           class="sr-only card-title"
