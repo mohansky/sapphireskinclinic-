@@ -14,6 +14,7 @@ const site = siteInfo;
 <!doctype html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <script is:inline>
       const savedTheme = localStorage.getItem("theme");
@@ -205,17 +206,19 @@ const site = siteInfo;
     />
 
     <!-- DaisyUI -->
-    <link
+    <link 
       href="https://cdn.jsdelivr.net/npm/daisyui@5.0.0-beta.6/daisyui.css"
       rel="stylesheet"
       type="text/css"
     />
 
     <!-- Tailwind -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script type="text/partytown" src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" is:inline></script>
 
+
+    <link rel="sitemap" href="/sitemap.xml" />
     <!-- Basic Meta Tags -->
-    <meta charset="UTF-8" />
+    
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
@@ -226,7 +229,7 @@ const site = siteInfo;
     <!-- Open Graph Meta Tags (for social sharing) -->
     <meta property="og:title" content={site.title} />
     <meta property="og:description" content={site.description} />
-    <meta property="og:image" content={`${site.basepath}/images/pfrlogo.svg`} />
+    <meta property="og:image" content={`${site.basepath}${site.ogImageURL}`} />
     <meta property="og:url" content={`${site.basepath}/`} />
     <meta property="og:type" content="website" />
 
@@ -236,7 +239,7 @@ const site = siteInfo;
     <meta name="twitter:description" content={site.description} />
     <meta
       name="twitter:image"
-      content={`${site.basepath}/images/ssaclogo.svg`}
+      content={`${site.basepath}${site.ogImageURL}`}
     />
 
     <!-- Canonical URL (prevents duplicate content issues) -->

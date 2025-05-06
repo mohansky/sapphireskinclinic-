@@ -21,6 +21,7 @@ const siteCollection = defineCollection({
         z.object({
           title: z.string(),
           subtitle: z.string().optional(),
+          isFirstSlide: z.boolean().optional().default(false),
           backgroundImage: image(),
           overlayOpacity: z.number().optional(),
           primaryButtonText: z.string().optional(),

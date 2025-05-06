@@ -3,7 +3,6 @@ import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
 import Heading from "../ui/Heading.astro";
 import Button from "../ui/Button.astro";
-
 interface HeroContent {
   title: string;
   subtitle?: string;
@@ -13,12 +12,11 @@ interface HeroContent {
   primaryButtonLink?: string;
   secondaryButtonText?: string;
   secondaryButtonLink?: string;
+  isFirstSlide?: boolean; // Add this prop to track if it's the first slide
 }
-
 interface Props {
   hero: HeroContent;
 }
-
 const {
   title,
   subtitle,
@@ -28,18 +26,28 @@ const {
   primaryButtonLink,
   secondaryButtonText,
   secondaryButtonLink,
+  isFirstSlide = false, // Default to false
 } = Astro.props.hero;
+// Define multiple image widths for different device sizes
+const imageSizes = {
+  mobile: 640,
+  tablet: 1024,
+  desktop: 1920,
+};
 ---
-
 <div class="swiper-slide hero min-h-screen relative">
   <Image
     src={backgroundImage}
     alt={title}
     title={title}
-    width={1920}
-    height={1080}
-    loading="eager"
+    width={imageSizes.desktop}
+    height={Math.round(
+      imageSizes.desktop * (backgroundImage.height / backgroundImage.width)
+    )}
+    loading={isFirstSlide ? "eager" : "lazy"}
     quality={80}
+    densities={[1, 2]}
+    sizes="(max-width: 640px) 640px, (max-width: 1024px) 1024px, 1920px"
     class="absolute inset-0 w-full h-full object-cover"
   />
   <div
@@ -50,11 +58,11 @@ const {
   <div
     class="hero-content text-center text-neutral-content z-10 absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
   >
-    <div class="w-full ">
+    <div class="w-full">
       <Heading
-        size="sm" 
+        size="sm"
         fontweight="normal"
-        fontstyle="workSans" 
+        fontstyle="workSans"
         class="tracking-wide opacity-75"
         as="h1">Sapphire Skin & Aesthetics Clinic</Heading
       >
@@ -68,16 +76,27 @@ const {
       <div class="flex flex-col md:flex-row justify-center gap-4 mt-10">
         {
           primaryButtonText && primaryButtonLink && (
-            <Button color="primary" href={primaryButtonLink} title={primaryButtonText} themed>
+            <Button
+              color="primary"
+              href={primaryButtonLink}
+              title={primaryButtonText}
+              themed
+            >
               {primaryButtonText}
-            </Button> 
+            </Button>
           )
         }
         {
           secondaryButtonText && secondaryButtonLink && (
-            <Button variant="outline" color="primary" href={secondaryButtonLink} title={secondaryButtonText} themed>
+            <Button
+              variant="outline"
+              color="primary"
+              href={secondaryButtonLink}
+              title={secondaryButtonText}
+              themed
+            >
               {secondaryButtonText}
-            </Button> 
+            </Button>
           )
         }
       </div>

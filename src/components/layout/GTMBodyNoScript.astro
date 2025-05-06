@@ -3,8 +3,7 @@ const gtmId = import.meta.env.GTM;
 ---
 
 {gtmId && (
-  <Fragment>
-    <!-- Google Tag Manager (noscript) -->
+  <Fragment> 
     <noscript>
       <iframe 
         src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`} 
@@ -13,7 +12,6 @@ const gtmId = import.meta.env.GTM;
         style="display:none;visibility:hidden"
       >
       </iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
+    </noscript> 
   </Fragment>
 )}

@@ -61,6 +61,14 @@ import LoadingSpinnerIcon from "../icons/LoadingSpinnerIcon.astro";
       ></span>
     </div> 
     <div class="form-control">
+      <label class="select border-b border-0 input-lg w-full focus:outline-none py-10 rounded-none">
+        <span class="label">Select Location</span>
+        <select class="select border-b border-0 input-lg w-full focus:outline-none py-10 rounded-none">
+          <option value="Koramangala">Koramangala</option>
+          <option value="JPNagar">JP Nagar</option>
+        </select>
+      </label>
+      <!-- <label for="location" class="label">Select Location</label>
       <select
         name="location"
         id="location" 
@@ -70,7 +78,7 @@ import LoadingSpinnerIcon from "../icons/LoadingSpinnerIcon.astro";
         <option value="" disabled selected class="text-base-content/60">Select Location</option>
         <option value="Koramangala">Koramangala</option>
         <option value="JPNagar">JP Nagar</option>
-      </select>
+      </select> -->
       <span class="text-error text-sm hidden error-message" id="location-error"
       ></span>
     </div>
@@ -253,7 +261,7 @@ import LoadingSpinnerIcon from "../icons/LoadingSpinnerIcon.astro";
         }
       }
     } catch (error) {
-      console.error("Form submission error:", error);
+      // console.error("Form submission error:", error);
       showErrorToast("An error occurred. Please try again later.");
     } finally {
       // Hide loading state
