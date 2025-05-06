@@ -28,6 +28,16 @@ export default defineConfig({
         startsWith: "re_",
         optional: false,
       }),
+      NETLIFY_URL: envField.string({
+        context: "server",
+        access: "public",
+        optional: false,
+      }),
+      GTM: envField.string({
+        context: "client",
+        access: "public",
+        optional: true,
+      }),
     },
   },
   output: 'server',
