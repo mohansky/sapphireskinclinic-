@@ -4,7 +4,7 @@ site:
   title: Sapphire Skin & Aesthetics Clinic
   description: Specialized dermatology clinic offering comprehensive skin, hair, and aesthetic treatments. Our board-certified specialists provide expert care for conditions like acne, psoriasis, and cosmetic concerns using advanced techniques. Experience personalized care that delivers visible results. Book your consultation today.
   basepath: https://sapphireskin.in
-  ogImageURL: ./images/ssaclogo.svg
+  ogImageURL: /ssc-logo-symbol.png
   keywords:
     - Sapphire Skin & Aesthetics Clinic Bangalore
     - Best skin clinic in JP Nagar
@@ -73,6 +73,7 @@ site:
     - title: Welcome to Our Clinic
       subtitle: Because your skin is worth it!
       backgroundImage: ./images/kor-reception.jpg
+      isFirstSlide: true
       primaryButtonText: Book Appointment
       primaryButtonLink: /contact
       secondaryButtonText: Learn More
