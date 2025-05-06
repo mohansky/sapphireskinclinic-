@@ -78,7 +78,7 @@ site:
       secondaryButtonText: Learn More
       secondaryButtonLink: /about
       overlayOpacity: 0.5
-    - title: Your Journey to Radiant Skin Starts Here
+    - title: Radiant Skin Starts Here
       subtitle: Because your skin is worth it!
       backgroundImage: ./images/hero.jpg
       primaryButtonText: Latest Offers
