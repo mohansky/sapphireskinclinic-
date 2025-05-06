@@ -1,5 +1,7 @@
 ---
 import Footer from "@/components/layout/Footer.astro";
+import GTMBodyNoScript from "@/components/layout/GTMBodyNoScript.astro";
+import GTMHeadScript from "@/components/layout/GTMHeadScript.astro";
 import Navbar from "@/components/layout/Navbar.astro";
 import "@/styles/global.css";
 import { getCollection } from "astro:content";
@@ -13,24 +15,12 @@ const site = siteInfo;
 <html lang="en">
   <head>
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <!-- Theme localStorage -->
-    <!-- <script is:inline>
-      if (localStorage.getItem("theme") === null) {
-        document.documentElement.setAttribute("data-theme", "garden");
-      } else
-        document.documentElement.setAttribute(
-          "data-theme",
-          localStorage.getItem("theme")
-        );
-    </script> -->
-
-    <!-- Theme script - runs before page loads to prevent flash -->
-    <script is:inline> 
+    <script is:inline>
       const savedTheme = localStorage.getItem("theme");
 
-      if (savedTheme) { 
+      if (savedTheme) {
         document.documentElement.setAttribute("data-theme", savedTheme);
-      } else { 
+      } else {
         const prefersDark = window.matchMedia(
           "(prefers-color-scheme: dark)"
         ).matches;
@@ -38,8 +28,6 @@ const site = siteInfo;
         document.documentElement.setAttribute("data-theme", systemTheme);
       }
     </script>
-
-    <!-- Theme Changer  -->
     <script>
       import { themeChange } from "theme-change";
       themeChange();
@@ -258,40 +246,11 @@ const site = siteInfo;
     <meta name="robots" content="index, follow" />
     <meta name="keywords" content={site.keywords.join(",")} />
     <meta name="author" content={site.author.name} />
-
-    <!-- Link Swiper's CSS -->
-    <!-- <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    /> -->
-
-    <!-- Google Tag Manager -->
-    <!-- <script is:inline>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != "dataLayer" ? "&l=" + l : "";
-        j.async = true;
-        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", "GTM-KT3HBTSK");
-    </script> -->
-    <!-- End Google Tag Manager -->
+    <GTMHeadScript />
   </head>
   <body class="overflow-x-hidden">
-    <!-- Google Tag Manager (noscript) -->
-    <!-- <noscript
-      ><iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-KT3HBTSK"
-        height="0"
-        width="0"
-        style="display:none;visibility:hidden"></iframe></noscript
-    > -->
-    <!-- End Google Tag Manager (noscript) -->
+    <GTMBodyNoScript />
     <Navbar navigation={site.navigation} />
-    <!-- <Background /> -->
     <slot />
     <Footer
       footer={{
