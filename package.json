@@ -11,6 +11,7 @@
   "dependencies": {
     "@astrojs/mdx": "^4.2.4",
     "@astrojs/netlify": "^6.3.0",
+    "@astrojs/partytown": "^2.1.4",
     "@astrojs/react": "^4.2.5",
     "@astrojs/sitemap": "^3.3.1",
     "@iconify-json/carbon": "^1.2.8",

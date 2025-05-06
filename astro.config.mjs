@@ -12,13 +12,25 @@ import react from "@astrojs/react";
 
 import sitemap from "@astrojs/sitemap";
 
+import partytown from "@astrojs/partytown";
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  site: 'https://sapphireskinclinic.netlify.app',
-  integrations: [icon(), mdx(), react(), sitemap()],
+  site: "https://sapphireskin.in",
+  integrations: [
+    icon(),
+    mdx(),
+    react(),
+    sitemap({
+      changefreq: "weekly",
+      priority: 0.8,
+      lastmod: new Date("2025-05-05"),
+    }),
+    partytown(),
+  ],
 
   env: {
     schema: {
@@ -40,6 +52,6 @@ export default defineConfig({
       }),
     },
   },
-  output: 'server',
+  output: "server",
   adapter: netlify(),
 });
