@@ -7,8 +7,10 @@ const siteInfo = siteData[0].data;
 const site = siteInfo;
 ---
 
-<div id="faq-accordion">
-  <Heading size="sm" fontweight="medium" fontstyle="marcellus" class="mb-10"> Frequently Asked Questions </Heading>
+<div id="faq-accordion" class="mb-10">
+  <Heading size="lg" fontweight="medium" fontstyle="marcellus" class="mb-10">
+    Frequently Asked Questions
+  </Heading>
   {
     site.faq.map((faq, index) => (
       <div

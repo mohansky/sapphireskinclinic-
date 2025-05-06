@@ -6,8 +6,8 @@ import LoadingSpinnerIcon from "../icons/LoadingSpinnerIcon.astro";
 ---
 
 <div>
-  <Heading size="sm" fontweight="medium" fontstyle="marcellus" class="mb-10">
-    Please do not hesitate to get in touch with us.
+  <Heading size="lg" fontweight="medium" fontstyle="marcellus" class="mb-10">
+    Please do get in touch with us.
   </Heading>
   <form
     id="contact-form"
@@ -59,16 +59,15 @@ import LoadingSpinnerIcon from "../icons/LoadingSpinnerIcon.astro";
       />
       <span class="text-error text-sm hidden error-message" id="phone-error"
       ></span>
-    </div>
-    <!-- New Location Select Field -->
+    </div> 
     <div class="form-control">
       <select
         name="location"
-        id="location"
+        id="location" 
         class="select border-b border-0 input-lg w-full focus:outline-none py-10 rounded-none"
         required
       >
-        <option value="" disabled selected>Select Location</option>
+        <option value="" disabled selected class="text-base-content/60">Select Location</option>
         <option value="Koramangala">Koramangala</option>
         <option value="JPNagar">JP Nagar</option>
       </select>
