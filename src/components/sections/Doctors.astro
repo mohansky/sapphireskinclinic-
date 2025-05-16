@@ -11,11 +11,8 @@ const doctors = aboutInfo.doctors;
 ---
 
 <Container class="bg-base-200" width="py">
-  <Heading
-    variant="sectiontitle"
-    size="xxl"
-    fontweight="black"
-    fontstyle="marcellus">Our Doctors</Heading
+  <Heading class="text-center" size="xxl" fontweight="black" fontstyle="point"
+    >Our Doctors</Heading
   >
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
     {
@@ -33,11 +30,16 @@ const doctors = aboutInfo.doctors;
           <div class="card-body items-center text-center">
             <span class="flex flex-wrap items-center gap-3">
               <Heading>{doctor.name}</Heading>
-              <Heading size="xxs" fontweight="medium" fontstyle="openSans">
+              <Heading size="xxs" fontweight="medium" fontstyle="glory">
                 {doctor.qualifications}
               </Heading>
             </span>
-            <Paragraph variant="defaulttext" fontstyle="workSans" size="xxs" class="opacity-50">
+            <Paragraph
+              variant="defaulttext"
+              fontstyle="glory"
+              size="xxs"
+              class="opacity-50"
+            >
               {doctor.specialization}
             </Paragraph>
           </div>

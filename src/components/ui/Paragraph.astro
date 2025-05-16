@@ -2,15 +2,10 @@
 import type { HTMLAttributes } from "astro/types";
 import { cn } from "@/lib/utils";
 
-type VariantType = 
-  | "default" 
-  | "defaulttext"
-  | "lead" 
-  | "muted" 
-  | "description";
+type VariantType = "default" | "defaulttext" | "lead" | "muted" | "description";
 
-type SizeType = 
-  | "xxxxl"  
+type SizeType =
+  | "xxxxl"
   | "xxxl"
   | "xxl"
   | "xl"
@@ -30,7 +25,8 @@ type FontWeightType =
   | "extralight"
   | "thin";
 
-type FontStyleType = "marcellus" | "openSans" | "workSans";
+type FontStyleType = "poppins" | "glory" | "point";
+// type FontStyleType = "marcellus" | "openSans" | "workSans" | "poppins" | "glory" | "point";
 
 interface Props extends HTMLAttributes<"p"> {
   variant?: VariantType;
@@ -44,7 +40,7 @@ const {
   variant = "default",
   size = "sm",
   fontweight = "normal",
-  fontstyle = "openSans",
+  fontstyle = "poppins",
   class: className,
   ...rest
 } = Astro.props;
@@ -81,9 +77,12 @@ const fontweights: Record<FontWeightType, string> = {
 };
 
 const fontstyles: Record<FontStyleType, string> = {
-  marcellus: "font-marcellus",
-  openSans: "font-openSans",
-  workSans: "font-workSans",
+  // marcellus: "font-marcellus",
+  // openSans: "font-openSans",
+  // workSans: "font-workSans",
+  poppins: "font-poppins",
+  glory: "font-glory",
+  point: "font-point",
 };
 
 const classes = cn(
@@ -94,6 +93,7 @@ const classes = cn(
   className
 );
 ---
+
 <p class={classes} {...rest}>
   <slot />
 </p>

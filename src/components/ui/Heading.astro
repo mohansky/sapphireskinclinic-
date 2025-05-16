@@ -26,7 +26,8 @@ type FontWeightType =
   | "light"
   | "extralight"
   | "thin";
-type FontStyleType = "marcellus" | "openSans" | "workSans";
+type FontStyleType = "poppins" | "glory" | "point";
+// type FontStyleType = "marcellus" | "openSans" | "workSans" | "poppins" | "glory" | "point";
 type HeadingTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
 interface Props
@@ -43,16 +44,16 @@ const {
   variant = "default",
   size = "md",
   fontweight = "bold",
-  fontstyle = "marcellus",
+  fontstyle = "point",
   as: Tag = "h2",
   class: className,
   ...rest
 } = Astro.props;
 
 const variants: Record<VariantType, string> = {
-  default: " ",
-  sectiontitle: "text-center",
-  sectiontitlehalf: "mb-14 ",
+  default: "text-secondary",
+  sectiontitle: "text-base-100",
+  sectiontitlehalf: "text-base-100",
   sectiontitlesm: "bg-primary/20 text-foreground shadow",
 };
 
@@ -80,9 +81,12 @@ const fontweights: Record<FontWeightType, string> = {
 };
 
 const fontstyles: Record<FontStyleType, string> = {
-  marcellus: "font-marcellus",
-  openSans: "font-openSans",
-  workSans: "font-workSans",
+  // marcellus: "font-marcellus",
+  // openSans: "font-openSans",
+  // workSans: "font-workSans",
+  poppins: "font-poppins",
+  glory: "font-glory",
+  point: "font-point",
 };
 
 const classes = cn(

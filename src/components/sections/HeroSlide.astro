@@ -62,17 +62,19 @@ const imageSizes = {
       <Heading
         size="sm"
         fontweight="normal"
-        fontstyle="workSans"
+        fontstyle="glory"
         class="tracking-wide opacity-75"
+        variant="sectiontitle"
         as="h1">Sapphire Skin & Aesthetics Clinic</Heading
       >
       <Heading
         size="xxl"
         fontweight="black"
-        fontstyle="marcellus"
+        fontstyle="point"
+        variant="sectiontitle"
         class="text-balance mb-5 mt-3">{title}</Heading
       >
-      {subtitle && <Heading>{subtitle}</Heading>}
+      {subtitle && <Heading variant="sectiontitle">{subtitle}</Heading>}
       <div class="flex flex-col md:flex-row justify-center gap-4 mt-10">
         {
           primaryButtonText && primaryButtonLink && (
