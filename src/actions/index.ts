@@ -55,8 +55,8 @@ export const server = {
        
         const { data, error } = await resend.emails.send({
           from: "Sapphire Skin & Aesthetics Clinic <mail@mohankumar.dev>",
-          to: "mohansky@gmail.com",
-          subject: `Enquiry from ${formData.firstName} - ${formData.location}`,
+          to: ["mohansky@gmail.com", "sapphireskinkoramangala@gmail.com", "drsheelavathi@gmail.com"],
+          subject: `Enquiry from ${formData.firstName} for ${formData.location} clinic`,
           html: emailHtml,
           text: `
             Enquiry from ${formData.firstName}

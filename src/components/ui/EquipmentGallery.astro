@@ -1,7 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import Heading from "./Heading.astro";
-import Paragraph from "./Paragraph.astro";
+import Heading from "./Heading.astro"; 
 import { Image } from "astro:assets";
 import ListUnordered from "./ListUnordered.astro";
 import ListItem from "./ListItem.astro";
@@ -12,25 +11,26 @@ const equipments = siteInfo.equipments;
 
 {
   equipments.map((equipment) => (
-    <div class="card lg:card-side bg-base-100 shadow-sm mb-10">
+    <div class="card lg:card-side bg-base-100 shadow-sm mb-10 bg">
       <figure>
         <Image
           src={equipment.image}
           alt={equipment.title}
-          title={equipment.title} 
+          title={equipment.title}
           width={equipment.image.width}
           height={equipment.image.height}
-          class="w-1/2 rounded-xl"
+          class="w-1/4 rounded-xl"
         />
       </figure>
+
       <div class="card-body">
         <Image
           src={equipment.titleImage}
           alt={equipment.title}
           title={equipment.title}
-          width={equipment.image.width}
-          height={equipment.image.height}
-          class="lg:w-1/2"
+          width="720"
+          height="240"
+          class="w-full object-fit"
         />
         <Heading
           class="sr-only card-title"

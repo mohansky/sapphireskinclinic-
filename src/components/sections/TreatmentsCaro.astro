@@ -22,7 +22,7 @@ const loopTreatments = [
 ];
 ---
 
-<div class="swiper treatmentsSwiper bg-base-200">
+<div class="swiper treatmentsSwiper bg-primary">
   <div class="swiper-wrapper rounded-box w-full space-x-14 py-10">
     {
       loopTreatments.map((item) => (
@@ -32,10 +32,10 @@ const loopTreatments = [
             alt={item.data.title}
             title={item.data.title}
             width="360"
-            height="240"
+            height="360"
             class="mx-auto grayscale mb-3 w-10 h-auto z-30"
           />
-          <Heading size="xxs" fontweight="light"  >
+          <Heading size="xxs" fontweight="light"  class="text-base-100">
             {item.data.title}
           </Heading>
         </div>

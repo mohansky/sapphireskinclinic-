@@ -12,7 +12,7 @@ interface HeroContent {
   primaryButtonLink?: string;
   secondaryButtonText?: string;
   secondaryButtonLink?: string;
-  isFirstSlide?: boolean; // Add this prop to track if it's the first slide
+  isFirstSlide?: boolean;
 }
 interface Props {
   hero: HeroContent;
@@ -21,20 +21,20 @@ const {
   title,
   subtitle,
   backgroundImage,
-  overlayOpacity = 0.2,
+  overlayOpacity,
   primaryButtonText,
   primaryButtonLink,
   secondaryButtonText,
   secondaryButtonLink,
-  isFirstSlide = false, // Default to false
+  isFirstSlide = false,
 } = Astro.props.hero;
-// Define multiple image widths for different device sizes
 const imageSizes = {
   mobile: 640,
   tablet: 1024,
   desktop: 1920,
 };
 ---
+
 <div class="swiper-slide hero min-h-screen relative">
   <Image
     src={backgroundImage}
@@ -50,11 +50,7 @@ const imageSizes = {
     sizes="(max-width: 640px) 640px, (max-width: 1024px) 1024px, 1920px"
     class="absolute inset-0 w-full h-full object-cover"
   />
-  <div
-    class="hero-overlay absolute inset-0"
-    style={`background-opacity: ${overlayOpacity}`}
-  >
-  </div>
+  <div class="hero-overlay opacity-50 absolute inset-0"></div>
   <div
     class="hero-content text-center text-neutral-content z-10 absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
   >
@@ -74,7 +70,18 @@ const imageSizes = {
         variant="sectiontitle"
         class="text-balance mb-5 mt-3">{title}</Heading
       >
-      {subtitle && <Heading variant="sectiontitle" fontstyle="poppins" fontweight="light" size="md" >{subtitle}</Heading>}
+      {
+        subtitle && (
+          <Heading
+            variant="sectiontitle"
+            fontstyle="poppins"
+            fontweight="light"
+            size="md"
+          >
+            {subtitle}
+          </Heading>
+        )
+      }
       <div class="flex flex-col md:flex-row justify-center gap-4 mt-10">
         {
           primaryButtonText && primaryButtonLink && (

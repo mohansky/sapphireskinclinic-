@@ -17,7 +17,7 @@ const highlights = siteInfo.highlights;
     title="Sapphire Skin & Aesthetics Clinic"
     width={1920}
     height={1080}
-    class="md:rounded-r-2xl object-cover md:h-screen w-full"
+    class="md:rounded-r-2xl object-cover object-right md:h-screen w-full"
   />
 
   <div class="mx-auto flex items-center">
@@ -29,10 +29,12 @@ const highlights = siteInfo.highlights;
         {siteInfo.aboutText}
       </Paragraph>
 
-      <div class="grid grid-cols-2 lg:grid-cols-4 justify-items-center gap-4 py-16 sm:py-32">
+      <div
+        class="grid grid-cols-2 lg:grid-cols-4 justify-items-center gap-4 py-16 sm:py-32"
+      >
         {
           highlights.map((highlight) => (
-            <div class="card bg-accent hover:bg-accent/20 transition delay-150 duration-300 ease-in-out card-md shadow-sm">
+            <div class="card bg-accent/60 hover:bg-accent/20 transition delay-150 duration-300 ease-in-out rounded-xl card-md shadow-sm">
               <div class="card-body">
                 <Icon class="w-6 h-6 mx-auto" name={highlight.icon} />
                 <Heading

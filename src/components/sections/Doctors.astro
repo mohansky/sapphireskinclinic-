@@ -14,7 +14,7 @@ const doctors = aboutInfo.doctors;
   <Heading class="text-center" size="xxl" fontweight="black" fontstyle="point"
     >Our Doctors</Heading
   >
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
     {
       doctors.map((doctor) => (
         <div class="card bg-base-200 w-full shadow-none">
@@ -25,6 +25,7 @@ const doctors = aboutInfo.doctors;
               title={doctor.name}
               width={360}
               height={360}
+              class="rounded-xl"
             />
           </figure>
           <div class="card-body items-center text-center">
@@ -37,7 +38,7 @@ const doctors = aboutInfo.doctors;
             <Paragraph
               variant="defaulttext"
               fontstyle="glory"
-              size="xxs"
+              size="xs"
               class="opacity-50"
             >
               {doctor.specialization}
