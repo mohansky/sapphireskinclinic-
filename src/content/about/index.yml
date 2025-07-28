@@ -37,7 +37,7 @@ about:
   doctors:
     - name: Dr. Sheela Natraj
       qualifications: MBBS, DVD
-      specialization: Consultant Dermatologist & Cosmetologist
+      specialization: Founder & Director
       image: ./images/doctors/DrSheelaNatraj.jpg
 
     - name: Dr. Kavya Reganti
