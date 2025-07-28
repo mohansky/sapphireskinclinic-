@@ -61,24 +61,31 @@ import LoadingSpinnerIcon from "../icons/LoadingSpinnerIcon.astro";
       ></span>
     </div> 
     <div class="form-control">
-      <!-- <label class="select border-b border-0 input-lg w-full focus:outline-none py-10 rounded-none">
-        <span class="label">Select Location</span>
-        <select class="select border-b border-0 input-lg w-full focus:outline-none py-10 rounded-none">
-          <option value="Koramangala">Koramangala</option>
-          <option value="JPNagar">JP Nagar</option>
-        </select>
-      </label> -->
-      <label for="location" class="label">Select Location</label>
-      <select
-        name="location"
-        id="location" 
-        class="select border-b border-0 input-lg w-full focus:outline-none py-10 rounded-none"
-        required
-      >
-        <option value="" disabled selected class="text-base-content/60">Select Location</option>
-        <option value="Koramangala">Koramangala</option>
-        <option value="JPNagar">JP Nagar</option>
-      </select>
+      <label class="label">
+        <span class="label-text">Select Location</span>
+      </label>
+      <div class="flex flex-col gap-3" id="location">
+        <label class="cursor-pointer flex items-center gap-3">
+          <input 
+            type="radio" 
+            name="location" 
+            value="Koramangala" 
+            class="radio radio-primary" 
+            required 
+          />
+          <span class="label-text">Koramangala</span>
+        </label>
+        <label class="cursor-pointer flex items-center gap-3">
+          <input 
+            type="radio" 
+            name="location" 
+            value="JPNagar" 
+            class="radio radio-primary" 
+            required 
+          />
+          <span class="label-text">JP Nagar</span>
+        </label>
+      </div>
       <span class="text-error text-sm hidden error-message" id="location-error"
       ></span>
     </div>
@@ -134,11 +141,28 @@ import LoadingSpinnerIcon from "../icons/LoadingSpinnerIcon.astro";
   function validateField(
     field: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
   ) {
-    const fieldName = field.id;
+    const fieldName = field.name || field.id;
     const errorElement = document.getElementById(
       `${fieldName}-error`
     ) as HTMLSpanElement;
     let isValid = true;
+
+    // Special handling for radio buttons
+    if (field.type === "radio") {
+      const radioGroup = document.querySelectorAll(
+        `input[name="${field.name}"]`
+      ) as NodeListOf<HTMLInputElement>;
+      const isRadioSelected = Array.from(radioGroup).some(radio => radio.checked);
+      
+      if (!isRadioSelected) {
+        errorElement.textContent = "Please select a location";
+        errorElement.classList.remove("hidden");
+        isValid = false;
+      } else {
+        errorElement.classList.add("hidden");
+      }
+      return isValid;
+    }
 
     // Check required fields
     if (field.required && !field.value.trim()) {
@@ -157,12 +181,6 @@ import LoadingSpinnerIcon from "../icons/LoadingSpinnerIcon.astro";
       errorElement.textContent = "Please enter a valid phone number";
       errorElement.classList.remove("hidden");
       isValid = false;
-    }
-    // Check if location is selected
-    else if (fieldName === "location" && field.value === "") {
-      errorElement.textContent = "Please select a location";
-      errorElement.classList.remove("hidden");
-      isValid = false;
     } else {
       errorElement.classList.add("hidden");
     }
@@ -172,25 +190,23 @@ import LoadingSpinnerIcon from "../icons/LoadingSpinnerIcon.astro";
 
   // Add input event listeners for real-time validation
   const formFields = form.querySelectorAll(
-    "input[required], textarea[required], select[required]"
+    "input[required], textarea[required]"
   );
   formFields.forEach((field) => {
-    field.addEventListener("input", () => {
-      validateField(
-        field as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-      );
+    const inputField = field as HTMLInputElement | HTMLTextAreaElement;
+    
+    inputField.addEventListener("input", () => {
+      validateField(inputField);
     });
 
-    field.addEventListener("blur", () => {
-      validateField(
-        field as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-      );
+    inputField.addEventListener("blur", () => {
+      validateField(inputField);
     });
 
-    // For select elements, also add change event listener
-    if (field instanceof HTMLSelectElement) {
-      field.addEventListener("change", () => {
-        validateField(field);
+    // For radio buttons, also add change event listener
+    if (inputField instanceof HTMLInputElement && inputField.type === "radio") {
+      inputField.addEventListener("change", () => {
+        validateField(inputField);
       });
     }
   });
@@ -201,12 +217,29 @@ import LoadingSpinnerIcon from "../icons/LoadingSpinnerIcon.astro";
 
     // Validate all fields before submission
     let isFormValid = true;
-    formFields.forEach((field) => {
-      if (
-        !validateField(
-          field as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-        )
-      ) {
+    
+    // Validate regular fields
+    const regularFields = form.querySelectorAll(
+      "input[required]:not([type='radio']), textarea[required]"
+    );
+    regularFields.forEach((field) => {
+      if (!validateField(field as HTMLInputElement | HTMLTextAreaElement)) {
+        isFormValid = false;
+      }
+    });
+
+    // Validate radio button groups
+    const radioGroups = new Set<string>();
+    form.querySelectorAll("input[type='radio'][required]").forEach((radio) => {
+      const radioInput = radio as HTMLInputElement;
+      radioGroups.add(radioInput.name);
+    });
+
+    radioGroups.forEach((groupName) => {
+      const firstRadio = form.querySelector(
+        `input[type='radio'][name='${groupName}']`
+      ) as HTMLInputElement;
+      if (firstRadio && !validateField(firstRadio)) {
         isFormValid = false;
       }
     });
