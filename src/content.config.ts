@@ -67,6 +67,7 @@ const siteCollection = defineCollection({
           number: z.string(),
           text: z.string(),
           patient: z.string(),
+          rating: z.number(),
         })
       ),
       footerBookAppointment: z.object({
@@ -81,6 +82,18 @@ const siteCollection = defineCollection({
         btnLink: z.string(),
         btnText: z.string(),
       }),
+      popularTreatments: z.array(
+        z.object({
+          name: z.string(),
+          link: z.string(),
+        })
+      ),
+      usefulLinks: z.array(
+        z.object({
+          name: z.string(),
+          link: z.string(),
+        })
+      ),
       socialsTitle: z.string(),
       social_media: z.array(
         z.object({

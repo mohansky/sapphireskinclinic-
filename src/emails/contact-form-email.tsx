@@ -15,10 +15,10 @@ import {
 
 interface Props {
   firstName: string;
-  email: string;
+  email?: string;
   phone: string;
   location: string;
-  message: string;
+  message?: string;
   siteUrl: string;
   siteName: string;
 }
@@ -123,14 +123,16 @@ export const ContactFormEmail = ({
               <strong>Name:</strong> {firstName}
             </Text>
 
-            <Text
-              style={{ fontSize: "16px", margin: "8px 0", color: textColor }}
-            >
-              <strong>Email:</strong>{" "}
-              <Link href={`mailto:${email}`} style={{ color: accentColor }}>
-                {email}
-              </Link>
-            </Text>
+            {email && (
+              <Text
+                style={{ fontSize: "16px", margin: "8px 0", color: textColor }}
+              >
+                <strong>Email:</strong>{" "}
+                <Link href={`mailto:${email}`} style={{ color: accentColor }}>
+                  {email}
+                </Link>
+              </Text>
+            )}
 
             <Text
               style={{ fontSize: "16px", margin: "8px 0", color: textColor }}
@@ -149,30 +151,34 @@ export const ContactFormEmail = ({
               }}
             />
 
-            <Heading
-              as="h3"
-              style={{
-                fontSize: "16px",
-                fontWeight: "500",
-                color: textColor,
-              }}
-            >
-              <strong>Message:</strong>
-            </Heading>
+            {message && (
+              <>
+                <Heading
+                  as="h3"
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: "500",
+                    color: textColor,
+                  }}
+                >
+                  <strong>Message:</strong>
+                </Heading>
 
-            <Text
-              style={{
-                fontSize: "16px",
-                lineHeight: "1.6",
-                color: textColor,
-                padding: "12px 16px",
-                backgroundColor: backgroundColor,
-                borderRadius: "6px",
-                borderLeft: `2px solid ${accentColor}`,
-              }}
-            >
-              {message}
-            </Text>
+                <Text
+                  style={{
+                    fontSize: "16px",
+                    lineHeight: "1.6",
+                    color: textColor,
+                    padding: "12px 16px",
+                    backgroundColor: backgroundColor,
+                    borderRadius: "6px",
+                    borderLeft: `2px solid ${accentColor}`,
+                  }}
+                >
+                  {message}
+                </Text>
+              </>
+            )}
             <Hr style={{ borderColor: "#e6ebf1", margin: "20px 0" }} />
             <Text
               style={{ color: "#8898aa", fontSize: "12px", lineHeight: "16px" }}
