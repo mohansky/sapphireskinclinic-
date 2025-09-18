@@ -28,7 +28,7 @@ const { locations } = Astro.props;
   locations.map((location) => (
     <nav class="mb-5">
       <Heading> {location.title}</Heading>
-      <div class="card-body space-y-5">
+      <div class="space-y-5">
         <div class="flex items-start mb-5">
           <Icon name="carbon:location" class="h-5 w-5 mr-3 " />
           <address class="not-italic">
@@ -48,7 +48,10 @@ const { locations } = Astro.props;
               title={phone}
             >
               <Icon name="carbon:phone" class="h-5 w-5 mr-3 " />
-              <Paragraph variant="defaulttext" size="sm"> {phone} </Paragraph>
+              <Paragraph variant="defaulttext" size="sm">
+                {" "}
+                {phone}{" "}
+              </Paragraph>
             </a>
           ))}
         </div>
@@ -60,7 +63,10 @@ const { locations } = Astro.props;
             title={location.email}
             class="link link-hover"
           >
-            <Paragraph variant="defaulttext" size="sm"> {location.email} </Paragraph>
+            <Paragraph variant="defaulttext" size="sm">
+              {" "}
+              {location.email}{" "}
+            </Paragraph>
           </a>
         </div>
 
@@ -76,8 +82,17 @@ const { locations } = Astro.props;
             </span>
           ))}
         </div>
+        <div class="flex flex-col">
+         <iframe
+          src={location.map}
+          class="w-full min-h-56 aspect-video"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        />
+        </div>
       </div>
     </nav>
   ))
 }
-

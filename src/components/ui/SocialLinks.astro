@@ -19,11 +19,11 @@ const { socials, class: className } = Astro.props;
 <ul class="flex space-x-5">
   {
     socials.map((item) => (
-      <li class="group">
+      <li class="group tooltip" data-tip={`Go to ${item.text}`}>
         <a href={item.link} title={item.text}>
           <Icon
             name={item.icon}
-            class={cn("text-secondary group-hover:opacity-50", className)}
+            class={cn("text-primary group-hover:opacity-50 duration-300 ease-in-out", className)}
           />
         </a>
       </li>

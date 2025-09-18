@@ -27,7 +27,6 @@ type FontWeightType =
   | "extralight"
   | "thin";
 type FontStyleType = "poppins" | "glory" | "point";
-// type FontStyleType = "marcellus" | "openSans" | "workSans" | "poppins" | "glory" | "point";
 type HeadingTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
 interface Props
@@ -51,7 +50,7 @@ const {
 } = Astro.props;
 
 const variants: Record<VariantType, string> = {
-  default: "text-secondary",
+  default: " ",
   sectiontitle: "text-base-100",
   sectiontitlehalf: "text-base-100",
   sectiontitlesm: "bg-primary/20 text-foreground shadow",

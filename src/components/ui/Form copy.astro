@@ -3,142 +3,113 @@ import { server } from "@/actions/index";
 import Heading from "./Heading.astro";
 import Button from "./Button.astro";
 import LoadingSpinnerIcon from "../icons/LoadingSpinnerIcon.astro";
-import GoogleIcon from "../icons/GoogleIcon.astro";
 ---
 
 <div>
-  <div class="card bg-base-200 shadow-sm">
-    
-    <div class="card-body">
-      <Heading size="lg" fontweight="medium" fontstyle="point" class="  mb-10">
-        Please do get in touch with us.
-      </Heading>
-      <form
-        id="contact-form"
-        action={server.contactForm}
-        method="POST"
-        class="flex flex-col gap-6"
-      >
-        <!-- Honeypot field for spam protection -->
-        <input
-          class="hidden"
-          type="text"
-          id="a_password"
-          name="a_password"
-          tabindex="-1"
-          autocomplete="off"
-        />
-        <div class="form-control">
-          <input
-            type="text"
-            name="firstName"
-            id="firstName"
-            placeholder="Name"
-            class="input border-b border-0 input-lg w-full focus:outline-none py-10 rounded-none"
-            required
-          />
-          <span
-            class="text-error text-sm hidden error-message"
-            id="firstName-error"></span>
-        </div>
-        <div class="form-control hidden">
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Email Address"
-            class="input border-b border-0 input-lg w-full focus:outline-none py-10 rounded-none"
-          />
-          <span class="text-error text-sm hidden error-message" id="email-error"
-          ></span>
-        </div>
-        <div class="form-control">
-          <input
-            type="tel"
-            name="phone"
-            id="phone"
-            placeholder="Phone Number"
-            class="input border-b border-0 input-lg w-full focus:outline-none py-10 rounded-none"
-            required
-          />
-          <span class="text-error text-sm hidden error-message" id="phone-error"
-          ></span>
-        </div>
-        <div class="form-control">
-          <label class="label">
-            <span class="label-text mb-5">Select Location</span>
-          </label>
-          <div class="flex flex-col gap-3" id="location">
-            <label class="cursor-pointer flex items-center gap-3">
-              <input
-                type="radio"
-                name="location"
-                value="Koramangala"
-                class="radio radio-primary"
-                required
-              />
-              <span class="label-text">Koramangala</span>
-            </label>
-            <label class="cursor-pointer flex items-center gap-3">
-              <input
-                type="radio"
-                name="location"
-                value="JPNagar"
-                class="radio radio-primary"
-                required
-              />
-              <span class="label-text">JP Nagar</span>
-            </label>
-          </div>
-          <span
-            class="text-error text-sm hidden error-message"
-            id="location-error"></span>
-        </div>
-        <div class="form-control hidden">
-          <textarea
-            name="message"
-            id="message"
-            class="textarea textarea-bordered border-b border-0 input-lg w-full focus:outline-none py-5 rounded-none"
-            rows="5"
-            placeholder="Your Message"></textarea>
-          <span
-            class="text-error text-sm hidden error-message"
-            id="message-error"></span>
-        </div>
-        <div class="flex flex-col lg:flex-row gap-5 mt-5">
-          <Button
-            type="submit"
-            color="primary"
-            themed
-            id="submit-btn"
-            class="w-fit mt-5"
-          >
-            <span id="submit-text">Request a Callback Now!</span>
-            <span id="loading-spinner" class="hidden">
-              <span class="inline-flex items-center">
-                <LoadingSpinnerIcon class="animate-spin -ml-1 mr-3 h-5 w-5" />
-                Submitting...
-              </span>
-            </span>
-          </Button>
-          <!-- Google Reviews Display -->
-          <div class="flex items-center gap-4 mt-4">
-            <div class="flex items-center gap-2">
-              <GoogleIcon class="w-5 h-5" />
-              <div class="flex text-yellow-400 text-lg">★★★★★</div>
-              <a
-                href="https://share.google/3llSVdbSCAVz0PHUh"
-                target="_blank"
-                class="text-secondary hover:underline text-xs"
-              >
-                4.8/5 (127)
-              </a>
-            </div>
-          </div>
-        </div>
-      </form>
+  <Heading size="lg" fontweight="medium" fontstyle="point" class="mb-10">
+    Please do get in touch with us.
+  </Heading>
+  <form
+    id="contact-form"
+    action={server.contactForm}
+    method="POST"
+    class="flex flex-col gap-6"
+  >
+    <!-- Honeypot field for spam protection -->
+    <input
+      class="hidden"
+      type="text"
+      id="a_password"
+      name="a_password"
+      tabindex="-1"
+      autocomplete="off"
+    />
+    <div class="form-control">
+      <input
+        type="text"
+        name="firstName"
+        id="firstName"
+        placeholder="Name"
+        class="input border-b border-0 input-lg w-full focus:outline-none py-10 rounded-none"
+        required
+      />
+      <span class="text-error text-sm hidden error-message" id="firstName-error"
+      ></span>
     </div>
-  </div>
+    <div class="form-control">
+      <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="Email Address"
+        class="input border-b border-0 input-lg w-full focus:outline-none py-10 rounded-none"
+        required
+      />
+      <span class="text-error text-sm hidden error-message" id="email-error"
+      ></span>
+    </div>
+    <div class="form-control">
+      <input
+        type="tel"
+        name="phone"
+        id="phone"
+        placeholder="Phone Number"
+        class="input border-b border-0 input-lg w-full focus:outline-none py-10 rounded-none"
+        required
+      />
+      <span class="text-error text-sm hidden error-message" id="phone-error"
+      ></span>
+    </div> 
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text">Select Location</span>
+      </label>
+      <div class="flex flex-col gap-3" id="location">
+        <label class="cursor-pointer flex items-center gap-3">
+          <input 
+            type="radio" 
+            name="location" 
+            value="Koramangala" 
+            class="radio radio-primary" 
+            required 
+          />
+          <span class="label-text">Koramangala</span>
+        </label>
+        <label class="cursor-pointer flex items-center gap-3">
+          <input 
+            type="radio" 
+            name="location" 
+            value="JPNagar" 
+            class="radio radio-primary" 
+            required 
+          />
+          <span class="label-text">JP Nagar</span>
+        </label>
+      </div>
+      <span class="text-error text-sm hidden error-message" id="location-error"
+      ></span>
+    </div>
+    <div class="form-control">
+      <textarea
+        name="message"
+        id="message"
+        class="textarea textarea-bordered border-b border-0 input-lg w-full focus:outline-none py-5 rounded-none"
+        rows="5"
+        placeholder="Your Message"
+        required></textarea>
+      <span class="text-error text-sm hidden error-message" id="message-error"
+      ></span>
+    </div>
+    <Button type="submit" color="primary" themed id="submit-btn" class="flex">
+      <span id="submit-text">Submit</span>
+      <span id="loading-spinner" class="hidden">
+        <span class="inline-flex items-center">
+          <LoadingSpinnerIcon class="animate-spin -ml-1 mr-3 h-5 w-5" />
+          Submitting...
+        </span>
+      </span>
+    </Button>
+  </form>
 </div>
 
 <div class="toast z-30" style="display: none;">
@@ -181,10 +152,8 @@ import GoogleIcon from "../icons/GoogleIcon.astro";
       const radioGroup = document.querySelectorAll(
         `input[name="${field.name}"]`
       ) as NodeListOf<HTMLInputElement>;
-      const isRadioSelected = Array.from(radioGroup).some(
-        (radio) => radio.checked
-      );
-
+      const isRadioSelected = Array.from(radioGroup).some(radio => radio.checked);
+      
       if (!isRadioSelected) {
         errorElement.textContent = "Please select a location";
         errorElement.classList.remove("hidden");
@@ -225,7 +194,7 @@ import GoogleIcon from "../icons/GoogleIcon.astro";
   );
   formFields.forEach((field) => {
     const inputField = field as HTMLInputElement | HTMLTextAreaElement;
-
+    
     inputField.addEventListener("input", () => {
       validateField(inputField);
     });
@@ -248,7 +217,7 @@ import GoogleIcon from "../icons/GoogleIcon.astro";
 
     // Validate all fields before submission
     let isFormValid = true;
-
+    
     // Validate regular fields
     const regularFields = form.querySelectorAll(
       "input[required]:not([type='radio']), textarea[required]"

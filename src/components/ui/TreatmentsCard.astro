@@ -46,7 +46,9 @@ const { title, description, img, icon, id } = treatmentItems;
         height={240}
       />
     </div>
-    <Paragraph variant="defaulttext" >{description}</Paragraph>
+    <Paragraph variant="defaulttext" class="line-clamp-3 mb-2"
+      >{description}</Paragraph
+    >
     <div class="card-actions justify-center">
       <Button
         href={"/treatments/" + id}
@@ -56,7 +58,7 @@ const { title, description, img, icon, id } = treatmentItems;
         themed
       >
         Learn more
-      </Button> 
+      </Button>
     </div>
   </div>
 </div>

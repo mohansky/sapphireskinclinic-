@@ -20,20 +20,20 @@ const { footerOffers } = Astro.props;
 const { bgImage, title, subtitle, btnLink, btnText } = footerOffers;
 ---
 
-<div class="card image-full custom-overlay w-96 aspect-video">
+<div class="card image-full custom-overlay w-full lg:w-96 aspect-video">
   <figure>
     <Image src={bgImage} alt={title} title={title} />
   </figure>
   <div class="custom-overlay-element"></div>
   <div class="card-body items-center text-center">
-    <Heading size="sm" fontweight="semibold" fontstyle="point" variant="sectiontitle">
+    <Heading class="text-neutral-content" size="sm" fontweight="semibold" fontstyle="point" variant="sectiontitle">
       {title}
     </Heading>
     <Paragraph>{subtitle}</Paragraph>
     <div class="card-actions justify-end">
       <Button
         color="primary"
-        variant="soft"
+        variant="primary"
         href={btnLink}
         title="Offers"
         themed

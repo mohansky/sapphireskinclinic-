@@ -15,11 +15,14 @@ const publishedTreatments = sortedTreatments.filter(
   (treatment) => treatment.data.draft !== true
 );
 
-// Duplicate treatments to ensure enough slides for looping
+// Create enough duplicates for seamless infinite loop
 const loopTreatments = [
   ...publishedTreatments,
-  ...publishedTreatments.slice(0, 8), // Add extra slides if needed
-];
+  ...publishedTreatments,
+  ...publishedTreatments,
+  ...publishedTreatments,
+  ...publishedTreatments
+]; // 5x duplication ensures smooth looping
 ---
 
 <div class="swiper treatmentsSwiper bg-primary">
@@ -78,21 +81,24 @@ const loopTreatments = [
 
       // Loop configuration
       loop: true,
-      loopAdditionalSlides: 2, // Add extra slides for smoother looping
+      loopAdditionalSlides: 15, // Extra slides for buffer
 
-      // Autoplay
+      // Autoplay for continuous movement
       autoplay: {
-        delay: 3000,
+        delay: 0, // No delay between slides
         disableOnInteraction: false,
         pauseOnMouseEnter: true,
       },
 
-      // Optional: center slides for better visual
-      centeredSlides: true,
+      // Smooth continuous movement
+      speed: 3000, // Slower transition for smooth effect
+      freeMode: {
+        enabled: true,
+        momentum: false, // Disable momentum for consistent speed
+      },
 
       // Performance and interaction
       grabCursor: true,
-      speed: 1000, // Transition speed
     });
   });
 </script>

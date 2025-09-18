@@ -32,20 +32,16 @@ const testimonials = siteInfo.testimonials;
 
 <style is:global>
   .swiper-pagination-bullet {
-    width: 20px!important;
-    height: 20px!important;
-    text-align: center!important;
-    line-height: 20px!important;
-    font-size: 10px!important;
-    color: #535353!important;
-    opacity: 1!important;
-    background: rgba(129, 128, 128, 0.2)!important;
+    width: 20px !important;
+    height: 4px !important;
+    border-radius: 2px !important;
+    background: rgba(129, 128, 128, 0.4) !important;
+    opacity: 1 !important;
+    transition: all 0.3s ease !important;
   }
 
   .swiper-pagination-bullet-active {
-    /* background-color: rgb(164, 15, 15) !important; */
-    color: #fff!important;
-    background: #1e3752!important;
+    background: #1e3752 !important;
   }
 </style>
  
@@ -68,15 +64,6 @@ const testimonials = siteInfo.testimonials;
     pagination: {
       el: ".swiper-pagination",
       clickable: true,
-      renderBullet: function (index, className) {
-        return (
-          '<span class="focus:text-blue-600 text-amber-500 ' +
-          className +
-          '">' +
-          (index + 1) +
-          "</span>"
-        );
-      },
     },
   });
 </script>

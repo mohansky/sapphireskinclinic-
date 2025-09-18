@@ -23,8 +23,8 @@ const offers = siteInfo.footerLatestOffers;
   <div class="hero-content text-center">
     <div class="max-w-xxl px-5 py-2">
       <!-- {offers.title && <Heading>{offers.title}</Heading>} -->
-      {offers.subtitle && <Heading size="xxl" class="mb-10" variant="sectiontitle">{offers.subtitle}</Heading>}
-      <Button href={offers.btnLink} color="primary" variant="soft" title="Offers" themed>
+      {offers.subtitle && <Heading size="xxl" class="text-neutral-content mb-10" variant="sectiontitle">{offers.subtitle}</Heading>}
+      <Button href={offers.btnLink} variant="primary" title="Offers" themed>
         {offers.btnText}
       </Button>
     </div>

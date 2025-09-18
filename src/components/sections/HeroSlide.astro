@@ -59,16 +59,16 @@ const imageSizes = {
         size="sm"
         fontweight="normal"
         fontstyle="glory"
-        class="tracking-wide opacity-75"
+        class="text-neutral-content tracking-wide opacity-75"
         variant="sectiontitle"
         as="h1">Sapphire Skin & Aesthetics Clinic</Heading
       >
       <Heading
-        size="xxl"
+        size="xxxl"
         fontweight="black"
         fontstyle="point"
         variant="sectiontitle"
-        class="text-balance mb-5 mt-3">{title}</Heading
+        class="text-neutral-content text-balance mb-5 mt-3">{title}</Heading
       >
       {
         subtitle && (
@@ -76,7 +76,8 @@ const imageSizes = {
             variant="sectiontitle"
             fontstyle="poppins"
             fontweight="light"
-            size="md"
+            size="md" 
+            class="text-neutral-content"
           >
             {subtitle}
           </Heading>
@@ -98,7 +99,7 @@ const imageSizes = {
         {
           secondaryButtonText && secondaryButtonLink && (
             <Button
-              variant="outline"
+              variant="soft"
               color="primary"
               href={secondaryButtonLink}
               title={secondaryButtonText}
