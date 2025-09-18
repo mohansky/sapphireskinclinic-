@@ -72,7 +72,7 @@ site:
   hero:
     - title: Welcome to Our Clinic
       subtitle: Glow from the inside and out
-      backgroundImage: ./images/clinic/Reception_Area.jpg
+      backgroundImage: ./images/clinic-kor/Reception_Area.jpg
       isFirstSlide: true
       primaryButtonText: Book Appointment
       primaryButtonLink: /contact
@@ -90,33 +90,33 @@ site:
     - title: About Us
       slug: about
       subtitle: Sapphire Skin & Aesthetics Clinic
-      img: ./images/clinic/Team_Sapphire_Koramangala.jpg
+      img: ./images/clinic-kor/Team_Sapphire_Koramangala.jpg
       overlayOpacity: 0.2
     - title: Treatments
       slug: treatments
       subtitle: Sapphire Skin & Aesthetics Clinic
-      img: ./images/clinic/LHR-Laser_Hair_Reduction_Room.jpg
+      img: ./images/clinic-kor/LHR-Laser_Hair_Reduction_Room.jpg
       overlayOpacity: 0.2
     - title: Gallery
       slug: gallery
       subtitle: Sapphire Skin & Aesthetics Clinic
-      img: ./images/clinic/Reception_Area.jpg
+      img: ./images/clinic-kor/Reception_Area.jpg
       overlayOpacity: 0.2
     - title: Contact
       slug: contact
       subtitle: Sapphire Skin & Aesthetics Clinic
-      img: ./images/clinic/Reception_Waiting_Area_2.jpg
+      img: ./images/clinic-kor/Reception_Waiting_Area_2.jpg
       overlayOpacity: 0.2
     - title: Offers
       slug: offers
       subtitle: Sapphire Skin & Aesthetics Clinic
-      img: ./images/clinic/Reception_Area.jpg
+      img: ./images/clinic-kor/Reception_Area.jpg
       overlayOpacity: 0.2
 
   offers:
     - title:
       subtitle:
-      image: ./images/offer0725.jpg
+      image: ./images/offers.jpg
 
   # About Clinic Section
     # Sapphire is the place where science meets beauty. Pamper yourself in
@@ -147,7 +147,7 @@ site:
   doctors:
     - name: Dr. Sheela Natraj
       qualifications: MBBS, DVD
-      specialization: Founder & Director
+      specialization: Founder & Director, Consultant Dermatologist & Cosmetologist
       image: ./images/doctors/DrSheelaNatraj.jpg
 
     - name: Dr. Kavya Reganti
@@ -168,7 +168,7 @@ site:
   aboutTitle: About Us
   aboutText: >
       Sapphire Skin and Aesthetics Clinic is a premium skincare destination combining advanced science with luxurious care. The clinic offers personalized treatments in a serene and elegant environment, focusing on bespoke skincare solutions. Their expert team of dermatologists and aesthetic specialists uses medical-grade products and the latest technology to ensure excellent results. From initial consultation to post-treatment care, every detail is carefully designed for a superior experience. Whether clients seek radiant skin, anti-aging therapies, or refined self-care, the clinic provides a sanctuary dedicated to beauty and wellbeing. Sapphire Skin and Aesthetics Clinic truly delivers exceptional care because your skin deserves the best.
-  aboutImage: ./images/clinic/Reception_Waiting_Area_2.jpg
+  aboutImage: ./images/clinic-kor/Reception_Waiting_Area_2.jpg
   # Clinic Highlights
   highlights:
     - number: "01"
@@ -192,15 +192,27 @@ site:
     - number: "01"
       text: "I wanted to take a moment to sincerely thank you for the exceptional care you’ve provided during my recent visits. Your professionalism, expertise, and attention to detail have truly made a positive difference in my skin health. I’m so grateful for your thorough explanations and the way you’ve addressed all of my concerns with patience and care. It’s clear that you are passionate about your work, and it’s comforting to know I’m in such good hands. Thank you again for your dedication and outstanding care"
       patient: Rakshitha
+      rating: 4.9
     - number: "02"
       text: "I am so impressed with Dr. Sheela thorough approach to skincare. They took the time to explain every option and answered all my questions in detail. It’s clear that Dr. Sheela genuinely cares about their patients. My skin has improved tremendously, and I couldn’t be happier with the results!"
       patient: Shaik Rizu
+      rating: 4.9
     - number: "03"
       text: "Dr. Sheela is incredible! She’s extremely knowledgeable, professional, and truly listens to her patients. I came in with a skin concern, and she immediately put me at ease, explaining my options in detail. The treatment plan she suggested has worked wonders, and my skin looks better than ever."
       patient: Umashankar H
+      rating: 4.9
     - number: "04"
       text: "I had an amazing experience with Dr Sheela mam. They were professional, attentive, and genuinely cared about my concerns. The office was clean, and the staff was friendly and efficient. My skin has never looked better! I highly recommend sapphire skin and aesthetic to anyone looking for top-notch dermatological care."
       patient: Amar John
+      rating: 4.9
+    - number: "05"
+      text: "We had to wait for some time but its totally worth it. All my skin concern were patiently heard and they made me feel so comfortable. Dr Sheela is a PRO. She made me understand well and gave me space to decide further. Overall it was worth it."
+      patient: Ishmite Limbu
+      rating: 5
+    - number: "06"
+      text: "Very happy with the consultation with Dr Sheela. She listens and provides the best advice and treatment. She is very welcoming and professional. Had a smooth visit."
+      patient: Manan Khan
+      rating: 5
 
   equipments:
     - title: Coolite Bolt
@@ -275,7 +287,7 @@ site:
       map: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.0474418615336!2d77.5830357752551!3d12.904670987404536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15135995af1f%3A0xc650d0e6015f26c8!2sSapphire%20Skin%20%26%20Aesthetics%20Clinic!5e0!3m2!1sen!2sin!4v1744952378428!5m2!1sen!2sin
       timmings:
         - title: Monday - Saturday
-          details: 10:30AM - 8:30PM
+          details: 11AM - 8:30PM
         - title: Sunday
           details: 10:30AM - 7:00PM
 
@@ -292,7 +304,7 @@ site:
       map: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.0474418615336!2d77.5830357752551!3d12.904670987404536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15135995af1f%3A0xc650d0e6015f26c8!2sSapphire%20Skin%20%26%20Aesthetics%20Clinic!5e0!3m2!1sen!2sin!4v1744952378428!5m2!1sen!2sin
       timmings:
         - title: Monday - Saturday
-          details: 10:30AM - 8:30PM
+          details: 11AM - 8:30PM
         - title: Sunday
           details: 10:30AM - 7:00PM
 
@@ -307,6 +319,36 @@ site:
     bgImage: ./images/bg-offers.jpg
     btnLink: /offers
     btnText: Offers
+
+  # Popular Treatments
+  popularTreatments:
+    - name: Laser Hair Removal
+      link: /treatments/diode-laser-hair-removal
+    - name: Chemical Peels
+      link: /treatments/chemical-peels
+    - name: Botox & Dermal Fillers
+      link: /treatments/botox-and-dermal-fillers
+    - name: PRP for Skin
+      link: /treatments/prp-for-skin
+    - name: Photo Facial
+      link: /treatments/photo-facial
+    - name: Microdermabrasion
+      link: /treatments/microdermabrasion
+
+  # Useful Links
+  usefulLinks:
+    - name: About Us
+      link: /about
+    - name: Our Doctors
+      link: /about#doctors
+    - name: Gallery
+      link: /gallery
+    - name: Treatments
+      link: /treatments
+    - name: Offers
+      link: /offers
+    - name: Book Appointment
+      link: /contact
 
   # Social Media Links
   socialsTitle: Follow us
