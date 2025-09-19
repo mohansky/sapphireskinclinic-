@@ -44,6 +44,7 @@ const siteCollection = defineCollection({
           title: z.string().optional().nullable(),
           subtitle: z.string().optional().nullable(),
           image: image(),
+          offerImg: image(),
         })
       ),
       about: z.object({
@@ -79,6 +80,7 @@ const siteCollection = defineCollection({
         title: z.string(),
         subtitle: z.string(),
         bgImage: image(),
+        offerImg: image(),
         btnLink: z.string(),
         btnText: z.string(),
       }),
