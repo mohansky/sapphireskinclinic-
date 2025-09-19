@@ -16,22 +16,28 @@ const testimonials = siteInfo.testimonials;
     size="xxl"
     fontweight="black"
     fontstyle="point"
-    class="text-center">Testimonials</Heading
+    class="text-center mb-5">Testimonials</Heading
   >
-  <div class="swiper mySwiper">
+  <div class="swiper testimonialsSwiper">
     <div class="swiper-wrapper bg-base-100">
       {
         testimonials.map((testimonial) => (
           <TestimonialItem testimonials={testimonial} />
         ))
       }
-      <div class="swiper-pagination"></div>
     </div>
+    <div class="swiper-pagination"></div>
   </div>
 </div>
 
 <style is:global>
-  .swiper-pagination-bullet {
+  .testimonialsSwiper .swiper-pagination {
+    position: relative !important;
+    text-align: center !important;
+    margin-top: 2rem !important;
+  }
+
+  .testimonialsSwiper .swiper-pagination-bullet {
     width: 20px !important;
     height: 4px !important;
     border-radius: 2px !important;
@@ -40,7 +46,7 @@ const testimonials = siteInfo.testimonials;
     transition: all 0.3s ease !important;
   }
 
-  .swiper-pagination-bullet-active {
+  .testimonialsSwiper .swiper-pagination-bullet-active {
     background: #1e3752 !important;
   }
 </style>
@@ -48,19 +54,26 @@ const testimonials = siteInfo.testimonials;
 
 <script>
   import Swiper from "swiper";
-  import { EffectFade, Navigation, Pagination } from "swiper/modules";
+  import { Navigation, Pagination } from "swiper/modules";
   import "swiper/css";
   import "swiper/css/navigation";
   import "swiper/css/pagination";
-  const swiper = new Swiper(".mySwiper", {
-    modules: [Navigation, Pagination, EffectFade],
+  const swiper = new Swiper(".testimonialsSwiper", {
+    modules: [Navigation, Pagination],
     direction: "horizontal",
     loop: true,
     autoplay: {
       delay: 5000,
       disableOnInteraction: false,
     },
-    effect: "fade",
+    slidesPerView: 1,
+    spaceBetween: 20,
+    breakpoints: {
+      768: {
+        slidesPerView: 3,
+        spaceBetween: 30,
+      },
+    },
     pagination: {
       el: ".swiper-pagination",
       clickable: true,

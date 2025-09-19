@@ -13,74 +13,45 @@ const hero = siteInfo.hero;
 ---
 
 <div class="relative">
-  <div class="swiper mySwiper">
+  <div class="swiper heroSwiper">
     <div class="swiper-wrapper">
       {hero.map((heroContent) => <HeroSlide hero={heroContent} />)}
     </div>
-
-    <!-- Custom Navigation -->
-    <!-- <div class="hidden lg:block absolute top-1/2 left-4 z-10 transform -translate-y-1/2">
-      <div class="swiper-button-prev custom-prev-button">
-        <Icon
-          name="carbon:arrow-left"
-          class="w-10 h-10 text-neutral-content bg-black/10 rounded-full p-2"
-        />
-      </div>
-    </div>
-    <div class="hidden lg:block absolute top-1/2 right-4 z-10 transform -translate-y-1/2">
-      <div class="swiper-button-next custom-next-button">
-        <Icon
-          name="carbon:arrow-right"
-          class="w-10 h-10 text-neutral-content bg-black/10 rounded-full p-2"
-        />
-      </div>
-    </div> -->
   </div>
 </div>
 
-<script is:inline>
+<script>
   import Swiper from "swiper";
   import { EffectFade, Navigation, Pagination, Autoplay } from "swiper/modules";
 
-  // Ensure the script runs after the DOM is fully loaded
-  document.addEventListener("DOMContentLoaded", () => {
-    const swiper = new Swiper(".mySwiper", {
-      modules: [Navigation, Pagination, EffectFade, Autoplay],
+  const swiper = new Swiper(".heroSwiper", {
+    modules: [Navigation, Pagination, EffectFade, Autoplay],
 
-      // Autoplay Configuration
-      autoplay: {
-        delay: 7500, // 5 seconds between slides
-        disableOnInteraction: false, // Continue autoplay after user interaction
-        pauseOnMouseEnter: true, // Pause on hover
-      },
+    // Autoplay Configuration
+    autoplay: {
+      delay: 6000,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true,
+    },
 
-      // Navigation Configuration
-      navigation: {
-        nextEl: ".swiper-prev-button",
-        prevEl: ".swiper-button-prev",
-        // Optional: disable default navigation styles
-        disabledClass: "swiper-button-disabled opacity-50",
-      },
+    // Effect Configuration
+    effect: "fade",
+    fadeEffect: {
+      crossFade: true,
+    },
 
-      // Effect Configuration
-      effect: "fade",
-      fadeEffect: {
-        crossFade: true, // Smoother fade transition
-      },
+    // Additional Options
+    loop: true,
+    speed: 1000,
 
-      // Additional Options
-      loop: true,
-      speed: 1000, // Transition speed in milliseconds
-
-      // Accessibility
-      a11y: {
-        enabled: true,
-        prevSlideMessage: "Previous slide",
-        nextSlideMessage: "Next slide",
-        firstSlideMessage: "This is the first slide",
-        lastSlideMessage: "This is the last slide",
-      },
-    });
+    // Accessibility
+    a11y: {
+      enabled: true,
+      prevSlideMessage: "Previous slide",
+      nextSlideMessage: "Next slide",
+      firstSlideMessage: "This is the first slide",
+      lastSlideMessage: "This is the last slide",
+    },
   });
 </script>
 

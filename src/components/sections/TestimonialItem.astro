@@ -16,15 +16,26 @@ interface Props {
 const { text, patient, rating } = Astro.props.testimonials;
 ---
 
-<div class="swiper-slide bg-base-100 py-14">
+<div class="swiper-slide card border border-accent shadow-md bg-base-100 py-5 lg:py-10 h-80">
   <div
-    class="bg-base-100 max-w-2xl mx-auto z-50 flex flex-col items-center justify-center min-h-44"
+    class="card-body max-w-2xl mx-auto z-50 flex flex-col justify-between h-full"
   >
-    <Paragraph class="text-balance text-center mb-5">{text}</Paragraph>
+    {
+      rating && (
+        <span class="flex flex-row gap-1 text-base-content text-sm font-poppins self-start">
+          <Icon name="lucide:star" class="text-primary" /> {rating}
+        </span>
+      )
+    }
+    {
+      text && (
+        <Paragraph class="text-balance line-clamp-6 mb-5">{text}</Paragraph>
+      )
+    }
+    <div class="divider"></div>
     {
       patient && (
-        <span class="flex flex-row items-center gap-5">
-          
+        <span class="flex flex-row items-center gap-5 self-start">
           <Heading
             size="sm"
             class="tracking-wide opacity-80"
@@ -33,11 +44,6 @@ const { text, patient, rating } = Astro.props.testimonials;
           >
             {patient}
           </Heading>
-          {rating && (
-            <span class="flex flex-row items-center gap-1 text-base-content text-sm font-poppins">
-              <Icon name="lucide:star" class="text-primary" /> {rating}
-            </span>
-          )}
         </span>
       )
     }
