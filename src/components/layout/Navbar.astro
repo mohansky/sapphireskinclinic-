@@ -131,8 +131,8 @@ const { navigation } = Astro.props;
           class="text-xl"
           title="Sapphire Skin & Aesthetics Clinic Home"
         >
-          <div class="w-20 lg:w-32 h-auto">
-            <SSACLogo class="fill-base-content" />
+          <div class="w-28 lg:w-32 h-auto">
+            <SSACLogo class="ml-5 fill-base-content" />
           </div>
 
           <p class="sr-only">Sapphire Skin & Aesthetics Clinic</p>
@@ -147,7 +147,7 @@ const { navigation } = Astro.props;
         >
           <input type="checkbox" class="hidden" />
           <span class="sr-only">Open menu</span>
-          <MenuOpenIcon class="items-center my-auto" />
+          <MenuOpenIcon class="w-8 h-8 items-center my-auto" />
         </label>
       </div>
 
@@ -176,11 +176,7 @@ const { navigation } = Astro.props;
             >
               Book Appointment
             </Button>
-          </li>
-
-          <!-- <li>
-            <ThemeController />
-          </li> -->
+          </li> 
         </ul>
       </div>
     </div>
@@ -189,8 +185,8 @@ const { navigation } = Astro.props;
   <div class="drawer-side z-30">
     <div class="menu bg-base-200 min-h-full w-full" aria-label="Navigation">
       <a href="/" title="Sapphire Skin & Aesthetics Clinic Home">
-        <div class="w-32 h-auto">
-          <SSACLogo />
+        <div class="w-28 h-auto">
+          <SSACLogo class="ml-5" />
         </div>
         <p class="sr-only">Sapphire Skin & Aesthetics Clinic</p>
       </a>
@@ -200,19 +196,19 @@ const { navigation } = Astro.props;
         for="my-drawer-3"
         aria-label="close sidebar"
         aria-labelledby="close-menu-label"
-        class="absolute top-10 right-5 drawer-overlay z-30"
+        class="absolute top-6 right-5 drawer-overlay z-30"
       >
         <input type="checkbox" checked class="hidden" />
-        <MenuCloseIcon />
+        <MenuCloseIcon class="w-8 h-8" />
       </label>
-      <ul class="space-y-10 pt-10" aria-label="Navigation">
+      <ul class="space-y-6 pt-10" aria-label="Navigation">
         {
           navigation.map(({ text, link }) => (
             <li>
               <a
                 href={link}
                 title={`Go to ${text}`}
-                class="font-poppins mx-auto font-semibold text-lg"
+                class="font-poppins font-semibold text-lg"
                 aria-label={`Go to ${text}`}
               >
                 {text}
@@ -222,17 +218,14 @@ const { navigation } = Astro.props;
         }
         <li>
           <Button
-            variant="outline"
+            variant="primary"
             href="/contact"
             title="Book appointment"
-            class="font-poppins font-medium uppercase w-full"
+            class="font-poppins font-semibold uppercase w-full"
           >
             Book Appointment
           </Button>
-        </li>
-        <!-- <li>
-          <ThemeController />
-        </li> -->
+        </li> 
       </ul>
     </div>
   </div>
