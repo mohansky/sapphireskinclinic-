@@ -117,11 +117,8 @@ site:
     - title:
       subtitle:
       image: ./images/offers.jpg
+      offerImg: ./images/offers.jpg
 
-  # About Clinic Section
-    # Sapphire is the place where science meets beauty. Pamper yourself in
-    # luxury at our state-of-the art clinic, where each individual is given
-    # personal attention, safest treatments and utmost discretion. 
   about:
     description: >
       The delicate synergy of science, skill and nature is important to understand and create a healthy and beautiful you. 
@@ -190,9 +187,9 @@ site:
     # Clinic Highlights
   testimonials:
     - number: "01"
-      text: "I wanted to take a moment to sincerely thank you for the exceptional care you’ve provided during my recent visits. Your professionalism, expertise, and attention to detail have truly made a positive difference in my skin health. I’m so grateful for your thorough explanations and the way you’ve addressed all of my concerns with patience and care. It’s clear that you are passionate about your work, and it’s comforting to know I’m in such good hands. Thank you again for your dedication and outstanding care"
-      patient: Rakshitha
-      rating: 4.9
+      text: "I recently visited Sapphire Cosmetic Clinic in Koramangala and had an outstanding experience. Dr. Sheela is exceptionally knowledgeable, taking the time to thoroughly explain the treatments and procedures involved. Her expertise and attention to detail made me feel confident and comfortable with every step. The clinic is clean, modern, and has a welcoming staff, ensuring a positive experience from start to finish. I highly recommend Sapphire Cosmetic Clinic and Dr. Sheela for anyone considering cosmetic treatments!"
+      patient: Yogesh Reddy
+      rating: 5
     - number: "02"
       text: "I am so impressed with Dr. Sheela thorough approach to skincare. They took the time to explain every option and answered all my questions in detail. It’s clear that Dr. Sheela genuinely cares about their patients. My skin has improved tremendously, and I couldn’t be happier with the results!"
       patient: Shaik Rizu
@@ -206,12 +203,12 @@ site:
       patient: Amar John
       rating: 4.9
     - number: "05"
-      text: "We had to wait for some time but its totally worth it. All my skin concern were patiently heard and they made me feel so comfortable. Dr Sheela is a PRO. She made me understand well and gave me space to decide further. Overall it was worth it."
-      patient: Ishmite Limbu
+      text: "Sapphire skin clinic has been a beautiful experience. I have always looked forward to visiting sapphire whenever I booked myself for an appointment. My best ever experience has been with your Skin Polishing service. My husband and I love my skin after every visiting experience. Whenever I think of my skin, I think of sapphire clinic. Have many more successful years! All the best!"
+      patient: Rajith Pooja
       rating: 5
     - number: "06"
-      text: "Very happy with the consultation with Dr Sheela. She listens and provides the best advice and treatment. She is very welcoming and professional. Had a smooth visit."
-      patient: Manan Khan
+      text: "I had a LHR and Hydrafacial routine. Dr Sheela is super friendly and she is very polite. She first took a deep look at my skin after cleaning it to make sure she gives the correct advise later. The hydrafacial was super experience and the results were immediate. My skin already glows and I am definitely going back there again for a follow up. I rarely find places who give you full attention like this and for the complete full hour like the sapphire staff did. Dr Sheela has positive attitude throughout the whole session made the whole experience all the more amazing. Also the clinic has a clean and hygienic environment and sterilized equipment. They have top notch facilities for cosmetic surgery dermatologic surgery and medical aesthetics. Thank you so much Sapphire skin clinic."
+      patient: Ruchitha M
       rating: 5
 
   equipments:
@@ -289,12 +286,12 @@ site:
         - title: Monday - Saturday
           details: 11AM - 8:30PM
         - title: Sunday
-          details: 10:30AM - 7:00PM
+          details: 11AM - 5:00PM
 
     - address:
         - Sapphire Skin & Aesthetics Clinic,
-        - OA Towers, 5th Cross Road,
-        - KHB Colony, 5th Block, Koramangala,
+        - "OA Arcade, #20, 1st Floor 5th Cross,"
+        - 60 Feet Road, Koramangala, 6th Block,
         - Bengaluru - 560095
       phones:
         - "+9180 296 36 666"
@@ -306,7 +303,7 @@ site:
         - title: Monday - Saturday
           details: 11AM - 8:30PM
         - title: Sunday
-          details: 10:30AM - 7:00PM
+          details: 11AM - 5:00PM
 
   footerBookAppointment:
     title: Book your appointment with us today!
@@ -317,6 +314,7 @@ site:
     title: Latest Offers
     subtitle: Check out our latest offers.
     bgImage: ./images/bg-offers.jpg
+    offerImg: ./images/offers.jpg
     btnLink: /offers
     btnText: Offers
 
