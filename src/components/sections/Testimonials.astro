@@ -10,7 +10,7 @@ const siteInfo = siteData[0].data;
 const testimonials = siteInfo.testimonials;
 ---
 
-<div class="my-20">
+<div class="my-20 px-4 lg:px-0">
   <SunRays class="mx-auto fill-primary mb-5" />
   <Heading
     size="xxl"
@@ -18,7 +18,7 @@ const testimonials = siteInfo.testimonials;
     fontstyle="point"
     class="text-center mb-5">Testimonials</Heading
   >
-  <div class="swiper testimonialsSwiper">
+  <div class="swiper testimonialsSwiper overflow-hidden">
     <div class="swiper-wrapper bg-base-100">
       {
         testimonials.map((testimonial) => (
@@ -67,7 +67,7 @@ const testimonials = siteInfo.testimonials;
       disableOnInteraction: false,
     },
     slidesPerView: 1,
-    spaceBetween: 20,
+    spaceBetween: 10,
     breakpoints: {
       768: {
         slidesPerView: 3,

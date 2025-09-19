@@ -27,7 +27,7 @@ const { locations } = Astro.props;
 {
   locations.map((location) => (
     <div class="hero bg-base-200 mb-10 rounded-lg">
-      <div class="hero-content grid lg:grid-cols-2 ">
+      <div class="hero-content grid lg:grid-cols-2 px-4 lg:px-0 max-w-full">
         <div>
           <Heading class="mb-5"> {location.title}</Heading>
           <div class="flex items-start mb-5">
@@ -77,7 +77,7 @@ const { locations } = Astro.props;
         </div>
         <iframe
           src={location.map}
-          class="w-full min-h-96 aspect-video"
+          class="w-full max-w-full min-h-96 aspect-video"
           style="border:0;"
           allowfullscreen=""
           loading="lazy"

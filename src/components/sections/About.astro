@@ -10,24 +10,16 @@ const siteInfo = siteData[0].data;
 const highlights = siteInfo.highlights;
 ---
 
-<div class="grid lg:grid-cols-2 gap-4 py-16 sm:py-32">
-  <!-- <Image
-    src={siteInfo.aboutImage}
-    alt="Sapphire Skin & Aesthetics Clinic"
-    title="Sapphire Skin & Aesthetics Clinic"
-    width={1920}
-    height={1080}
-    class="md:rounded-r-2xl object-cover object-right md:h-screen w-full"
-  /> -->
+<div class="grid lg:grid-cols-2 gap-4 py-16 sm:py-32 px-4 lg:px-0 overflow-hidden">
 
-  <media-controller class="w-full">
+  <media-controller class="w-full hidden lg:block max-w-full">
     <video
       slot="media"
       src="/ssac.mp4"
       poster="/ssac.jpg"
       muted
       autoplay
-      class="rounded-r-2xl object-cover w-full border-l-0 border-2 border-primary"
+      class="rounded-r-2xl object-cover w-full max-w-full border-l-0 border-2 border-primary"
     ></video>
   </media-controller>
 
@@ -41,9 +33,21 @@ const highlights = siteInfo.highlights;
       </Paragraph>
     </div>
   </div>
+
+   <media-controller class="col-span-2 w-full pt-14 block lg:hidden max-w-full">
+    <video
+      slot="media"
+      src="/ssac.mp4"
+      poster="/ssac.jpg"
+      muted
+      autoplay
+      class="rounded-2xl object-cover w-full max-w-full border-1 border-primary"
+      ></video>
+  </media-controller>
+
   <div class="col-span-2">
     <div
-      class="grid grid-cols-2 lg:grid-cols-4 justify-items-center gap-2 pt-16 w-full"
+      class="grid grid-cols-2 lg:grid-cols-4 justify-items-center gap-2 pt-16 w-full px-2"
     >
       {
         highlights.map((highlight) => (
