@@ -1,0 +1,89 @@
+---
+import { Icon } from "astro-icon/components";
+import Heading from "./Heading.astro";
+import Paragraph from "./Paragraph.astro";
+
+interface Timmings {
+  title: string;
+  details: string;
+}
+
+interface Location {
+  title: string;
+  address: string[];
+  phones: string[];
+  email: string;
+  timmings: Timmings[];
+  map: string;
+}
+
+interface Props {
+  locations: Location[];
+}
+
+const { locations } = Astro.props;
+---
+
+{
+  locations.map((location) => (
+    <div class="hero bg-base-200 mb-10 rounded-lg">
+      <div class="hero-content grid lg:grid-cols-2 px-4 lg:px-0 max-w-full">
+        <div class="pl-5">
+          <Heading class="mb-5"> {location.title}</Heading>
+          <div class="flex items-start mb-5">
+            <Icon name="carbon:location" class="h-5 w-5 mr-3 " />
+            <address class="not-italic">
+              {location.address.map((line) => (
+                <Paragraph variant="defaulttext" size="sm">{line.trim()}</Paragraph>
+              ))}
+            </address>
+          </div>
+          <div class="space-y-2 mb-5 flex flex-col gap-3">
+            {location.phones.map((phone) => (
+              <a
+                href={`tel:${phone.replace(/\s+/g, "")}`}
+                class="link link-hover mr-4 flex items-center"
+                title={phone}
+              >
+                <Icon name="carbon:phone" class="h-5 w-5 mr-3 " />
+                <Paragraph variant="defaulttext" size="sm"> {phone} </Paragraph>
+              </a>
+            ))}
+          </div>
+
+          <div class="flex items-center mb-5">
+            <Icon name="carbon:email" class="h-5 w-5 mr-3 " />
+            <a
+              href={`mailto:${location.email}`}
+              title={location.email}
+              class="link link-hover"
+            >
+              <Paragraph variant="defaulttext" size="sm"> {location.email} </Paragraph>
+            </a>
+          </div>
+
+          <div class="flex flex-col">
+            {location.timmings.map((timming) => (
+              <span class="flex items-center max-w-84 gap-3">
+                <Paragraph variant="defaulttext" size="sm" fontweight="semibold">
+                  {timming.title}:
+                </Paragraph>
+                <Paragraph variant="defaulttext" size="sm" class="text-end">
+                  {timming.details}
+                </Paragraph>
+              </span>
+            ))}
+          </div>
+        </div>
+        <iframe
+          src={location.map}
+          class="w-full max-w-full min-h-96 aspect-video"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        />
+      </div>
+    </div>
+  ))
+}

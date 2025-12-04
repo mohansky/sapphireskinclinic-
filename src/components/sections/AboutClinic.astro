@@ -1,0 +1,98 @@
+---
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade";
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import Paragraph from "../ui/Paragraph.astro";
+import Heading from "../ui/Heading.astro";
+import Container from "../ui/Container.astro";
+
+const aboutData = await getCollection("aboutCollection");
+const aboutInfo = aboutData[0].data;
+const aboutClinic = aboutInfo.aboutClinic;
+---
+
+<div class="bg-base-200">
+<Container width="py">
+    <div class="grid lg:grid-cols-2 gap-4">
+      <div class="flex flex-col px-3 md:px-10 lg:px-20">
+        <Heading
+          size="xxs" 
+          fontweight="normal"
+          fontstyle="glory" 
+          class="tracking-wide opacity-75 mb-3"
+          >Sapphire Skin & Aesthetics Clinic</Heading
+        >
+        <Heading size="xxl" fontweight="black" fontstyle="point" class="pb-5"
+          >{aboutClinic.heading}
+        </Heading>
+        {
+          aboutClinic.text.map((text) => (
+            <Paragraph class="indent-8 pb-4">{text}</Paragraph>
+          ))
+        }
+      </div>
+      <div class="swiper aboutClinicSwiper w-full my-auto">
+        <div class="swiper-wrapper rounded-box space-x-4 p-4">
+          {
+            aboutClinic.images.map((image) => (
+              <div class="swiper-slide">
+                <Image
+                  src={image}
+                  alt="Sapphire Skin & Aesthetics Clinic"
+                  title="Sapphire Skin & Aesthetics Clinic"
+                  class="rounded-xl object-cover h-auto"
+                  width={1000}
+                  height={500}
+                />
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </Container>
+</div>
+
+<script>
+  import Swiper from "swiper/bundle";
+  import "swiper/css/bundle";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    new Swiper(".aboutClinicSwiper", {
+      slidesPerView: 1,
+      spaceBetween: 10,
+      breakpoints: {
+        320: {
+          slidesPerView: 1,
+          spaceBetween: 1,
+        },
+        480: {
+          slidesPerView: 1,
+          spaceBetween: 2,
+        },
+        640: {
+          slidesPerView: 1,
+          spaceBetween: 3,
+        },
+        1024: {
+          slidesPerView: 1,
+          spaceBetween: 3,
+        },
+      },
+
+      loop: true,
+
+      navigation: {
+        enabled: false,
+      },
+
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+    });
+  });
+</script>

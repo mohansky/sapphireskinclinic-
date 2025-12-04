@@ -1,0 +1,58 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import Heading from "../ui/Heading.astro";
+import Button from "../ui/Button.astro";
+
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const offers = siteInfo.footerLatestOffers;
+---
+
+<div class="hero h-[50vh] overflow-hidden">
+  <Image
+    src={offers.bgImage}
+    alt={offers.title || "Sapphire Skin & Aesthetics Clinic"}
+    title={offers.title || "Sapphire Skin & Aesthetics Clinic"}
+    width={1920}
+    height={1080}
+    class="object-cover h-[50vh] cursor-pointer"
+    
+  />
+
+  <div class="hero-overlay"></div>
+  <div class="hero-content text-center">
+    <div class="max-w-xxl px-5 py-2">
+      <!-- {offers.title && <Heading>{offers.title}</Heading>} -->
+      {offers.subtitle && <Heading size="xxl" class="text-neutral-content mb-10" variant="sectiontitle">{offers.subtitle}</Heading>}
+      <!-- <Button href={offers.btnLink} variant="primary" title="Offers" themed>
+        {offers.btnText}
+      </Button> -->
+        <Button onclick="offer_modal.showModal()" variant="primary" title="Offers" themed>
+        {offers.btnText}
+      </Button>
+    </div>
+  </div>
+</div>
+
+<!-- Image Modal Dialog -->
+<dialog id="offer_modal" class="modal">
+  <div class="modal-box max-w-4xl">
+    <form method="dialog">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    </form>
+    <Image
+      src={offers.offerImg}
+      alt={offers.title || "Sapphire Skin & Aesthetics Clinic"}
+      title={offers.title || "Sapphire Skin & Aesthetics Clinic"}
+      width={1920}
+      height={1080}
+      class="w-full h-auto object-contain"
+    />
+    <!-- {offers.title && <h3 class="font-bold text-lg mt-4">{offers.title}</h3>}
+    {offers.subtitle && <p class="py-4">{offers.subtitle}</p>} -->
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>

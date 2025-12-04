@@ -1,0 +1,117 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import Heading from "../ui/Heading.astro";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade";
+
+const treatments = await getCollection("treatments");
+const sortedTreatments = treatments.sort(
+  (a, b) => a.data.weight - b.data.weight
+);
+const publishedTreatments = sortedTreatments.filter(
+  (treatment) => treatment.data.draft !== true
+);
+
+// Create enough duplicates for seamless infinite loop
+const loopTreatments = [
+  ...publishedTreatments,
+  ...publishedTreatments,
+  ...publishedTreatments,
+  ...publishedTreatments,
+  ...publishedTreatments
+]; // 5x duplication ensures smooth looping
+---
+
+<div class="swiper treatmentsSwiper bg-primary">
+  <div class="swiper-wrapper rounded-box w-full space-x-14 py-10">
+    {
+      loopTreatments.map((item) => (
+        <div class="swiper-slide flex flex-col items-center justify-center gap-8">
+          <Image
+            src={item.data.icon}
+            alt={item.data.title}
+            title={item.data.title}
+            width="360"
+            height="360"
+            class="mx-auto grayscale mb-3 w-10 h-auto z-30"
+          />
+          <Heading size="xxs" fontweight="light"  class="text-base-100">
+            {item.data.title}
+          </Heading>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  import Swiper from "swiper/bundle";
+  import { Autoplay } from "swiper/modules";
+  import "swiper/css/bundle";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const swiper = new Swiper(".treatmentsSwiper", {
+      modules: [Autoplay],
+      // Basic configuration
+      slidesPerView: 5,
+      spaceBetween: 10,
+
+      // Responsive breakpoints
+      breakpoints: {
+        320: {
+          slidesPerView: 1,
+          spaceBetween: 10,
+        },
+        480: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        640: {
+          slidesPerView: 4,
+          spaceBetween: 30,
+        },
+        1024: {
+          slidesPerView: 6,
+          spaceBetween: 40,
+        },
+      },
+
+      // Loop configuration
+      loop: true,
+      loopAdditionalSlides: 15, // Extra slides for buffer
+
+      // Autoplay for continuous movement
+      autoplay: {
+        delay: 0, // No delay between slides
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      },
+
+      // Smooth continuous movement
+      speed: 3000, // Slower transition for smooth effect
+      freeMode: {
+        enabled: true,
+        momentum: false, // Disable momentum for consistent speed
+      },
+
+      // Performance and interaction
+      grabCursor: true,
+    });
+  });
+</script>
+
+<style>
+  /* Ensure slides have consistent sizing */
+  .swiper-slide {
+    width: auto !important;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+  }
+
+  .swiper-slide-active {
+    opacity: 1;
+  }
+</style>

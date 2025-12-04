@@ -1,0 +1,45 @@
+---
+import { Image } from "astro:assets";
+import Heading from "./Heading.astro";
+import Paragraph from "./Paragraph.astro";
+import Button from "./Button.astro";
+
+interface FooterOffers {
+  bgImage: ImageMetadata;
+  title: string;
+  subtitle: string;
+  btnLink: string;
+  btnText: string;
+}
+
+interface Props {
+  footerOffers: FooterOffers;
+}
+
+const { footerOffers } = Astro.props;
+const { bgImage, title, subtitle, btnLink, btnText } = footerOffers;
+---
+
+<div class="card image-full custom-overlay w-full lg:w-96 aspect-video">
+  <figure>
+    <Image src={bgImage} alt={title} title={title} />
+  </figure>
+  <div class="custom-overlay-element"></div>
+  <div class="card-body items-center text-center">
+    <Heading class="text-neutral-content" size="sm" fontweight="semibold" fontstyle="point" variant="sectiontitle">
+      {title}
+    </Heading>
+    <Paragraph>{subtitle}</Paragraph>
+    <div class="card-actions justify-end">
+      <Button
+        color="primary"
+        variant="primary"
+        href={btnLink}
+        title="Offers"
+        themed
+      >
+        {btnText}
+      </Button>
+    </div>
+  </div>
+</div>

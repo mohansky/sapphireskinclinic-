@@ -1,0 +1,38 @@
+---
+import { Image } from "astro:assets";
+
+interface BeforeAfter {
+  before?: string;
+  after?: string;
+}
+
+const { before, after } = Astro.props;
+---
+
+{
+  before && (
+    <figure class="diff aspect-16/9 mt-10" tabindex="0">
+      <div class="diff-item-1" role="img" tabindex="0">
+        <Image
+          src={before}
+          alt="before treatment"
+          title="before treatment"
+          class="object-contain"
+          width={500}
+          height={500}
+        />
+      </div>
+      <div class="diff-item-2 p-4" role="img">
+        <Image
+          src={after}
+          alt="after treatment"
+          title="after treatment"
+          class="object-contain"
+          width={500}
+          height={500}
+        />
+      </div>
+      <div class="diff-resizer" />
+    </figure>
+  )
+}

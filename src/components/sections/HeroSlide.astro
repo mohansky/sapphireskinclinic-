@@ -1,0 +1,115 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import Heading from "../ui/Heading.astro";
+import Button from "../ui/Button.astro";
+interface HeroContent {
+  title: string;
+  subtitle?: string;
+  backgroundImage: ImageMetadata;
+  overlayOpacity?: number;
+  primaryButtonText?: string;
+  primaryButtonLink?: string;
+  secondaryButtonText?: string;
+  secondaryButtonLink?: string;
+  isFirstSlide?: boolean;
+}
+interface Props {
+  hero: HeroContent;
+}
+const {
+  title,
+  subtitle,
+  backgroundImage,
+  overlayOpacity,
+  primaryButtonText,
+  primaryButtonLink,
+  secondaryButtonText,
+  secondaryButtonLink,
+  isFirstSlide = false,
+} = Astro.props.hero;
+const imageSizes = {
+  mobile: 640,
+  tablet: 1024,
+  desktop: 1920,
+};
+---
+
+<div class="swiper-slide hero min-h-screen relative">
+  <Image
+    src={backgroundImage}
+    alt={title}
+    title={title}
+    width={imageSizes.desktop}
+    height={Math.round(
+      imageSizes.desktop * (backgroundImage.height / backgroundImage.width)
+    )}
+    loading={isFirstSlide ? "eager" : "lazy"}
+    quality={80}
+    densities={[1, 2]}
+    sizes="(max-width: 640px) 640px, (max-width: 1024px) 1024px, 1920px"
+    class="absolute inset-0 w-full h-full object-cover"
+  />
+  <div class="hero-overlay opacity-50 absolute inset-0"></div>
+  <div
+    class="hero-content text-center text-neutral-content z-10 absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
+  >
+    <div class="w-full">
+      <Heading
+        size="sm"
+        fontweight="normal"
+        fontstyle="glory"
+        class="text-neutral-content tracking-wide opacity-75"
+        variant="sectiontitle"
+        as="h1">Sapphire Skin & Aesthetics Clinic</Heading
+      >
+      <Heading
+        size="xxxl"
+        fontweight="black"
+        fontstyle="point"
+        variant="sectiontitle"
+        class="text-neutral-content text-balance mb-5 mt-3">{title}</Heading
+      >
+      {
+        subtitle && (
+          <Heading
+            variant="sectiontitle"
+            fontstyle="poppins"
+            fontweight="light"
+            size="md" 
+            class="text-neutral-content text-balance"
+          >
+            {subtitle}
+          </Heading>
+        )
+      }
+      <div class="flex flex-col md:flex-row justify-center gap-4 mt-10">
+        {
+          primaryButtonText && primaryButtonLink && (
+            <Button
+              color="primary"
+              href={primaryButtonLink}
+              title={primaryButtonText}
+              themed
+            >
+              {primaryButtonText}
+            </Button>
+          )
+        }
+        {
+          secondaryButtonText && secondaryButtonLink && (
+            <Button
+              variant="soft"
+              color="primary"
+              href={secondaryButtonLink}
+              title={secondaryButtonText}
+              themed
+            >
+              {secondaryButtonText}
+            </Button>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</div>

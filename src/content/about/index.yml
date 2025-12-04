@@ -1,0 +1,59 @@
+about:
+  name: "Sapphire Skin and Aesthetics Clinic"
+  tagline: "Because your skin is worth it!"
+  aboutQuote: Get the Treatment Your Skin Deserves With Our Professional Team and Quality Natural Products for Sensitive Skin.
+  aboutClinic:
+    heading: About Us
+    text:
+      - Welcome to Sapphire Skin and Aesthetics Clinic, where timeless elegance meets advanced skincare. We are a premium skin clinic dedicated to providing bespoke treatments that blend cutting-edge science with indulgent care — all within a serene, luxurious setting.
+      - Every detail of your experience is thoughtfully curated, from your personalized consultation to your post-treatment care. Our team of expert dermatologists and aesthetic specialists are committed to excellence, using only the finest medical-grade products and state-of-the-art technology to deliver exceptional results.
+      - Whether you're seeking luminous skin, age-defying treatments, or a moment of refined self-care, Sapphire Skin and Aesthetics Clinic offers a sanctuary where beauty and wellbeing come together seamlessly.  Because your skin deserves nothing less than extraordinary.
+    images:
+      - ./images/aboutClinic/Carbon_Laser_Procedure_Room.jpg
+      - ./images/aboutClinic/LHR-Laser_Hair_Reduction_Room.jpg
+      - ./images/aboutClinic/Procedure-Hydra_Facial.jpg
+      - ./images/aboutClinic/Reception_Waiting_Area.jpg
+      - ./images/aboutClinic/Tri_Beam_Procedure_Room.jpg
+      - ./images/aboutClinic/Waiting_Area-1.jpg
+      - ./images/aboutClinic/Team_Sapphire_Koramangala.jpg
+
+  whyUs:
+    heading: Why Choose Us At Sapphire Skin and Aesthetics, we offer more than just skincare. Here's what sets us apart
+    list:
+      - text: Board-certified dermatologists and aesthetic specialists deliver expert-led care with medical precision.
+        icon: lucide:user-check
+      - text: Personalized treatment plans tailored to each client's unique skin goals and complexion needs.
+        icon: lucide:target
+      - text: Cutting-edge technology including non-invasive facelifts and advanced laser therapies for lasting results.
+        icon: lucide:zap
+      - text: Luxurious, calming environment designed for relaxation, restoration, and rejuvenation during every visit.
+        icon: lucide:sparkles
+      - text: Medical-grade skincare products from globally renowned brands chosen for potency and performance.
+        icon: lucide:beaker
+      - text: Trusted destination for discerning clients who demand excellence in skin health and beauty results.
+        icon: lucide:award
+
+  # Doctors
+  doctors:
+    - name: Dr. Sheela Natraj
+      qualifications: MBBS, DVD
+      specialization: Founder & Director, Consultant Dermatologist & Cosmetologist
+      image: ./images/doctors/DrSheelaNatraj.jpg
+
+    - name: Dr. Kavya Reganti
+      qualifications: MBBS, MD
+      specialization: Consultant Dermatology, Venereology & Leprosy
+      image: ./images/doctors/DrKavyaReganti.jpg
+
+    - name: Dr. Aishwarya Balawat
+      qualifications: MBBS, MD
+      specialization: Consultant Dermatologist
+      image: ./images/doctors/DrAishwaryaBalawat.jpg
+
+    - name: Dr. Rakesh Reddy
+      qualifications: MBBS, MD
+      specialization: Consultant Dermatologist
+      image: ./images/doctors/DrRakeshReddy.jpg
+
+  teamTitle: Our Team
+  teamImage: ./images/groupphoto.jpg

@@ -1,0 +1,182 @@
+---
+import { getCollection } from "astro:content";
+
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const site = siteInfo;
+
+// Fixed Schema.org JSON-LD for Medical Business
+const medicalBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalBusiness",
+  "additionalType": "https://schema.org/MedicalClinic",
+  "name": site.title,
+  "description": site.description,
+  "image": site.ogImageURL,
+  "url": site.basepath,
+  "logo": site.ogImageURL,
+  "telephone": site.locations[0].phones[0],
+  "email": site.locations[0].email,
+  "priceRange": "₹₹-₹₹₹",
+  "currenciesAccepted": "INR",
+  "paymentAccepted": "Cash, Credit Card, Insurance, Online Payment, UPI",
+  "address": [
+    {
+      "@type": "PostalAddress",
+      "streetAddress": "1st Floor, 24th Main Rd, J.P. Nagar 6th Phase",
+      "addressLocality": "Bengaluru",
+      "addressRegion": "Karnataka",
+      "postalCode": "560078",
+      "addressCountry": "India"
+    },
+    {
+      "@type": "PostalAddress",
+      "streetAddress": "OA Towers, 5th Cross Road, KHB Colony, 5th Block, Koramangala",
+      "addressLocality": "Bengaluru",
+      "addressRegion": "Karnataka",
+      "postalCode": "560095",
+      "addressCountry": "India"
+    }
+  ],
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "12.9716",
+    "longitude": "77.5946"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "opens": "10:30",
+      "closes": "20:30"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Sunday",
+      "opens": "10:30",
+      "closes": "19:00"
+    }
+  ],
+  "sameAs": [
+    site.social_media[0]?.link,
+    site.social_media[1]?.link,
+    site.social_media[2]?.link,
+    site.social_media[3]?.link
+  ].filter(Boolean), // Remove any undefined values
+  "makesOffer": [
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "MedicalProcedure",
+        "name": "Acne Treatment",
+        "procedureType": "https://schema.org/TherapeuticProcedure",
+        "description": "Clinical evaluation and personalized treatment plan including topical medications, oral medications, or procedural interventions."
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "MedicalProcedure",
+        "name": "Botox Injections",
+        "procedureType": "https://schema.org/TherapeuticProcedure",
+        "description": "Minimally invasive injections to reduce appearance of fine lines and wrinkles."
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "MedicalProcedure",
+        "name": "Hair Loss Treatment",
+        "procedureType": "https://schema.org/TherapeuticProcedure",
+        "description": "Scalp analysis and personalized treatment protocols to address various causes of hair loss."
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "MedicalProcedure",
+        "name": "Skin Cancer Screening",
+        "procedureType": "https://schema.org/DiagnosticProcedure",
+        "description": "Full body examination to detect suspicious lesions"
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "MedicalProcedure",
+        "name": "Chemical Peels",
+        "procedureType": "https://schema.org/TherapeuticProcedure",
+        "description": "Application of chemical solution to improve skin texture and appearance"
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "MedicalProcedure",
+        "name": "Scalp Treatments",
+        "procedureType": "https://schema.org/TherapeuticProcedure",
+        "description": "Specialized treatments for scalp conditions and hair health"
+      }
+    }
+  ],
+  "knowsAbout": ["Dermatology", "Cosmetic Dermatology", "Trichology"],
+  "employee": [
+    {
+      "@type": "Person",
+      "name": site.doctors[0]?.name, 
+      "jobTitle": "Dermatologist",
+      "description": site.doctors[0]?.qualifications,
+      "knowsAbout": site.doctors[0]?.specialization
+    },
+    {
+      "@type": "Person",
+      "name": site.doctors[1]?.name, 
+      "jobTitle": "Dermatologist",
+      "description": site.doctors[1]?.qualifications,
+      "knowsAbout": site.doctors[1]?.specialization
+    },
+    {
+      "@type": "Person",
+      "name": site.doctors[2]?.name, 
+      "jobTitle": "Dermatologist",
+      "description": site.doctors[2]?.qualifications,
+      "knowsAbout": site.doctors[2]?.specialization
+    },
+    {
+      "@type": "Person",
+      "name": site.doctors[2]?.name, 
+      "jobTitle": "Dermatologist",
+      "description": site.doctors[3]?.qualifications,
+      "knowsAbout": site.doctors[3]?.specialization
+    }
+  ].filter(doctor => doctor.name),
+  "review": {
+    "@type": "Review",
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": "4.6",
+      "bestRating": "5"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Shaik Rizu"
+    },
+    "reviewBody": "I am so impressed with Dr. Sheela thorough approach to skincare. They took the time to explain every option and answered all my questions in detail. It's clear that Dr. Sheela genuinely cares about their patients. My skin has improved tremendously, and I couldn't be happier with the results!"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.6",
+    "reviewCount": "571",
+    "bestRating": "5"
+  }
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(medicalBusinessSchema, null, 2)}></script>

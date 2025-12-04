@@ -1,0 +1,44 @@
+---
+import "@/styles/global.css";
+import Head from "@/components/layout/Head.astro";
+import GTMBodyNoScript from "@/components/layout/GTMBodyNoScript.astro"; 
+import Navbar from "@/components/layout/Navbar.astro"; 
+import Footer from "@/components/layout/Footer.astro";
+
+import { getCollection } from "astro:content";
+
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const site = siteInfo;
+---
+
+<!doctype html>
+<html lang="en" data-theme="ssac">
+  <Head />
+  <body class="overflow-x-hidden">
+    <GTMBodyNoScript />
+    <Navbar navigation={site.navigation} />
+    <slot />
+    <Footer
+      footer={{
+        name: site.name,
+        copyright: site.copyright,
+        social_media: site.social_media,
+        locations: site.locations,
+        footerLatestOffers: site.footerLatestOffers,
+        footerBookAppointment: site.footerBookAppointment,
+        popularTreatments: site.popularTreatments,
+        usefulLinks: site.usefulLinks,
+      }}
+    />
+  </body>
+</html>
+
+<style>
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>

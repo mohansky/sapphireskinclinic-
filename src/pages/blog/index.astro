@@ -1,0 +1,140 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/sections/PageHero.astro";
+import Container from "@/components/ui/Container.astro";
+import Heading from "@/components/ui/Heading.astro";
+import Paragraph from "@/components/ui/Paragraph.astro";
+import { getSlugFromPath } from "@/lib/slug";
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const currentSlug = getSlugFromPath(Astro.url);
+const currentHeroPage = siteInfo.heroPage.find(
+  (page) => page.slug === currentSlug
+);
+const heroPage = currentHeroPage || siteInfo.heroPage[0];
+
+const blogPosts = await getCollection("blog");
+const sortedPosts = blogPosts.sort(
+  (a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime()
+);
+const publishedPosts = sortedPosts.filter(
+  (post) => post.data.draft !== true
+);
+
+const categories = [...new Set(publishedPosts.map(post => post.data.category))];
+---
+
+<Layout>
+  <PageHero hero={heroPage} />
+  <Container>
+    <div class="my-10">
+      <Heading
+        size="xxl"
+        fontweight="black"
+        fontstyle="poppins"
+        class="text-center text-balance mb-5"
+      >
+        Our Blog
+      </Heading>
+      <Paragraph class="text-center mb-10 max-w-3xl mx-auto">
+        Stay informed with the latest insights on skincare, treatments, and
+        dermatology from our expert team. Discover tips, trends, and
+        evidence-based advice to help you achieve and maintain healthy,
+        beautiful skin.
+      </Paragraph>
+
+      <!-- Filter by category -->
+      <div class="flex flex-wrap gap-2 justify-center mb-10">
+        <button class="btn btn-sm btn-primary" data-category="all">All Posts</button>
+        {categories.map((category) => (
+          <button class="btn btn-sm btn-outline btn-primary" data-category={category}>
+            {category}
+          </button>
+        ))}
+      </div>
+
+      <!-- Blog posts grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="blog-grid">
+        {publishedPosts.map((post) => (
+          <article
+            class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300 blog-post"
+            data-category={post.data.category}
+          >
+            <figure class="relative overflow-hidden h-48">
+              <Image
+                src={post.data.img}
+                alt={post.data.title}
+                class="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+              />
+              <div class="absolute top-4 right-4">
+                <span class="badge badge-primary">{post.data.category}</span>
+              </div>
+            </figure>
+            <div class="card-body">
+              <div class="flex items-center gap-2 text-sm text-base-content/60 mb-2">
+                <Icon name="carbon:calendar" class="w-4 h-4" />
+                <time datetime={post.data.publishDate.toISOString()}>
+                  {post.data.publishDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
+                </time>
+              </div>
+              <h2 class="card-title text-lg line-clamp-2">
+                {post.data.title}
+              </h2>
+              <p class="text-base-content/70 line-clamp-3 text-sm">
+                {post.data.description}
+              </p>
+              <div class="flex items-center gap-2 text-sm text-base-content/60 mt-2">
+                <Icon name="carbon:user-avatar" class="w-4 h-4" />
+                <span>{post.data.author}</span>
+              </div>
+              <div class="card-actions justify-end mt-4">
+                <a href={`/blog/${post.id}`} class="btn btn-primary btn-sm">
+                  Read More
+                  <Icon name="carbon:arrow-right" class="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </Container>
+</Layout>
+
+<script>
+  // Category filter functionality
+  const filterButtons = document.querySelectorAll('[data-category]');
+  const blogPosts = document.querySelectorAll('.blog-post');
+
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const category = button.getAttribute('data-category');
+
+      // Update active button
+      filterButtons.forEach(btn => {
+        btn.classList.remove('btn-primary');
+        btn.classList.add('btn-outline', 'btn-primary');
+      });
+      button.classList.add('btn-primary');
+      button.classList.remove('btn-outline');
+
+      // Filter posts
+      blogPosts.forEach(post => {
+        const postCategory = post.getAttribute('data-category');
+        if (category === 'all' || postCategory === category) {
+          post.style.display = 'block';
+        } else {
+          post.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

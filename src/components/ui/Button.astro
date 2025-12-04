@@ -1,0 +1,86 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@/lib/utils";
+
+interface Props extends HTMLAttributes<"button"> {
+  variant?: "default" | "outline" | "ghost" | "link" | "soft" | 'primary';
+  color?:
+    | "neutral"
+    | "primary"
+    | "secondary"
+    | "accent"
+    | "info"
+    | "success"
+    | "warning"
+    | "error";
+  size?: "lg" | "md" | "sm" | "xs";
+  shape?: "square" | "circle";
+  themed?: boolean;
+  wide?: boolean;
+  fullWidth?: boolean;
+  disabled?: boolean;
+  loading?: boolean;
+  noAnimation?: boolean;
+  glass?: boolean;
+  href?: string;
+  class?: string;
+}
+
+const {
+  variant = "default",
+  color,
+  size,
+  shape,
+  themed = false,
+  wide = false,
+  fullWidth = false,
+  disabled = false,
+  loading = false,
+  noAnimation = false,
+  glass = false,
+  href,
+  class: className,
+  ...rest
+} = Astro.props;
+
+// Compose button classes based on props
+const classes = cn(
+  "btn",
+  // Variant (outline, ghost, link)
+  variant !== "default" && `btn-${variant}`,
+  // Color
+  color && `btn-${color}`,
+  //Themed
+  themed && "font-workSans uppercase text-xs font-medium tracking-widest px-12 py-6",
+  // Size
+  size && `btn-${size}`,
+  // Shape
+  shape && `btn-${shape}`,
+  // Wide
+  wide && "btn-wide",
+  // Full width
+  fullWidth && "btn-block",
+  // Glass effect
+  glass && "glass",
+  // Disabled state
+  disabled && "btn-disabled",
+  // Loading state
+  loading && "loading",
+  // Animation
+  noAnimation && "no-animation",
+  // Additional custom classes
+  className
+);
+
+// Determine whether to render a button or an anchor tag
+const Element = href ? "a" : "button";
+---
+
+<Element
+  class={classes}
+  href={href}
+  disabled={Element === "button" ? disabled : undefined}
+  {...rest}
+>
+  <slot />
+</Element>

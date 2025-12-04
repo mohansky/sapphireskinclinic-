@@ -1,0 +1,63 @@
+---
+import { Image } from "astro:assets";
+import Layout from "@/layouts/Layout.astro";
+import Container from "@/components/ui/Container.astro";
+import Heading from "@/components/ui/Heading.astro";
+import { getCollection } from "astro:content";
+import { getSlugFromPath } from "@/lib/slug";
+import PageHero from "@/components/sections/PageHero.astro";
+
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const offers = siteInfo.offers;
+const currentSlug = getSlugFromPath(Astro.url);
+const currentHeroPage = siteInfo.heroPage.find(
+  (page) => page.slug === currentSlug
+);
+const heroPage = currentHeroPage || siteInfo.heroPage[0];
+---
+
+<Layout>
+  <PageHero hero={heroPage} />
+  <Container>
+    <div class="px-4 sm:px-6 lg:px-8">
+      <Heading
+        size="xl"
+        fontweight="black"
+        fontstyle="poppins"
+        class="text-center text-balance mb-10"
+        >Our latest offers
+      </Heading>
+
+      {
+        offers.map((offer) => (
+          <div class="card bg-base-100">
+            <figure>
+              <Image
+                src={offer.image}
+                alt={offer.title || "Offers"}
+                title={offer.title || "Offers"}
+                width={1920}
+                height={1080}
+                class="rounded-box w-auto h-auto"
+              />
+            </figure>
+            <div class="card-body items-center text-center">
+              {offer.title && <Heading>{offer.title}</Heading>}
+              {offer.subtitle && 
+                <Heading size="xxs" fontweight="medium" fontstyle="poppins">
+                  {offer.subtitle}
+                </Heading>
+              
+              }
+              {/* <Heading>{offer.title}</Heading>
+              <Heading size="xxs" fontweight="medium" fontstyle="openSans">
+                {offer.subtitle}
+              </Heading> */}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </Container>
+</Layout>

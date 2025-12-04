@@ -1,0 +1,174 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/sections/PageHero.astro";
+import Container from "@/components/ui/Container.astro";
+import Heading from "@/components/ui/Heading.astro";
+import Paragraph from "@/components/ui/Paragraph.astro";
+import TreatmentsCard from "@/components/ui/TreatmentsCard.astro";
+import { getSlugFromPath } from "@/lib/slug";
+import { getCollection } from "astro:content";
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const currentSlug = getSlugFromPath(Astro.url);
+const currentHeroPage = siteInfo.heroPage.find(
+  (page) => page.slug === currentSlug
+);
+const heroPage = currentHeroPage || siteInfo.heroPage[0];
+const treatments = await getCollection("treatments");
+const sortedTreatments = treatments.sort(
+  (a, b) => a.data.weight - b.data.weight
+);
+const publishedTreatments = sortedTreatments.filter(
+  (treatment) => treatment.data.draft !== true
+);
+
+const generalTreatments = publishedTreatments.filter(
+  (treatment) => treatment.data.subtitle === "General Dermatology"
+);
+
+const cosmetologyTreatments = publishedTreatments.filter(
+  (treatment) => treatment.data.subtitle === "Cosmetology"
+);
+
+const trichologyTreatments = publishedTreatments.filter(
+  (treatment) => treatment.data.subtitle === "Trichology"
+);
+---
+
+<Layout>
+  <PageHero hero={heroPage} />
+  <Container>
+    <!-- name of each tab group should be unique -->
+    <div class="tabs tabs-lifted tabs-border tabs-xl justify-evenly">
+      <input
+        type="radio"
+        name="my_tabs_6"
+        class="tab"
+        aria-label="General Dermatology"
+        checked="checked"
+      />
+      <div class="tab-content bg-base-100 border-base-300 p-6">
+        <div class="my-10">
+          <Heading
+            size="xl"
+            fontweight="black"
+            fontstyle="poppins"
+            class="text-center text-balance mb-5">General Dermatology</Heading
+          >
+          <Paragraph class="mb-10">
+            General clinical dermatology addresses the diagnosis and treatment
+            of skin conditions across all ages. Our dermatologists specialize in
+            evaluating and managing a comprehensive range of skin issues—from
+            common concerns like acne, eczema, and psoriasis to more complex
+            conditions including skin cancer, allergic reactions, and fungal
+            infections. We also provide expert care for related hair and nail
+            disorders, combining medical expertise with preventative approaches
+            to maintain your skin's health and vitality.
+          </Paragraph>
+
+          <div class="grid md:grid-cols-3 gap-4">
+            {
+              generalTreatments.map((item) => (
+                <TreatmentsCard
+                  treatmentItems={{
+                    title: item.data.title || "",
+                    description: item.data.description,
+                    img: item.data.img,
+                    icon: item.data.icon,
+                    id: item.id,
+                  }}
+                />
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <input
+        type="radio"
+        name="my_tabs_6"
+        class="tab"
+        aria-label="Cosmetology"
+      />
+      <div class="tab-content bg-base-100 border-base-300 p-6">
+        <div class="my-10">
+          <Heading
+            size="xl"
+            fontweight="black"
+            fontstyle="poppins"
+            class="text-center text-balance mb-5">Cosmetology</Heading
+          >
+          <Paragraph class="mb-10">
+            Our aesthetic cosmetology services blend art and science to enhance
+            your natural beauty. We offer a curated selection of advanced
+            treatments designed to rejuvenate and transform your appearance.
+            From refreshing facials and chemical peels to cutting-edge
+            procedures like microdermabrasion, laser therapy, Botox, dermal
+            fillers, and microneedling—our professional team delivers
+            personalized solutions that help you look and feel your best while
+            maintaining healthy, radiant skin.
+          </Paragraph>
+
+          <div class="grid md:grid-cols-3 gap-4">
+            {
+              cosmetologyTreatments.map((item) => (
+                <TreatmentsCard
+                  treatmentItems={{
+                    title: item.data.title || "",
+                    description: item.data.description,
+                    img: item.data.img,
+                    icon: item.data.icon,
+                    id: item.id,
+                  }}
+                />
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <input
+        type="radio"
+        name="my_tabs_6"
+        class="tab"
+        aria-label="Trichology"
+      />
+      <div class="tab-content bg-base-100 border-base-300 p-6">
+        <div class="my-10">
+          <Heading
+            size="xl"
+            fontweight="black"
+            fontstyle="poppins"
+            class="text-center text-balance mb-5">Trichology</Heading
+          >
+
+          <Paragraph class="mb-10">
+            Trichology treatments address the full spectrum of scalp and hair
+            concerns with specialized care. Our expert approach begins with
+            comprehensive analysis to identify the root causes of issues such as
+            hair loss, thinning, excessive shedding, scalp irritation, or
+            dandruff. We then create personalized treatment plans using advanced
+            techniques and products specifically formulated for hair and scalp
+            health. Restore confidence and vitality to your hair with our
+            science-backed trichology solutions.
+          </Paragraph>
+          <div class="grid md:grid-cols-3 gap-4">
+            {
+              trichologyTreatments.map((item) => (
+                <TreatmentsCard
+                  treatmentItems={{
+                    title: item.data.title || "",
+                    description: item.data.description,
+                    img: item.data.img,
+                    icon: item.data.icon,
+                    id: item.id,
+                  }}
+                />
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </Container>
+</Layout>

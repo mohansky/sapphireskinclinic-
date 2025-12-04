@@ -1,0 +1,38 @@
+---
+import { Image } from "astro:assets";
+import Heading from "./Heading.astro";
+import Paragraph from "./Paragraph.astro";
+import Button from "./Button.astro";
+
+interface FooterBookAppointment {
+  title: string;
+  btnLink: string;
+  btnText: string;
+}
+
+interface Props {
+  footerBookAppointment: FooterBookAppointment;
+}
+
+const { footerBookAppointment } = Astro.props;
+const { title, btnLink, btnText } = footerBookAppointment;
+---
+
+<div class="card bg-base-200 text-base-content w-full lg:w-96">
+  <div class="card-body items-center text-center">
+    <Heading size="sm" fontweight="light" fontstyle="point" class="text-balance">
+      {title}
+    </Heading>
+    <div class="card-actions justify-end">
+      <Button
+        variant="primary"
+        color="primary"
+        href={btnLink}
+        title={btnText}
+        themed
+      >
+        {btnText}
+      </Button>
+    </div>
+  </div>
+</div>

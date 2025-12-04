@@ -1,0 +1,82 @@
+---
+import { getCollection } from "astro:content";
+import TestimonialItem from "./TestimonialItem.astro";
+import Heading from "../ui/Heading.astro";
+import { Icon } from "astro-icon/components";
+import SunRays from "../icons/SunRays.astro";
+
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const testimonials = siteInfo.testimonials;
+---
+
+<div class="my-20 px-4 lg:px-0">
+  <SunRays class="mx-auto fill-primary mb-5" />
+  <Heading
+    size="xxl"
+    fontweight="black"
+    fontstyle="point"
+    class="text-center mb-5">Testimonials</Heading
+  >
+  <div class="swiper testimonialsSwiper overflow-hidden">
+    <div class="swiper-wrapper bg-base-100">
+      {
+        testimonials.map((testimonial) => (
+          <TestimonialItem testimonials={testimonial} />
+        ))
+      }
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</div>
+
+<style is:global>
+  .testimonialsSwiper .swiper-pagination {
+    position: relative !important;
+    text-align: center !important;
+    margin-top: 2rem !important;
+  }
+
+  .testimonialsSwiper .swiper-pagination-bullet {
+    width: 20px !important;
+    height: 4px !important;
+    border-radius: 2px !important;
+    background: rgba(129, 128, 128, 0.4) !important;
+    opacity: 1 !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .testimonialsSwiper .swiper-pagination-bullet-active {
+    background: #1e3752 !important;
+  }
+</style>
+ 
+
+<script>
+  import Swiper from "swiper";
+  import { Navigation, Pagination } from "swiper/modules";
+  import "swiper/css";
+  import "swiper/css/navigation";
+  import "swiper/css/pagination";
+  const swiper = new Swiper(".testimonialsSwiper", {
+    modules: [Navigation, Pagination],
+    direction: "horizontal",
+    loop: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+    slidesPerView: 1,
+    spaceBetween: 10,
+    breakpoints: {
+      768: {
+        slidesPerView: 3,
+        spaceBetween: 30,
+      },
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+  });
+</script>

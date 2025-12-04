@@ -1,0 +1,52 @@
+---
+import Heading from "../ui/Heading.astro";
+import Paragraph from "../ui/Paragraph.astro";
+import { Icon } from "astro-icon/components";
+
+interface TestimonialContent {
+  text: string;
+  patient: string;
+  rating: number;
+}
+
+interface Props {
+  testimonials: TestimonialContent;
+}
+
+const { text, patient, rating } = Astro.props.testimonials;
+---
+
+<div class="swiper-slide card border border-accent shadow-md bg-base-100 py-5 lg:py-10 h-80">
+  <div
+    class="card-body max-w-2xl mx-auto z-50 flex flex-col justify-between h-full"
+  >
+    {
+      rating && (
+        <span class="flex flex-row gap-1 text-base-content text-sm font-poppins self-start">
+          <Icon name="lucide:star" class="text-primary" /> {rating}
+        </span>
+      )
+    }
+    {
+      text && (
+        <Paragraph class="text-balance line-clamp-6 mb-5">{text}</Paragraph>
+      )
+    }
+    <div class="divider"></div>
+    {
+      patient && (
+        <span class="flex flex-row items-center gap-5 self-start">
+          <Heading
+            size="sm"
+            class="tracking-wide opacity-80"
+            fontstyle="glory"
+            fontweight="normal"
+          >
+            {patient}
+          </Heading>
+        </span>
+      )
+    }
+  </div>
+  <!-- <div class="swiper-pagination" ></div> -->
+</div>

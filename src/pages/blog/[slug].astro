@@ -1,0 +1,216 @@
+---
+export const prerender = true;
+import SideBarIcon from "@/components/icons/SideBarIcon.astro";
+import PageHero from "@/components/sections/PageHero.astro";
+import Container from "@/components/ui/Container.astro";
+import Heading from "@/components/ui/Heading.astro";
+import ListItem from "@/components/ui/ListItem.astro";
+import ListUnordered from "@/components/ui/ListUnordered.astro";
+import Paragraph from "@/components/ui/Paragraph.astro";
+import Layout from "@/layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import { getCollection, getEntry, render } from "astro:content";
+
+const blogCollection = await getCollection("blog", ({ data }) => {
+  return data.draft !== true;
+});
+const sortedPosts = blogCollection.sort(
+  (a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime()
+);
+
+export async function getStaticPaths() {
+  const publishedPosts = await getCollection("blog", ({ data }) => {
+    return data.draft !== true;
+  });
+  return publishedPosts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+
+const entry = await getEntry("blog", post.id);
+if (!entry) {
+  throw new Error("Could not find blog post with id: " + post.id);
+}
+const { Content } = await render(entry);
+---
+
+<Layout>
+  <PageHero hero={post.data} />
+  <Container width="marginxy">
+    <div class="grid lg:grid-cols-4 gap-10">
+       
+
+      <div class="col-span-3">
+        <article>
+          <!-- Post header -->
+          <header class="mb-8">
+            <Heading
+              size="xxl"
+              fontweight="black"
+              fontstyle="poppins"
+              class="mb-4"
+            >
+              {post.data.title}
+            </Heading>
+
+            <!-- Post meta information -->
+            <div class="flex flex-wrap gap-4 text-base-content/70 mb-6">
+              <div class="flex items-center gap-2">
+                <Icon name="carbon:calendar" class="w-5 h-5" />
+                <time datetime={post.data.publishDate.toISOString()}>
+                  {
+                    post.data.publishDate.toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })
+                  }
+                </time>
+              </div>
+              <div class="flex items-center gap-2">
+                <Icon name="carbon:user-avatar" class="w-5 h-5" />
+                <span>{post.data.author}</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <Icon name="carbon:category" class="w-5 h-5" />
+                <span class="badge badge-primary">{post.data.category}</span>
+              </div>
+            </div>
+
+            <!-- Featured image -->
+            <Image
+              src={post.data.img}
+              alt={post.data.title}
+              class="w-full rounded-lg mb-6"
+            />
+
+            <!-- Description -->
+            <Paragraph class="text-lg mb-6 font-medium">
+              {post.data.description}
+            </Paragraph>
+          </header>
+
+          <!-- Post content -->
+          <div class="prose prose-lg max-w-none">
+            <Content
+              components={{
+                h1: Heading,
+                h2: Heading,
+                h3: Heading,
+                h4: Heading,
+                h5: Heading,
+                h6: Heading,
+                p: Paragraph,
+                li: ListItem,
+                ul: ListUnordered,
+              }}
+            />
+          </div>
+
+          <!-- Tags -->
+          {
+            post.data.tags && post.data.tags.length > 0 && (
+              <div class="mt-10 pt-6 border-t border-base-300">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <Icon name="carbon:tag" class="w-5 h-5" />
+                  <span class="font-semibold">Tags:</span>
+                  {post.data.tags.map((tag) => (
+                    <span class="badge badge-outline">{tag}</span>
+                  ))}
+                </div>
+              </div>
+            )
+          }
+
+          <!-- Share buttons -->
+          <div class="mt-8 pt-6 border-t border-base-300">
+            <div class="flex items-center gap-4">
+              <span class="font-semibold">Share this post:</span>
+              <div class="flex gap-2">
+                <a
+                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.data.title)}&url=${encodeURIComponent(Astro.url.href)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn-circle btn-sm btn-outline"
+                  aria-label="Share on Twitter"
+                >
+                  <Icon name="carbon:logo-twitter" class="w-5 h-5" />
+                </a>
+                <a
+                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(Astro.url.href)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn-circle btn-sm btn-outline"
+                  aria-label="Share on Facebook"
+                >
+                  <Icon name="carbon:logo-facebook" class="w-5 h-5" />
+                </a>
+                <a
+                  href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(Astro.url.href)}&title=${encodeURIComponent(post.data.title)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn-circle btn-sm btn-outline"
+                  aria-label="Share on LinkedIn"
+                >
+                  <Icon name="carbon:logo-linkedin" class="w-5 h-5" />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Back to blog -->
+          <div class="mt-10">
+            <a href="/blog" class="btn btn-primary">
+              <Icon name="carbon:arrow-left" class="w-4 h-4" />
+              Back to All Posts
+            </a>
+          </div>
+        </article>
+      </div>
+        <div class="drawer lg:drawer-open">
+        <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content flex flex-col items-center justify-center">
+          <label for="my-drawer-2" class="btn btn-ghost drawer-button lg:hidden">
+            <SideBarIcon class="w-6 h-6" />
+          </label>
+        </div>
+        <div class="drawer-side z-10">
+          <label
+            for="my-drawer-2"
+            aria-label="close sidebar"
+            class="drawer-overlay"></label>
+          <ul class="menu bg-base-200 text-base-content min-h-full p-4 w-3xs">
+            <li class="menu-title">
+              <span class="text-lg font-bold">Recent Posts</span>
+            </li>
+            {
+              sortedPosts.slice(0, 10).map((blogPost) => (
+                <li class="group z-10">
+                  <a href={"/blog/" + blogPost.id}>
+                    <Icon
+                      name="carbon:chevron-right"
+                      class="w-5 h-5 group-hover:translate-x-1 duration-300 ease-in-out"
+                    />
+                    <p class="group-hover:font-semibold duration-300 ease-in-out line-clamp-2">
+                      {blogPost.data.title}
+                    </p>
+                  </a>
+                </li>
+              ))
+            }
+            <li class="mt-4">
+              <a href="/blog" class="btn btn-primary btn-sm">
+                <Icon name="carbon:arrow-left" class="w-4 h-4" />
+                View All Posts
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </Container>
+</Layout>

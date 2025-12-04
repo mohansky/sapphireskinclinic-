@@ -1,0 +1,109 @@
+---
+export const prerender = true;
+import SideBarIcon from "@/components/icons/SideBarIcon.astro";
+import BeforeAfter from "@/components/sections/BeforeAfter.astro";
+import PageHero from "@/components/sections/PageHero.astro";
+import Container from "@/components/ui/Container.astro";
+import Heading from "@/components/ui/Heading.astro";
+import ListItem from "@/components/ui/ListItem.astro";
+import ListUnordered from "@/components/ui/ListUnordered.astro";
+import Paragraph from "@/components/ui/Paragraph.astro";
+import Layout from "@/layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import { getCollection, getEntry, render } from "astro:content";
+
+const treatmentsCollection = await getCollection("treatments", ({ data }) => {
+  return data.draft !== true;
+});
+const sortedTreatments = treatmentsCollection.sort(
+  (a, b) => a.data.weight - b.data.weight
+);
+
+export async function getStaticPaths() {
+  const publishedTreatments = await getCollection("treatments", ({ data }) => {
+    return data.draft !== true;
+  });
+  return publishedTreatments.map((treatment) => ({
+    params: { slug: treatment.id },
+    props: { treatment },
+  }));
+}
+
+const { treatment } = Astro.props;
+
+const entry = await getEntry("treatments", treatment.id);
+if (!entry) {
+  throw new Error("Could not find service with id: " + treatment.id);
+}
+const { Content } = await render(entry);
+---
+
+<Layout> 
+  <PageHero hero={treatment.data} />
+  <Container width="marginxy">
+    <div class="grid lg:grid-cols-4 gap-10">
+      <div class="drawer lg:drawer-open">
+        <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content flex flex-col items-center justify-center"> 
+          <label for="my-drawer-2" class="btn btn-ghost drawer-button lg:hidden">
+           <SideBarIcon class="w-6 h-6"/> 
+          </label>
+        </div>
+        <div class="drawer-side z-50">
+          <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
+          <ul class="menu bg-base-200 text-base-content min-h-full p-4">
+            {
+              sortedTreatments.map((treatment) => (
+                <li class="group z-50">
+                  <a href={"/treatments/" + treatment.id}>
+                    <Icon
+                      name="carbon:chevron-right"
+                      class="w-5 h-5 group-hover:translate-x-1 duration-300 ease-in-out"
+                    />
+                    <p class="group-hover:font-semibold duration-300 ease-in-out">
+                      {treatment.data.title}
+                    </p>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+     
+      <diV class="col-span-3">
+        <Heading
+          size="xxl"
+          fontweight="black"
+          fontstyle="marcellus"
+          class="mb-5">{treatment.data.title}</Heading
+        >
+        <Image
+          src={treatment.data.img}
+          alt={treatment.data.title}
+          class="w-full lg:w-1/2 mb-5 rounded-lg"
+        />
+        <!-- <Paragraph class="mb-5">{treatment.data.description}</Paragraph> -->
+        <Content
+          components={{
+            h1: Heading,
+            h2: Heading,
+            h3: Heading,
+            h4: Heading,
+            h5: Heading,
+            h6: Heading,
+            p: Paragraph,
+            li: ListItem,
+            ul: ListUnordered,
+          }}
+        />
+
+        <BeforeAfter
+          before={treatment.data.before}
+          after={treatment.data.after}
+        />
+      </diV>
+    </div>
+  </Container></Layout
+>

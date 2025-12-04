@@ -1,0 +1,172 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: ["ssac", "ssacdark"]
+};
+
+@custom-variant dark (&:where([data-theme=ssac], [data-theme=ssac] *));
+
+
+@plugin "daisyui/theme" {
+  name: "ssac";
+  default: true;
+  prefersdark: false;
+  color-scheme: "light";
+  --color-base-100: oklch(0.95 0.0097 72.66);
+  --color-base-200: oklch(0.85 0.0097 72.66);
+  --color-base-300: oklch(0.54 0.0097 72.66);
+  --color-base-content: oklch(21% 0.034 264.665);
+  --color-primary: oklch(0.71 0.125 81.49);
+  --color-primary-content: oklch(26% 0.079 36.259);
+  --color-secondary: oklch(0.44 0.1006 36.34);
+  --color-secondary-content: oklch(14% 0.005 285.823);
+  --color-accent: oklch(0.62 0.0867 115.63);
+  --color-accent-content: oklch(26% 0.051 172.552);
+  --color-neutral: oklch(13% 0.028 261.692);
+  --color-neutral-content: oklch(98% 0.002 247.839);
+  --color-info: oklch(70% 0.165 254.624);
+  --color-info-content: oklch(28% 0.091 267.935);
+  --color-success: oklch(76% 0.177 163.223);
+  --color-success-content: oklch(26% 0.051 172.552);
+  --color-warning: oklch(87% 0.169 91.605);
+  --color-warning-content: oklch(26% 0.079 36.259);
+  --color-error: oklch(70% 0.191 22.216);
+  --color-error-content: oklch(28% 0.109 3.907);
+  --radius-selector: 0.25rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+
+@plugin "daisyui/theme" {
+  name: "ssacdark";
+  default: false;
+  prefersdark: false;
+  color-scheme: "light";
+  --color-base-100: oklch(26% 0.007 34.298);
+  --color-base-200: oklch(21% 0.006 56.043);
+  --color-base-300: oklch(14% 0.004 49.25);
+  --color-base-content: oklch(96% 0.007 247.896);
+  --color-primary: oklch(71% 0.125 81.49);
+  --color-primary-content: oklch(26% 0.079 36.259);
+  --color-secondary: oklch(44% 0.101 36.34);
+  --color-secondary-content: oklch(14% 0.005 285.823);
+  --color-accent: oklch(37% 0.077 168.94);
+  --color-accent-content: oklch(26% 0.051 172.552);
+  --color-neutral: oklch(13% 0.028 261.692);
+  --color-neutral-content: oklch(98% 0.002 247.839);
+  --color-info: oklch(70% 0.165 254.624);
+  --color-info-content: oklch(28% 0.091 267.935);
+  --color-success: oklch(76% 0.177 163.223);
+  --color-success-content: oklch(26% 0.051 172.552);
+  --color-warning: oklch(87% 0.169 91.605);
+  --color-warning-content: oklch(26% 0.079 36.259);
+  --color-error: oklch(70% 0.191 22.216);
+  --color-error-content: oklch(28% 0.109 3.907);
+  --radius-selector: 0.25rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+
+/* marcellus-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Marcellus";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/marcellus-v13-latin-regular.woff2") format("woff2");
+}
+
+/* open-sans-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/open-sans-v40-latin-regular.woff2") format("woff2");
+}
+
+/* work-sans-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/work-sans-v19-latin-regular.woff2") format("woff2");
+}
+
+/* poppins-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/poppins-v23-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* glory-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Glory";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/glory-v15-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* sulphur-point-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Point";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/PointRegular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+@theme {
+  --font-poppins: "Poppins";
+  --font-glory: "Glory";
+  --font-point: "Point";
+}
+
+.password-input {
+  display: none !important;
+  visibility: hidden;
+}
+
+/* This removes the default overlay completely */
+.card.image-full.custom-overlay::before {
+  display: none !important;
+}
+
+/* Then create your own overlay with a div */
+.card.image-full.custom-overlay {
+  position: relative;
+}
+
+.custom-overlay-element {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: lab(66.03% 3.82 -49.43 / 0.1);
+  z-index: 10;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Make sure the card body is still above the overlay */
+.card.image-full.custom-overlay .card-body {
+  z-index: 20;
+  position: relative;
+}

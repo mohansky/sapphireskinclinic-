@@ -1,0 +1,67 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import Heading from "../ui/Heading.astro";
+
+interface HeroContent {
+  title: string;
+  subtitle?: string;
+  img: ImageMetadata;
+  overlayOpacity?: number;
+}
+
+interface Props {
+  hero: HeroContent;
+}
+
+const {
+  title,
+  subtitle,
+  img,
+  overlayOpacity = 0.2,
+} = Astro.props.hero;
+---
+
+<div class="hero min-h-[60vh] relative">
+  <Image
+    src={img}
+    alt={title}
+    title={title}
+    width={1000}
+    height={500}
+    quality={80}
+    class="absolute inset-0 w-full h-full object-top object-cover"
+  />
+  <div
+    class="hero-overlay opacity-50 absolute inset-0"
+    style={`background-opacity: ${overlayOpacity}`}
+  >
+  </div>
+  <div
+    class="hero-content text-center text-neutral-content absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
+  >
+    <div class="max-w-7xl">
+      {
+        subtitle && (
+          <Heading
+            size="sm"
+            fontweight="normal"
+            fontstyle="glory"
+            class="text-neutral-content tracking-wide opacity-75 mb-5"
+            variant="sectiontitle"
+            as="h1"
+          >
+            {subtitle}
+          </Heading>
+        )
+      }
+      <Heading
+        size="xxl"
+        fontweight="black"
+        fontstyle="point"
+        variant="sectiontitle"
+        class="text-neutral-content text-balance">{title}</Heading
+      >
+    </div>
+  </div>
+</div>

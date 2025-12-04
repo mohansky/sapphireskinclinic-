@@ -1,0 +1,71 @@
+---
+import { getCollection } from "astro:content";
+import HeroSlide from "./HeroSlide.astro";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade";
+import { Icon } from "astro-icon/components";
+
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const hero = siteInfo.hero;
+---
+
+<div class="relative">
+  <div class="swiper heroSwiper">
+    <div class="swiper-wrapper">
+      {hero.map((heroContent) => <HeroSlide hero={heroContent} />)}
+    </div>
+  </div>
+</div>
+
+<script>
+  import Swiper from "swiper";
+  import { EffectFade, Navigation, Pagination, Autoplay } from "swiper/modules";
+
+  const swiper = new Swiper(".heroSwiper", {
+    modules: [Navigation, Pagination, EffectFade, Autoplay],
+
+    // Autoplay Configuration
+    autoplay: {
+      delay: 6000,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true,
+    },
+
+    // Effect Configuration
+    effect: "fade",
+    fadeEffect: {
+      crossFade: true,
+    },
+
+    // Additional Options
+    loop: true,
+    speed: 1000,
+
+    // Accessibility
+    a11y: {
+      enabled: true,
+      prevSlideMessage: "Previous slide",
+      nextSlideMessage: "Next slide",
+      firstSlideMessage: "This is the first slide",
+      lastSlideMessage: "This is the last slide",
+    },
+  });
+</script>
+
+<style>
+  /* Optional: Custom styles for navigation buttons */
+  .swiper-button-prev,
+  .swiper-button-next {
+    color: transparent; 
+    width: 75px;
+    height: 50px;
+    transition: transform 0.2s ease;
+  }
+  .swiper-button-prev:hover,
+  .swiper-button-next:hover {
+    transform: scale(1.1);
+  }
+</style>

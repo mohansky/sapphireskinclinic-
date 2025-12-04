@@ -1,0 +1,236 @@
+---
+import MenuCloseIcon from "../icons/MenuCloseIcon.astro";
+import MenuOpenIcon from "../icons/MenuOpenIcon.astro";
+import SSACLogo from "../icons/SSACLogo.astro";
+import Button from "../ui/Button.astro";
+// import ThemeController from "./ThemeController.astro";
+
+interface NavLink {
+  text: string;
+  link: string;
+}
+
+interface Props {
+  navigation: NavLink[];
+}
+
+const { navigation } = Astro.props;
+---
+
+<script>
+  let lastScrollTop = 0;
+  const navbar = document.getElementById("navbar");
+  const drawerToggle = document.getElementById(
+    "my-drawer-3"
+  ) as HTMLInputElement;
+  const drawerSide = document.querySelector(".drawer-side") as HTMLElement;
+
+  // Get the hamburger and close swap buttons
+  const navbarHamburger = document.querySelector(
+    ".flex-none.lg\\:hidden .swap"
+  ) as HTMLElement;
+  const drawerClose = document.querySelector(
+    ".drawer-side .swap"
+  ) as HTMLElement;
+
+  // Fade-in/out effect for drawer
+  if (drawerToggle && drawerSide) {
+    drawerToggle.addEventListener("change", () => {
+      if (drawerToggle.checked) {
+        // Fade in
+        drawerSide.style.opacity = "0";
+        drawerSide.style.display = "block";
+        setTimeout(() => {
+          drawerSide.style.opacity = "1";
+        }, 10);
+
+        // Ensure hamburger button shows correct state
+        if (navbarHamburger) {
+          const hamburgerCheckbox = navbarHamburger.querySelector(
+            'input[type="checkbox"]'
+          ) as HTMLInputElement;
+          if (hamburgerCheckbox) hamburgerCheckbox.checked = true;
+        }
+      } else {
+        // Fade out
+        drawerSide.style.opacity = "0";
+        setTimeout(() => {
+          drawerSide.style.display = "none";
+        }, 300); // Match this with your transition duration
+
+        // Reset hamburger button state
+        if (navbarHamburger) {
+          const hamburgerCheckbox = navbarHamburger.querySelector(
+            'input[type="checkbox"]'
+          ) as HTMLInputElement;
+          if (hamburgerCheckbox) hamburgerCheckbox.checked = false;
+        }
+      }
+    });
+
+    // Also handle the drawer close button click
+    if (drawerClose) {
+      drawerClose.addEventListener("click", () => {
+        drawerToggle.checked = false;
+        const event = new Event("change");
+        drawerToggle.dispatchEvent(event);
+      });
+    }
+  }
+
+  window.addEventListener("scroll", () => {
+    let scrollTop = window.scrollY || document.documentElement.scrollTop;
+    if (scrollTop > lastScrollTop) {
+      navbar?.classList.add("-translate-y-full");
+    } else {
+      navbar?.classList.remove("-translate-y-full");
+    }
+    lastScrollTop = scrollTop;
+
+    // For changing background color after the hero section
+    // Assuming the hero section height is 100vh, change this value as needed
+    const heroSectionHeight = window.innerHeight; // 100vh
+
+    if (scrollTop > heroSectionHeight) {
+      navbar?.classList.add("bg-base-100");
+      navbar?.classList.add("shadow-md");
+      navbar?.classList.remove("bg-base-100/50");
+    } else {
+      navbar?.classList.remove("bg-base-100");
+      navbar?.classList.remove("shadow-md");
+      navbar?.classList.add("bg-base-100/50");
+    }
+  });
+</script>
+
+<style>
+  .drawer-side {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+    display: none;
+  }
+
+  .drawer-toggle:checked ~ .drawer-side {
+    opacity: 1;
+    display: block;
+  }
+</style>
+
+<div class="drawer drawer-end z-30 max-w-full overflow-x-hidden">
+  <label for="my-drawer-3" class="sr-only">Toggle Drawer Menu</label>
+  <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
+
+  <div class="drawer-content flex flex-col max-w-full overflow-x-hidden">
+    <div
+      id="navbar"
+      class="z-20 navbar backdrop-blur-md w-full max-w-full fixed top-0 shadow-none px-4 lg:px-20 overflow-x-hidden"
+    >
+      <div class="flex-1 lg:mx-2 lg:px-2 overflow-hidden">
+        <a
+          href="/"
+          class="text-xl"
+          title="Sapphire Skin & Aesthetics Clinic Home"
+        >
+          <div class="w-28 lg:w-32 h-auto">
+            <SSACLogo class="lg:ml-5 fill-base-content" />
+          </div>
+
+          <p class="sr-only">Sapphire Skin & Aesthetics Clinic</p>
+        </a>
+      </div>
+
+      <div class="flex-none lg:hidden">
+        <label
+          for="my-drawer-3"
+          aria-label="open sidebar"
+          class="btn btn-square btn-ghost"
+        >
+          <input type="checkbox" class="hidden" />
+          <span class="sr-only">Open menu</span>
+          <MenuOpenIcon class="w-8 h-8" />
+        </label>
+      </div>
+
+      <div class="hidden flex-none lg:block">
+        <ul class="menu menu-horizontal items-center gap-2" id="my-drawer-3">
+          {
+            navigation.map(({ text, link }) => (
+              <li>
+                <a
+                  href={link}
+                  title={`Go to ${text}`}
+                  class="font-poppins capitalize font-medium hover:bg-transparent hover:text-secondary"
+                >
+                  {text}
+                </a>
+              </li>
+            ))
+          }
+          <li>
+            <Button
+              variant="primary"
+              href="/contact"
+              title="Book appointment"
+              class="font-poppins font-semibold capitalize ml-2"
+              size="xs"
+            >
+              Book Appointment
+            </Button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="drawer-side z-30">
+    <div
+      class="menu bg-base-200 min-h-full w-full max-w-full"
+      aria-label="Navigation"
+    >
+      <a href="/" title="Sapphire Skin & Aesthetics Clinic Home">
+      
+        <div class="w-28 lg:w-32 h-auto">
+          <SSACLogo class="ml-2 lg:ml-5 fill-base-content" />
+        </div>
+        <p class="sr-only">Sapphire Skin & Aesthetics Clinic</p>
+      </a>
+
+      <span id="close-menu-label" class="sr-only">Close menu</span>
+      <label
+        for="my-drawer-3"
+        aria-label="close sidebar"
+        aria-labelledby="close-menu-label"
+        class="btn btn-square btn-ghost absolute top-6 right-4 z-30"
+      >
+        <input type="checkbox" checked class="hidden" />
+        <MenuCloseIcon class="w-8 h-8" />
+      </label>
+      <ul class="space-y-6 pt-10" aria-label="Navigation">
+        {
+          navigation.map(({ text, link }) => (
+            <li>
+              <a
+                href={link}
+                title={`Go to ${text}`}
+                class="font-poppins font-semibold text-lg"
+                aria-label={`Go to ${text}`}
+              >
+                {text}
+              </a>
+            </li>
+          ))
+        }
+        <li>
+          <Button
+            variant="primary"
+            href="/contact"
+            title="Book appointment"
+            class="font-poppins font-semibold uppercase w-full"
+          >
+            Book Appointment
+          </Button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

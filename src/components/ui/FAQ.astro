@@ -1,0 +1,76 @@
+---
+import { getCollection } from "astro:content";
+import Heading from "./Heading.astro";
+import Paragraph from "./Paragraph.astro";
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const site = siteInfo;
+---
+
+<div id="faq-accordion" class="mb-10">
+  <Heading size="lg" fontweight="medium" fontstyle="point" class="mb-10">
+    Frequently Asked Questions
+  </Heading>
+  {
+    site.faq.map((faq, index) => (
+      <div
+        class="collapse collapse-arrow bg-base-100 border-b-1 border-base-300 faq-item rounded-none"
+        data-index={index}
+      >
+        <input
+          type="checkbox"
+          name="my-accordion"
+          class="hidden faq-checkbox"
+        />
+        <div class="collapse-title font-semibold ">
+          <Heading size="sm" fontweight="normal" fontstyle="point">
+            {faq.question}
+          </Heading>
+        </div>
+        <div class="collapse-content faq-content">
+          <Paragraph size="sm" class="opacity-80">
+            {faq.answer}
+          </Paragraph>
+        </div>
+      </div>
+    ))
+  }
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const accordion = document.getElementById("faq-accordion");
+
+    // Add a null check before adding the event listener
+    if (!accordion) {
+      console.warn("FAQ accordion element not found");
+      return;
+    }
+
+    accordion.addEventListener("click", (event) => {
+      // Find the closest .faq-item from the clicked element
+      const faqItem = (event.target as Element).closest(".faq-item");
+
+      if (!faqItem) return;
+
+      // Find the checkbox within this faq-item
+      const checkbox = faqItem.querySelector(
+        ".faq-checkbox"
+      ) as HTMLInputElement;
+
+      // If clicked on title or arrow, toggle the checkbox
+      if ((event.target as Element).closest(".faq-title, .collapse-arrow")) {
+        checkbox.checked = !checkbox.checked;
+      }
+
+      // Close other open accordions
+      document
+        .querySelectorAll(".faq-item .faq-checkbox")
+        .forEach((otherCheckbox) => {
+          if (otherCheckbox !== checkbox) {
+            (otherCheckbox as HTMLInputElement).checked = false;
+          }
+        });
+    });
+  });
+</script>

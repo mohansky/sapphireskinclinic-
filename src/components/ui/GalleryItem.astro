@@ -1,0 +1,62 @@
+---
+import { Image } from "astro:assets";
+import Heading from "./Heading.astro";
+
+// GalleryItem.astro
+interface Props {
+  src: ImageMetadata | string;
+  width: number;
+  height: number;
+  alt?: string;
+  thumbnail?: ImageMetadata | string;
+  id?: string;
+  format?: string;
+}
+
+const {
+  src,
+  width,
+  height,
+  alt = "",
+  thumbnail = src,
+  id,
+  format
+} = Astro.props;
+
+// Helper function to convert to string for Image src
+const getThumbnailSrc = (thumbnail: ImageMetadata | string) => {
+  return typeof thumbnail === 'string' ? thumbnail : thumbnail.src;
+};
+
+// Helper function to get the actual src for PhotoSwipe
+const getFullSrc = (source: ImageMetadata | string) => {
+  return typeof source === 'string' ? source : source.src;
+};
+---
+
+<div class="card shadow-none">
+  <a
+    href={getFullSrc(src)}
+    data-pswp-src={getFullSrc(src)}
+    data-pswp-width={width}
+    data-pswp-height={height}
+    class="block cursor-zoom-in pswp-gallery-item"
+    title={id || "Gallery image"}
+  >
+    <figure>
+      <Image
+        src={getThumbnailSrc(thumbnail)}
+        width={480}
+        height={360}
+        alt={id || "Gallery image"}
+        title={id || "Gallery image"}
+        class="rounded-xl"
+      />
+    </figure>
+    {id && (
+      <div class="card-body items-center text-center">
+        <Heading class="card-title capitalize">{id}</Heading>
+      </div>
+    )}
+  </a>
+</div>

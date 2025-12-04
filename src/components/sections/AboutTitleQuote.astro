@@ -1,0 +1,22 @@
+---
+import { getCollection } from "astro:content";
+import Container from "../ui/Container.astro";
+import Heading from "../ui/Heading.astro";
+
+const aboutData = await getCollection("aboutCollection");
+const aboutInfo = aboutData[0].data;
+const aboutQuote = aboutInfo.aboutQuote;
+---
+
+<Container>
+  <div class="px-4 sm:px-6 lg:px-8">
+    <Heading
+      size="xl"
+      fontweight="black"
+      fontstyle="point"
+      class="text-center text-balance"
+    >
+      {aboutQuote}
+    </Heading>
+  </div>
+</Container>

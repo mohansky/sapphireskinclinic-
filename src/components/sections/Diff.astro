@@ -1,0 +1,48 @@
+---
+import { Image } from "astro:assets";
+import before from "../../assets/derma-roller-for-acne-scars-before.jpg";
+import after from "../../assets/derma-roller-for-acne-scars-after.jpg";
+import Container from "../ui/Container.astro";
+import Heading from "../ui/Heading.astro";
+---
+
+<Container>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-8 place-content-center">
+    <Heading> Before after </Heading>
+
+    <figure class="diff aspect-16/9 max-h-96" tabindex="0">
+      <div class="diff-item-1" role="img" tabindex="0">
+        <Image src={before} title="before" alt="before" class="object-contain" />
+      </div>
+      <div class="diff-item-2 p-4" role="img">
+        <Image src={after} title="after" alt="after" class="object-contain" />
+      </div>
+      <div class="diff-resizer"></div>
+    </figure>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-8 place-content-center">
+    <figure class="diff aspect-16/9" tabindex="0">
+      <div class="diff-item-1" role="img" tabindex="0">
+        <Image src={before} alt="" class="object-contain" />
+      </div>
+      <div class="diff-item-2 p-4" role="img">
+        <Image src={after} alt="" class="object-contain" />
+      </div>
+      <div class="diff-resizer"></div>
+    </figure>
+    <Heading> Before after </Heading> 
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-8 place-content-center">
+    <Heading> Before after </Heading>
+    <figure class="diff aspect-16/9" tabindex="0">
+      <div class="diff-item-1" role="img" tabindex="0">
+        <Image src={before} alt="" class="object-contain" />
+      </div>
+      <div class="diff-item-2 p-4" role="img">
+        <Image src={after} alt="" class="object-contain" />
+      </div>
+      <div class="diff-resizer"></div>
+    </figure>
+  </div>
+</Container>

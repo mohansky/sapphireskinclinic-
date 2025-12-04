@@ -1,0 +1,18 @@
+---
+import { getCollection } from "astro:content";
+import ContactItemsFooter from "../ui/ContactItemsFooter.astro";
+import Container from "../ui/Container.astro";
+import Form from "../ui/Form.astro";
+import FAQ from "../ui/FAQ.astro";
+
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const site = siteInfo;
+---
+
+<Container>
+  <div class="grid lg:grid-cols-2 gap-10">
+    <FAQ /> 
+    <Form />
+  </div>
+</Container>

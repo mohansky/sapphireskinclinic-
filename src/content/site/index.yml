@@ -1,0 +1,380 @@
+site:
+  name: Sapphire Skin & Aesthetics Clinic
+  tagline: Because your skin is worth it!
+  title: Sapphire Skin & Aesthetics Clinic
+  description: Specialized dermatology clinic offering comprehensive skin, hair, and aesthetic treatments. Our board-certified specialists provide expert care for conditions like acne, psoriasis, and cosmetic concerns using advanced techniques. Experience personalized care that delivers visible results. Book your consultation today.
+  basepath: https://sapphireskin.in
+  ogImageURL: /ssc-logo-symbol.png
+  keywords:
+    - Sapphire Skin & Aesthetics Clinic Bangalore
+    - Best skin clinic in JP Nagar
+    - Top dermatologist in Koramangala
+    - Aesthetic treatments Bangalore
+    - Skin specialists in JP Nagar and Koramangala
+    - Skin clinic JP Nagar Bangalore
+    - Dermatologist Koramangala 5th Block
+    - Aesthetic clinic South Bangalore
+    - Sapphire Skin Clinic JP Nagar
+    - Sapphire Aesthetics Koramangala
+    - Anti-aging treatments Bangalore
+    - Laser skin treatment JP Nagar
+    - Chemical peels Koramangala
+    - Acne treatment clinic Bangalore
+    - Skin rejuvenation JP Nagar
+    - Botox and fillers Koramangala
+    - Hydrafacial South Bangalore
+    - Medical facials JP Nagar
+    - PRP therapy skin Koramangala
+    - Pigmentation treatment Bangalore
+    - Acne scar treatment JP Nagar
+    - Skin lightening Koramangala
+    - Melasma treatment Bangalore
+    - Hair loss clinic JP Nagar
+    - Rosacea specialist Koramangala
+    - Psoriasis treatment Bangalore
+    - Best dermatologist for acne scars in JP Nagar
+    - Affordable skin treatments in Koramangala
+    - Luxury skincare clinic near JP Nagar
+    - Board-certified dermatologists in Koramangala
+    - Non-surgical facelift in South Bangalore
+    - Medical-grade facials JP Nagar Bangalore
+    - Skin clinic near me JP Nagar
+    - Dermatologist appointment Koramangala
+    - Weekend dermatologist consultation Bangalore
+    - Walk-in skin clinic JP Nagar
+    - Emergency dermatologist Koramangala
+    - Dr. Sheela Natraj Sapphire Skin & Aesthetics Clinic
+    - Dr. Kavya Reganti Sapphire Skin & Aesthetics Clinic
+    - Dr. Sanchita L Sapphire Skin & Aesthetics Clinic
+    - Sapphire Skin Clinic reviews
+    - Sapphire Aesthetics before and after
+    - Sapphire Skin Clinic pricing
+    - Sapphire dermatologist consultation
+
+  author:
+    name: Mohan Kumar
+    email: mohansky@gmail.com
+    url: https://www.mohankumar.dev
+
+  # Header Navigation
+  navigation:
+    - text: Home
+      link: /
+    - text: About
+      link: /about
+    - text: Treatments
+      link: /treatments
+    # - text: Blog
+    #   link: /blog
+    - text: Gallery
+      link: /gallery
+    - text: Contact
+      link: /contact
+
+  hero:
+    - title: Welcome to Our Clinic
+      subtitle: Glow from the inside and out
+      backgroundImage: ./images/clinic-kor/Reception_Area.jpg
+      isFirstSlide: true
+      primaryButtonText: Book Appointment
+      primaryButtonLink: /contact
+      secondaryButtonText: Learn More
+      secondaryButtonLink: /about
+      overlayOpacity: 100
+    - title: Radiant Skin Starts Here
+      subtitle: Because your skin is worth it!
+      backgroundImage: ./images/hero.jpg
+      primaryButtonText: Latest Offers
+      primaryButtonLink: /offers
+      overlayOpacity: 80
+
+  heroPage:
+    - title: About Us
+      slug: about
+      subtitle: Sapphire Skin & Aesthetics Clinic
+      img: ./images/clinic-kor/Team_Sapphire_Koramangala.jpg
+      overlayOpacity: 0.2
+    - title: Treatments
+      slug: treatments
+      subtitle: Sapphire Skin & Aesthetics Clinic
+      img: ./images/clinic-kor/LHR-Laser_Hair_Reduction_Room.jpg
+      overlayOpacity: 0.2
+    - title: Blog
+      slug: blog
+      subtitle: Skincare Tips & Expert Advice
+      img: ./images/clinic-kor/Procedure-Hydra_Facial.jpg
+      overlayOpacity: 0.2
+    - title: Gallery
+      slug: gallery
+      subtitle: Sapphire Skin & Aesthetics Clinic
+      img: ./images/clinic-kor/Reception_Area.jpg
+      overlayOpacity: 0.2
+    - title: Contact
+      slug: contact
+      subtitle: Sapphire Skin & Aesthetics Clinic
+      img: ./images/clinic-kor/Reception_Waiting_Area_2.jpg
+      overlayOpacity: 0.2
+    - title: Offers
+      slug: offers
+      subtitle: Sapphire Skin & Aesthetics Clinic
+      img: ./images/clinic-kor/Reception_Area.jpg
+      overlayOpacity: 0.2
+
+  offers:
+    - title:
+      subtitle:
+      image: ./images/offers.jpg
+      offerImg: ./images/offers.jpg
+
+  about:
+    description: >
+      The delicate synergy of science, skill and nature is important to understand and create a healthy and beautiful you. 
+      Sapphire Skin & aesthetics clinic involves a team of dedicated doctor & skilled staff to provide the best in aesthetic medicine.
+
+    mission: >
+      Our mission is to empower individuals to achieve their skin health goals by providing comprehensive, compassionate care 
+      delivered by expert dermatologists and skincare professionals. We strive to offer innovative treatments, personalized 
+      solutions, and education to enhance overall well-being and confidence in every patient we serve.
+
+    vision: >
+      Our vision is to be a trusted leader in dermatological care, committed to delivering exceptional patient experiences, 
+      innovative treatments, and personalized solutions for healthy, radiant skin.
+
+  # Clinic Values
+  values:
+    - Providing personalized care tailored to unique needs and concerns
+    - Ensuring a welcoming and compassionate environment
+    - Utilizing advanced treatments and technologies
+    - Prioritizing patient satisfaction
+
+  # Doctors
+  doctors:
+    - name: Dr. Sheela Natraj
+      qualifications: MBBS, DVD
+      specialization: Founder & Director, Consultant Dermatologist & Cosmetologist
+      image: ./images/doctors/DrSheelaNatraj.jpg
+
+    - name: Dr. Kavya Reganti
+      qualifications: MBBS, MD
+      specialization: Consultant Dermatology, Venereology & Leprosy
+      image: ./images/doctors/DrKavyaReganti.jpg
+
+    - name: Dr Aishwarya Balawat
+      qualifications: MBBS, MD
+      specialization: Consultant Dermatologist
+      image: ./images/doctors/DrAishwaryaBalawat.jpg
+
+    - name: Dr Rakesh Reddy
+      qualifications: MBBS, MD
+      specialization: Consultant Dermatologist
+      image: ./images/doctors/DrRakeshReddy.jpg
+
+  aboutTitle: About Us
+  aboutText: >
+      Sapphire Skin and Aesthetics Clinic is a premium skincare destination combining advanced science with luxurious care. The clinic offers personalized treatments in a serene and elegant environment, focusing on bespoke skincare solutions. Their expert team of dermatologists and aesthetic specialists uses medical-grade products and the latest technology to ensure excellent results. From initial consultation to post-treatment care, every detail is carefully designed for a superior experience. Whether clients seek radiant skin, anti-aging therapies, or refined self-care, the clinic provides a sanctuary dedicated to beauty and wellbeing. Sapphire Skin and Aesthetics Clinic truly delivers exceptional care because your skin deserves the best.
+  aboutImage: ./images/clinic-kor/Reception_Waiting_Area_2.jpg
+  # Clinic Highlights
+  highlights:
+    - number: "01"
+      title: Premium Services for skin and hair
+      icon: carbon:airline-passenger-care
+
+    - number: "02"
+      title: FDA approved laser equipments
+      icon: carbon:certificate
+
+    - number: "03"
+      title: Cost effective medical treatment
+      icon: carbon:currency-rupee
+
+    - number: "04"
+      title: Patient centric Solutions
+      icon: carbon:checkmark
+
+    # Clinic Highlights
+  testimonials:
+    - number: "01"
+      text: "I recently visited Sapphire Cosmetic Clinic in Koramangala and had an outstanding experience. Dr. Sheela is exceptionally knowledgeable, taking the time to thoroughly explain the treatments and procedures involved. Her expertise and attention to detail made me feel confident and comfortable with every step. The clinic is clean, modern, and has a welcoming staff, ensuring a positive experience from start to finish. I highly recommend Sapphire Cosmetic Clinic and Dr. Sheela for anyone considering cosmetic treatments!"
+      patient: Yogesh Reddy
+      rating: 5
+    - number: "02"
+      text: "I am so impressed with Dr. Sheela thorough approach to skincare. They took the time to explain every option and answered all my questions in detail. It’s clear that Dr. Sheela genuinely cares about their patients. My skin has improved tremendously, and I couldn’t be happier with the results!"
+      patient: Shaik Rizu
+      rating: 4.9
+    - number: "03"
+      text: "Dr. Sheela is incredible! She’s extremely knowledgeable, professional, and truly listens to her patients. I came in with a skin concern, and she immediately put me at ease, explaining my options in detail. The treatment plan she suggested has worked wonders, and my skin looks better than ever."
+      patient: Umashankar H
+      rating: 4.9
+    - number: "04"
+      text: "I had an amazing experience with Dr Sheela mam. They were professional, attentive, and genuinely cared about my concerns. The office was clean, and the staff was friendly and efficient. My skin has never looked better! I highly recommend sapphire skin and aesthetic to anyone looking for top-notch dermatological care."
+      patient: Amar John
+      rating: 4.9
+    - number: "05"
+      text: "Sapphire skin clinic has been a beautiful experience. I have always looked forward to visiting sapphire whenever I booked myself for an appointment. My best ever experience has been with your Skin Polishing service. My husband and I love my skin after every visiting experience. Whenever I think of my skin, I think of sapphire clinic. Have many more successful years! All the best!"
+      patient: Rajith Pooja
+      rating: 5
+    - number: "06"
+      text: "I had a LHR and Hydrafacial routine. Dr Sheela is super friendly and she is very polite. She first took a deep look at my skin after cleaning it to make sure she gives the correct advise later. The hydrafacial was super experience and the results were immediate. My skin already glows and I am definitely going back there again for a follow up. I rarely find places who give you full attention like this and for the complete full hour like the sapphire staff did. Dr Sheela has positive attitude throughout the whole session made the whole experience all the more amazing. Also the clinic has a clean and hygienic environment and sterilized equipment. They have top notch facilities for cosmetic surgery dermatologic surgery and medical aesthetics. Thank you so much Sapphire skin clinic."
+      patient: Ruchitha M
+      rating: 5
+
+  equipments:
+    - title: Coolite Bolt
+      text:
+        - Coolite Bolt is a high power diode laser platform for hair removal and skin lifting,
+        - It is equipped  with triple wavelength, large spot size handles.
+        - It adopts Ultra Short Pulse and High Peak Power,delivering short pulses to destroy hair follicle with lightening fast speed
+      titleImage: ./images/equipments/coolite-bolt-title.png
+      image: ./images/equipments/coolite-bolt.png
+    - title: HydraNeo
+      text:
+        - HydraNeo is a non-invasive skin care device that provides a comprehensive facial care treatment, combining 4 powerful technologies Oxyneo, Aqua Peel, Ultrasound and RF,
+        - It can be used before cosmetic medical treatment for more satisfactory efficacy.
+      titleImage: ./images/equipments/Hydra-Neo-title.png
+      image: ./images/equipments/Hydra-neo.png
+    - title: Dermatrix Duo
+      text:
+        - Dermatrix Duo is the latest generation of fractional RF platform, which combines micro needle fractional RF and needle-free fractional RF technology.
+        - It transmits RF energy to multi-level skin layers under controlled depth.
+        - The effect of skin rejuvenation will be achieved through collagen regeneration and tissue reconstruction, while the epidermis will be kept away from damage.
+        - Rapid treatment, and short recovery time, which significantly reduces the risk of hyperpigmentation and inflammation.
+      titleImage: ./images/equipments/Dermatrix-Duo-title.png
+      image: ./images/equipments/Dermatrix-duo.png
+    - title: Refine HD
+      text:
+        - Fractional CO2 laser is considered as indispensable method for laser surgery and resurfacing.
+        - Refine, a super pulsed CO2 fractional laser, delivers micro-pulsed laser on skin lesions via controllable and adjustable spot size, energy density, distance and depth for accurate treatment.
+        - It creates strong epidermal ablation to generate skin resurfacing effects.
+        - In the meanwhile, it stimulates collagen regeneration by delivering fractional laser beams deep into the dermis to treat multiple clinical application.
+      titleImage: ./images/equipments/Refine-HD-title.png
+      image: ./images/equipments/Refine-HD.png
+    - title: TRI-BEAM Premium
+      text:
+        - TRI-BEAM Premium is Q-switched Nd YAG laser with PTP function（Rich-PTP technology）, a proprietary technology that reduces irritation (inflammatory reaction) to the skin through 2-divided irradiation.
+        - A high-power Nd YAG laser that turns “expectations” into “satisfaction”
+      titleImage: ./images/equipments/TRI-BEAM-Premium-title.png
+      image: ./images/equipments/Tribeam-2.png
+
+  # FAQ
+  faq:
+    - question: "What skin conditions do you treat?"
+      answer: "We treat a wide range of dermatological conditions including acne, eczema, psoriasis, rosacea, skin infections, and more."
+    - question: "What services do you offer?"
+      answer: "Our services include skin cancer screenings, mole checks, cosmetic dermatology procedures, laser treatments, and medical dermatology treatments."
+    - question: "How do I schedule an appointment?"
+      answer: "You can schedule an appointment by calling our clinic directly or using our online appointment booking system."
+    - question: "What should I expect during my first visit?"
+      answer: "During your first visit, you will meet with one of our dermatologists who will conduct a thorough examination, discuss your medical history, and develop a personalized treatment plan tailored to your needs."
+    - question: "How can I prepare for my appointment?"
+      answer: "Please arrive 15 minutes early to complete any necessary paperwork and bring your insurance information, a list of current medications, and any relevant medical records."
+    - question: "Do you offer telemedicine appointments?"
+      answer: "Yes, we offer telemedicine appointments for certain conditions. Please contact our office to inquire about telemedicine availability."
+    - question: "What skincare products do you recommend?"
+      answer: "We offer a range of medical-grade skincare products tailored to different skin types and concerns. Our dermatologists can recommend products suited to your individual needs during your appointment."
+    - question: "How can I protect my skin from the sun?"
+      answer: "We recommend wearing sunscreen with at least SPF 30 daily, seeking shade during peak sun hours, and wearing protective clothing such as hats and sunglasses."
+    - question: "What are your payment options?"
+      answer: "We accept cash, credit cards, debit cards and online UPI payments. We also offer flexible payment plans for certain procedures."
+
+  # Contact Information
+  locations:
+    - address:
+        - Sapphire Skin & Aesthetics Clinic,
+        - 1st Floor, 24th Main Rd,
+        - JP Nagar 6th Phase,
+        - Bengaluru, Karnataka 560078
+      phones:
+        - "+91 80 2654 9666"
+        - "+91 974 178 3333"
+      email: drsheelavathi@gmail.com
+      title: JP Nagar
+      map: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.0474418615336!2d77.5830357752551!3d12.904670987404536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15135995af1f%3A0xc650d0e6015f26c8!2sSapphire%20Skin%20%26%20Aesthetics%20Clinic!5e0!3m2!1sen!2sin!4v1744952378428!5m2!1sen!2sin
+      timmings:
+        - title: Monday - Saturday
+          details: 11AM - 8:30PM
+        - title: Sunday
+          details: 11AM - 5:00PM
+
+    - address:
+        - Sapphire Skin & Aesthetics Clinic,
+        - "OA Arcade, #20, 1st Floor 5th Cross,"
+        - 60 Feet Road, Koramangala, 6th Block,
+        - Bengaluru - 560095
+      phones:
+        - "+9180 296 36 666"
+        - "+91 707 070 3152"
+      email: sapphireskinkoramangala@gmail.com
+      title: Koramangala
+      map: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1944.2909345858172!2d77.62402662321257!3d12.934574101276347!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15d84084c175%3A0x91e9a915a6879e12!2sSapphire%20Skin%20and%20Aesthetics%20Clinic%20Koramangala%20Bangalore%20%7C%20Skin%2C%20Hair%20%26%20Laser%20Clinic!5e0!3m2!1sen!2sin!4v1761902625615!5m2!1sen!2sin
+      timmings:
+        - title: Monday - Saturday
+          details: 11AM - 8:30PM
+        - title: Sunday
+          details: 11AM - 5:00PM
+
+  footerBookAppointment:
+    title: Book your appointment with us today!
+    btnLink: /contact
+    btnText: Book appointment
+
+  footerLatestOffers:
+    title: Latest Offers
+    subtitle: Check out our latest offers.
+    bgImage: ./images/bg-offers.jpg
+    offerImg: ./images/offers.jpg
+    btnLink: /offers
+    btnText: Offers
+
+  # Popular Treatments
+  popularTreatments:
+    - name: Laser Hair Removal
+      link: /treatments/diode-laser-hair-removal
+    - name: Chemical Peels
+      link: /treatments/chemical-peels
+    - name: Botox & Dermal Fillers
+      link: /treatments/botox-and-dermal-fillers
+    - name: PRP for Skin
+      link: /treatments/prp-for-skin
+    - name: Photo Facial
+      link: /treatments/photo-facial
+    - name: Microdermabrasion
+      link: /treatments/microdermabrasion
+
+  # Useful Links
+  usefulLinks:
+    - name: About Us
+      link: /about
+    - name: Our Doctors
+      link: /about#doctors
+    - name: Gallery
+      link: /gallery
+    - name: Treatments
+      link: /treatments
+    - name: Offers
+      link: /offers
+    - name: Book Appointment
+      link: /contact
+
+  # Social Media Links
+  socialsTitle: Follow us
+  social_media:
+    - link: "https://www.facebook.com/sapphireskinclinic"
+      icon: carbon:logo-facebook
+      text: Facebook
+    - link: https://www.instagram.com/sapphire_skin_clinic
+      icon: carbon:logo-instagram
+      text: Instagram
+    - link: "https://www.youtube.com/@sheelanatraj3371"
+      icon: carbon:logo-youtube
+      text: Youtube
+    - link: "https://www.linkedin.com/company/7601535/admin/feed/posts/"
+      icon: carbon:logo-linkedin
+      text: Linkedin
+
+  # Copyright
+  copyright:
+    year: 2024
+    text: All rights reserved ©
+    footnote: Sapphire Skin & Aesthetics Clinic
+
+

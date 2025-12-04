@@ -1,0 +1,62 @@
+# Allow all web crawlers to access all content
+User-agent: *
+Allow: /
+
+# Specific permissions for major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# AI and LLM crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Social media crawlers
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# Optional: Disallow common admin/system directories (uncomment if needed)
+Disallow: /actions/
+Disallow: /.well-known/
+
+# Crawl delay (optional - remove if you want faster crawling)
+# Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://sapphireskin.in/sitemap.xml
+Sitemap: https://sapphireskin.in/sitemap-index.xml

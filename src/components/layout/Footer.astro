@@ -1,0 +1,144 @@
+---
+import SocialLinks from "../ui/SocialLinks.astro";
+import SSACLogo from "../icons/SSACLogo.astro";
+import ContactItemsFooter from "../ui/ContactItemsFooter.astro";
+import FooterOffersCard from "../ui/FooterOffersCard.astro";
+import FooterBookAppointmentCard from "../ui/FooterBookAppointmentCard.astro";
+import Heading from "../ui/Heading.astro";
+import ThemeController from "./ThemeController.astro";
+
+interface Timmings {
+  title: string;
+  details: string;
+}
+
+interface FooterBookAppointment {
+  title: string;
+  btnLink: string;
+  btnText: string;
+}
+
+interface FooterOffers {
+  bgImage: ImageMetadata;
+  title: string;
+  subtitle: string;
+  btnLink: string;
+  btnText: string;
+}
+
+interface FooterData {
+  name: string;
+  copyright: {
+    year: number;
+    text: string;
+    footnote: string;
+  };
+  footerLatestOffers: FooterOffers;
+  footerBookAppointment: FooterBookAppointment;
+  social_media: {
+    link: string;
+    icon: string;
+    text: string;
+  }[];
+  locations: {
+    title: string;
+    address: string[];
+    phones: string[];
+    email: string;
+    map: string;
+    timmings: Timmings[];
+  }[];
+  popularTreatments: {
+    name: string;
+    link: string;
+  }[];
+  usefulLinks: {
+    name: string;
+    link: string;
+  }[];
+}
+
+interface Props {
+  footer: FooterData;
+}
+
+const {
+  locations,
+  footerBookAppointment,
+  footerLatestOffers,
+  copyright,
+  social_media,
+  popularTreatments,
+  usefulLinks,
+} = Astro.props.footer;
+---
+
+<footer class="bg-base-300 text-neutral-content max-w-full overflow-x-hidden">
+  <section class="footer footer-horizontal footer-center py-10">
+    <SSACLogo class="w-44 fill-accent-content" />
+  </section>
+
+  <section
+    class="footer md:footer-horizontal py-10 px-3 md:px-12 lg:px-32 mb-0"
+  >
+    <nav>
+      <Heading>Popular Treatments</Heading>
+      {
+        popularTreatments.map((treatment) => (
+          <a class="link link-hover font-point text-lg" href={treatment.link} title={treatment.name}>
+            {treatment.name}
+          </a>
+        ))
+      }
+    </nav>
+    <nav>
+      <Heading>Useful Links</Heading>
+      {
+        usefulLinks.map((link) => (
+          <a class="link link-hover font-point text-lg" href={link.link} title={link.name}>
+            {link.name}
+          </a>
+        ))
+      }
+    </nav>
+    <nav
+      class="justify-items-end w-full h-full content-between gap-4 hidden lg:block"
+    >
+      <FooterOffersCard footerOffers={footerLatestOffers} />
+    </nav>
+  </section>
+  <section
+    class="footer md:footer-horizontal py-10 px-3 md:px-12 lg:px-32 mb-0"
+  >
+    <ContactItemsFooter locations={locations} />
+    <nav
+      class="justify-items-end w-full h-full content-between gap-4 hidden lg:block"
+    >
+      <FooterBookAppointmentCard
+        footerBookAppointment={footerBookAppointment}
+      />
+    </nav>
+  </section>
+  <div class="divider w-[90%] mx-auto my-0 max-w-full"></div>
+  <section
+    class="footer sm:footer-horizontal items-center py-4 px-3 md:px-12 lg:px-32"
+  >
+    <aside class="grid-flow-col items-center">
+      <p class="text-balance text-center">
+        {copyright.text}
+        {new Date().getFullYear()} - {copyright.footnote}
+      </p>
+    </aside>
+    <nav class="grid-flow-col gap-4 place-self-center md:justify-self-end">
+      <SocialLinks
+        class="w-8 h-8"
+        socials={social_media.map((social) => ({
+          link: social.link,
+          icon: social.icon,
+          text: social.text,
+        }))}
+      />
+      <ThemeController />
+    </nav>
+  </section>
+</footer>

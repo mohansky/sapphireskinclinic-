@@ -1,0 +1,64 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+import Heading from "./Heading.astro";
+import Paragraph from "./Paragraph.astro";
+import Button from "./Button.astro";
+
+interface Treatment {
+  title: string;
+  description: string;
+  img: ImageMetadata;
+  icon: ImageMetadata;
+  id: string;
+}
+
+interface Props {
+  treatmentItems: Treatment; // Changed from Treatment[] to Treatment
+}
+
+const { treatmentItems } = Astro.props;
+const { title, description, img, icon, id } = treatmentItems;
+---
+
+<div class="card bg-base-100 shadow-sm">
+  <figure>
+    <Image
+      src={img}
+      alt={title}
+      title={title}
+      class="w-full h-auto"
+      width={640}
+      height={480}
+    />
+  </figure>
+  <div class="card-body">
+    <div class="flex justify-between items-center gap-3">
+      <Heading size="lg" fontweight="semibold" fontstyle="point">
+        {title}
+      </Heading>
+      <Image
+        src={icon}
+        alt={title}
+        title={title}
+        class="w-6 h-auto"
+        width={240}
+        height={240}
+      />
+    </div>
+    <Paragraph variant="defaulttext" class="line-clamp-3 mb-2"
+      >{description}</Paragraph
+    >
+    <div class="card-actions justify-center">
+      <Button
+        href={"/treatments/" + id}
+        color="primary"
+        variant="soft"
+        title={title}
+        themed
+      >
+        Learn more
+      </Button>
+    </div>
+  </div>
+</div>

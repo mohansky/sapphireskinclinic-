@@ -1,0 +1,71 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import { Icon } from "astro-icon/components";
+import Heading from "../ui/Heading.astro";
+import Paragraph from "../ui/Paragraph.astro";
+
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const highlights = siteInfo.highlights;
+---
+
+<div class="grid lg:grid-cols-2 gap-4 py-16 sm:py-32 px-4 lg:px-0 overflow-hidden">
+
+  <media-controller class="w-full hidden lg:block max-w-full">
+    <video
+      slot="media"
+      src="/ssac.mp4"
+      poster="/ssac.jpg"
+      muted
+      autoplay
+      class="rounded-r-2xl object-cover w-full max-w-full border-l-0 border-2 border-primary"
+    ></video>
+  </media-controller>
+
+  <div class="mx-auto col-span-2 lg:col-span-1 flex items-center">
+    <div class="px-3">
+      <Heading size="xxl" fontweight="black" fontstyle="point">
+        {siteInfo.aboutTitle}
+      </Heading>
+      <Paragraph class="mt-5 max-w-xl indent-8">
+        {siteInfo.aboutText}
+      </Paragraph>
+    </div>
+  </div>
+
+   <media-controller class="col-span-2 w-full pt-14 block lg:hidden max-w-full">
+    <video
+      slot="media"
+      src="/ssac.mp4"
+      poster="/ssac.jpg"
+      muted
+      autoplay
+      class="rounded-2xl object-cover w-full max-w-full border-1 border-primary"
+      ></video>
+  </media-controller>
+
+  <div class="col-span-2">
+    <div
+      class="grid grid-cols-2 lg:grid-cols-4 justify-items-center gap-2 pt-16 w-full px-2"
+    >
+      {
+        highlights.map((highlight) => (
+          <div class="card max-w-44 max-h-44 bg-accent/60 hover:bg-accent/20 transition delay-150 duration-300 ease-in-out rounded-xl card-md shadow-sm">
+            <div class="card-body">
+              <Icon class="w-6 h-6 mx-auto" name={highlight.icon} />
+              <Heading
+                size="xs"
+                fontweight="light"
+                fontstyle="point"
+                class="text-center"
+              >
+                {highlight.title}
+              </Heading>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>

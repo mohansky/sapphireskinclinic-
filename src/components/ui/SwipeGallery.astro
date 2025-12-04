@@ -1,0 +1,108 @@
+---
+import { Image } from "astro:assets";
+import "photoswipe/style.css";
+import type { ImageMetadata } from "astro";
+// import GalleryItem from "./GalleryItem.astro";
+import Heading from "./Heading.astro";
+
+interface Props {
+  folder: string;
+  subDirectory?: string;
+}
+
+// Function to transform image names
+function transformImageName(filename: string): string {
+  return filename
+    .replace(/[-_]/g, ' ')  // Replace all hyphens and underscores with spaces
+    .replace(/\s+/g, ' ')   // Replace multiple consecutive spaces with single space
+    .trim();                // Remove leading/trailing spaces
+}
+
+// Get the subdirectory from props, default to the root images directory
+const { folder, subDirectory = folder } = Astro.props;
+
+// Import ALL images from the base directory and its subdirectories
+const allImages = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/content/site/images/**/*.{png,jpg,JPG,jpeg,gif,webp}"
+);
+
+// Filter the images based on the provided subdirectory
+const imageArray = await Promise.all(
+  Object.entries(allImages)
+    .filter(([path]) => {
+      if (!subDirectory) {
+        // If no subdirectory, only show images directly in the main folder
+        return path.match(
+          /^\/src\/content\/site\/images\/[^\/]+\.(png|jpg|JPG|jpeg|gif|webp)$/i
+        );
+      } else {
+        // If subdirectory provided, check if the path includes that subdirectory
+        const subDirPath = `/src/content/site/images/${subDirectory}/`;
+        return path.startsWith(subDirPath);
+      }
+    })
+    .map(async ([path, loader], index) => {
+      const image = await loader();
+      const filename = path.split("/").pop()?.split(".")[0] || `Image ${index}`;
+      return {
+        id: `image-${index}`,
+        path,
+        default: image.default,
+        name: filename,
+        displayName: transformImageName(filename),
+      };
+    })
+);
+---
+
+<div
+  class="pswp-gallery grid gap-4 [grid-template-columns:repeat(auto-fill,minmax(250px,1fr))] grid-rows-[masonry]"
+  id="my-gallery"
+>
+  <!-- <div class="pswp-gallery grid grid-cols-3 gap-4" id="my-gallery"> -->
+  {
+    imageArray.map((image, index) => (
+      <a
+        href={image.default.src}
+        data-pswp-src={image.default.src}
+        data-pswp-width={image.default.width}
+        data-pswp-height={image.default.height}
+        class="hover:opacity-75 transition-opacity duration-300"
+        data-pswp-alt={`Gallery image ${index + 1}`}
+        title={image.name}
+      >
+        <figure>
+          <Image
+            src={image.default}
+            width={image.default.width}
+            height={image.default.height}
+            alt={image.name}
+            title={image.name}
+            class="rounded-xl"
+          />
+        </figure>
+        {image.name && (
+          <div class="items-center text-center">
+            <Heading size="xs" fontweight="light" class="capitalize">{image.displayName}</Heading>
+          </div>
+        )}
+      </a>
+    ))
+  }
+
+  <script>
+    import PhotoSwipeLightbox from "photoswipe/lightbox";
+    import PhotoSwipe from "photoswipe";
+
+    // Ensure the script runs after the DOM is fully loaded
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = new PhotoSwipeLightbox({
+        gallery: "#my-gallery",
+        children: "a",
+        pswpModule: PhotoSwipe,
+      });
+
+      lightbox.init();
+    });
+  </script>
+</div>

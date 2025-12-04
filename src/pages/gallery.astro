@@ -1,0 +1,40 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/sections/PageHero.astro";
+import Container from "@/components/ui/Container.astro";
+import Heading from "@/components/ui/Heading.astro";
+import SwipeGallery from "@/components/ui/SwipeGallery.astro";
+import { getSlugFromPath } from "@/lib/slug";
+import { getCollection } from "astro:content";
+import EquipmentGallery from "@/components/ui/EquipmentGallery.astro";
+
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const currentSlug = getSlugFromPath(Astro.url);
+const currentHeroPage = siteInfo.heroPage.find(
+  (page) => page.slug === currentSlug
+);
+const heroPage = currentHeroPage || siteInfo.heroPage[0];
+---
+
+<Layout>
+  <PageHero hero={heroPage} />
+  <Container>
+    <div class="my-20">
+      <Heading size="lg" fontweight="black" fontstyle="poppins" class="mb-5"
+        >Our clinic in JPnagar</Heading
+      >
+      <SwipeGallery folder="clinic-jpnagar" />
+      <Heading size="lg" fontweight="black" fontstyle="poppins" class="mt-10 mb-5"
+        >Our clinic in Koramangala</Heading
+      >
+      <SwipeGallery folder="clinic-kor" />
+    </div>
+    <div class="my-20">
+      <Heading size="lg" fontweight="black" fontstyle="poppins" class="mb-5"
+        >Some of our equipments</Heading
+      >
+      <EquipmentGallery />
+    </div>
+  </Container>
+</Layout>
