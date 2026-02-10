@@ -71,61 +71,52 @@ const medicalBusinessSchema = {
     site.social_media[3]?.link
   ].filter(Boolean), // Remove any undefined values
   "makesOffer": [
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "MedicalProcedure",
-        "name": "Acne Treatment",
-        "procedureType": "https://schema.org/TherapeuticProcedure",
-        "description": "Clinical evaluation and personalized treatment plan including topical medications, oral medications, or procedural interventions."
-      }
-    },
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "MedicalProcedure",
-        "name": "Botox Injections",
-        "procedureType": "https://schema.org/TherapeuticProcedure",
-        "description": "Minimally invasive injections to reduce appearance of fine lines and wrinkles."
-      }
-    },
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "MedicalProcedure",
-        "name": "Hair Loss Treatment",
-        "procedureType": "https://schema.org/TherapeuticProcedure",
-        "description": "Scalp analysis and personalized treatment protocols to address various causes of hair loss."
-      }
-    },
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "MedicalProcedure",
-        "name": "Skin Cancer Screening",
-        "procedureType": "https://schema.org/DiagnosticProcedure",
-        "description": "Full body examination to detect suspicious lesions"
-      }
-    },
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "MedicalProcedure",
-        "name": "Chemical Peels",
-        "procedureType": "https://schema.org/TherapeuticProcedure",
-        "description": "Application of chemical solution to improve skin texture and appearance"
-      }
-    },
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "MedicalProcedure",
-        "name": "Scalp Treatments",
-        "procedureType": "https://schema.org/TherapeuticProcedure",
-        "description": "Specialized treatments for scalp conditions and hair health"
-      }
+  {
+    "@type": "Offer",
+    "itemOffered": {
+      "@type": "MedicalProcedure",
+      "name": "Acne Treatment",
+      "procedureType": "http://schema.org/NoninvasiveProcedure",
+      "description": "Clinical evaluation and personalized treatment plan including topical medications, oral medications, or procedural interventions."
     }
-  ],
+  },
+  {
+    "@type": "Offer",
+    "itemOffered": {
+      "@type": "MedicalProcedure",
+      "name": "Botox Injections",
+      "procedureType": "http://schema.org/PercutaneousProcedure",
+      "description": "Minimally invasive injections to reduce appearance of fine lines and wrinkles."
+    }
+  },
+  {
+    "@type": "Offer",
+    "itemOffered": {
+      "@type": "MedicalProcedure",
+      "name": "Hair Loss Treatment",
+      "procedureType": "http://schema.org/PercutaneousProcedure",
+      "description": "Scalp analysis and personalized treatment protocols to address various causes of hair loss."
+    }
+  },
+  {
+    "@type": "Offer",
+    "itemOffered": {
+      "@type": "MedicalProcedure",
+      "name": "Chemical Peels",
+      "procedureType": "http://schema.org/NoninvasiveProcedure",
+      "description": "Application of chemical solution to improve skin texture and appearance"
+    }
+  },
+  {
+    "@type": "Offer",
+    "itemOffered": {
+      "@type": "MedicalProcedure",
+      "name": "Scalp Treatments",
+      "procedureType": "http://schema.org/NoninvasiveProcedure",
+      "description": "Specialized treatments for scalp conditions and hair health"
+    }
+  }
+],
   "knowsAbout": ["Dermatology", "Cosmetic Dermatology", "Trichology"],
   "employee": site.doctors?.map(doctor => ({
   "@type": "Person",
