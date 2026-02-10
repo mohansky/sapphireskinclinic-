@@ -127,36 +127,13 @@ const medicalBusinessSchema = {
     }
   ],
   "knowsAbout": ["Dermatology", "Cosmetic Dermatology", "Trichology"],
-  "employee": [
-    {
-      "@type": "Person",
-      "name": site.doctors[0]?.name, 
-      "jobTitle": "Dermatologist",
-      "description": site.doctors[0]?.qualifications,
-      "knowsAbout": site.doctors[0]?.specialization
-    },
-    {
-      "@type": "Person",
-      "name": site.doctors[1]?.name, 
-      "jobTitle": "Dermatologist",
-      "description": site.doctors[1]?.qualifications,
-      "knowsAbout": site.doctors[1]?.specialization
-    },
-    {
-      "@type": "Person",
-      "name": site.doctors[2]?.name, 
-      "jobTitle": "Dermatologist",
-      "description": site.doctors[2]?.qualifications,
-      "knowsAbout": site.doctors[2]?.specialization
-    },
-    {
-      "@type": "Person",
-      "name": site.doctors[2]?.name, 
-      "jobTitle": "Dermatologist",
-      "description": site.doctors[3]?.qualifications,
-      "knowsAbout": site.doctors[3]?.specialization
-    }
-  ].filter(doctor => doctor.name),
+  "employee": site.doctors?.map(doctor => ({
+  "@type": "Person",
+  "name": doctor.name,
+  "jobTitle": "Dermatologist",
+  "description": doctor.qualifications,
+  "knowsAbout": doctor.specialization
+})).filter(doctor => doctor.name) || [],
   "review": {
     "@type": "Review",
     "reviewRating": {
