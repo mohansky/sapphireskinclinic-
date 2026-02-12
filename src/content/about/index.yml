@@ -48,12 +48,12 @@ about:
     - name: Dr Savitha Sharath
       qualifications: MBBS, MD
       specialization: Consultant Dermatologist
-      image: /doctors/DrSavithaSharath.jpg   
+      image: ./images/doctors/DrSavithaSharath.jpg   
 
     - name: Dr Ron Thomas
       qualifications: MBBS, MD
       specialization: Consultant Dermatologist
-      image: /doctors/DrRonThomas.jpg
+      image: ./images/doctors/DrRonThomas.jpg
 
   teamTitle: Our Team
   teamImage: ./images/groupphoto.jpg
