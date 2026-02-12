@@ -123,7 +123,7 @@ site:
   offers:
     - title:
       subtitle:
-      image: ./images/offer-1225.jpg
+      image: ./images/offers.jpg
       offerImg: ./images/offers.jpg
 
   about:
@@ -154,20 +154,20 @@ site:
       specialization: Founder & Director, Consultant Dermatologist & Cosmetologist
       image: ./images/doctors/DrSheelaNatraj.jpg
 
-    - name: Dr. Kavya Reganti
-      qualifications: MBBS, MD
-      specialization: Consultant Dermatology, Venereology & Leprosy
-      image: ./images/doctors/DrKavyaReganti.jpg
-
     - name: Dr Aishwarya Balawat
       qualifications: MBBS, MD
       specialization: Consultant Dermatologist
       image: ./images/doctors/DrAishwaryaBalawat.jpg
 
-    - name: Dr Rakesh Reddy
+    - name: Dr Savitha Sharath
       qualifications: MBBS, MD
       specialization: Consultant Dermatologist
-      image: ./images/doctors/DrRakeshReddy.jpg
+      image: /doctors/DrSavithaSharath.jpg   
+
+    - name: Dr Ron Thomas
+      qualifications: MBBS, MD
+      specialization: Consultant Dermatologist
+      image: /doctors/DrRonThomas.jpg
 
   aboutTitle: About Us
   aboutText: >
